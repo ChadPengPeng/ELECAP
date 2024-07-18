@@ -1,0 +1,216 @@
+build:
+  generated-by: csolution version 2.4.0
+  solution: ELECAP.csolution.yml
+  project: ELECAP.cproject.yml
+  context: ELECAP+ELECAP
+  compiler: AC6
+  device: STM32H750VBTx
+  device-pack: Keil::STM32H7xx_DFP@3.1.1
+  processor:
+    endian: little
+    fpu: dp
+    core: Cortex-M7
+  packs:
+    - pack: ARM::CMSIS@5.9.0
+      path: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0
+    - pack: Keil::STM32H7xx_DFP@3.1.1
+      path: ${CMSIS_PACK_ROOT}/Keil/STM32H7xx_DFP/3.1.1
+  optimize: speed
+  debug: on
+  misc:
+    ASM:
+      - -masm=auto
+    C:
+      - -std=c99
+      - -fno-rtti
+      - -funsigned-char
+      - -fshort-enums
+      - -fshort-wchar
+      - -ffunction-sections
+      - -Wno-packed
+      - -Wno-missing-variable-declarations
+      - -Wno-missing-prototypes
+      - -Wno-missing-noreturn
+      - -Wno-sign-conversion
+      - -Wno-nonportable-include-path
+      - -Wno-reserved-id-macro
+      - -Wno-unused-macros
+      - -Wno-documentation-unknown-command
+      - -Wno-documentation
+      - -Wno-license-management
+      - -Wno-parentheses-equality
+    CPP:
+      - -xc++
+      - -std=c++03
+      - -fno-rtti
+      - -funsigned-char
+      - -fshort-enums
+      - -fshort-wchar
+      - -ffunction-sections
+      - -Wno-packed
+      - -Wno-missing-variable-declarations
+      - -Wno-missing-prototypes
+      - -Wno-missing-noreturn
+      - -Wno-sign-conversion
+      - -Wno-nonportable-include-path
+      - -Wno-reserved-id-macro
+      - -Wno-unused-macros
+      - -Wno-documentation-unknown-command
+      - -Wno-documentation
+      - -Wno-license-management
+      - -Wno-parentheses-equality
+    Link:
+      - --map
+      - --load_addr_map_info
+      - --xref
+      - --callgraph
+      - --symbols
+      - --info sizes
+      - --info totals
+      - --info unused
+      - --info veneers
+      - --strict
+      - --summary_stderr
+      - --info summarysizes
+  define:
+    - USE_HAL_DRIVER
+    - STM32H750xx
+    - STM32H750xx
+    - _RTE_
+  define-asm:
+    - STM32H750xx
+    - _RTE_
+  add-path:
+    - ../Core/Inc
+    - ../Drivers/STM32H7xx_HAL_Driver/Inc
+    - ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy
+    - ../Drivers/CMSIS/Device/ST/STM32H7xx/Include
+    - ../Drivers/CMSIS/Include
+    - ../user/device
+    - ../user/fatfs
+    - RTE/_ELECAP
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+    - ${CMSIS_PACK_ROOT}/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include
+  output-dirs:
+    intdir: tmp/ELECAP/ELECAP
+    outdir: out/ELECAP/ELECAP
+    rtedir: RTE
+  output:
+    - type: elf
+      file: ELECAP.axf
+  components:
+    - component: ARM::CMSIS:CORE@5.6.0
+      condition: ARMv6_7_8-M Device
+      from-pack: ARM::CMSIS@5.9.0
+      selected-by: ARM::CMSIS:CORE
+      files:
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+          category: include
+          version: 5.6.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Core/Include/tz_context.h
+          category: header
+          version: 5.6.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Core/Template/ARMv8-M/main_s.c
+          category: sourceC
+          attr: template
+          version: 1.1.1
+          select: Secure mode 'main' module for ARMv8-M
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Core/Template/ARMv8-M/tz_context.c
+          category: sourceC
+          attr: template
+          version: 1.1.1
+          select: RTOS Context Management (TrustZone for ARMv8-M)
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Documentation/Core/html/index.html
+          category: doc
+          version: 5.6.0
+  linker:
+    script: ELECAP_ELECAP.sct
+  groups:
+    - group: Application/MDK-ARM
+      files:
+        - file: startup_stm32h750xx.s
+          category: sourceAsm
+    - group: Application/User/Core
+      files:
+        - file: ../Core/Src/main.c
+          category: sourceC
+        - file: ../Core/Src/stm32h7xx_it.c
+          category: sourceC
+        - file: ../Core/Src/stm32h7xx_hal_msp.c
+          category: sourceC
+    - group: Drivers/STM32H7xx_HAL_Driver
+      files:
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_fmc.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_hsem.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma_ex.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c_ex.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_exti.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sram.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.c
+          category: sourceC
+        - file: ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c
+          category: sourceC
+    - group: Drivers/CMSIS
+      files:
+        - file: ../Core/Src/system_stm32h7xx.c
+          category: sourceC
+    - group: user
+      files:
+        - file: ../user/device/dev_lcd.c
+          category: sourceC
+        - file: ../user/device/dev_lcd.h
+          category: header
+        - file: ../user/device/font.h
+          category: header
+        - file: ../user/device/bsp_delay.c
+          category: sourceC
+  constructed-files:
+    - file: RTE/_ELECAP/RTE_Components.h
+      category: header
+  licenses:
+    - license: <unknown>
+      packs:
+        - pack: ARM::CMSIS@5.9.0
+      components:
+        - component: ARM::CMSIS:CORE@5.6.0
+    - license: <unknown>
+      packs:
+        - pack: Keil::STM32H7xx_DFP@3.1.1

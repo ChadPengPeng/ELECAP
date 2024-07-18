@@ -1,0 +1,13 @@
+# CMSIS Build Audit File generated on 2024-06-05T21:48:49
+
+# Project Description File: d:/my_project/ELECAP/MDK-ARM/ELECAP+ELECAP.cprj
+
+# Toolchain Configuration File: C:/Users/ChadPeng/.vcpkg/artifacts/2139c4c6/tools.open.cmsis.pack.cmsis.toolbox/2.4.0/etc/AC6.6.16.2.cmake
+
+# Package: ARM::CMSIS@5.9.0
+  Location: C:\Users\ChadPeng\AppData\Local\arm\packs/ARM/CMSIS/5.9.0/
+
+  * Component: ARM::CMSIS:CORE@5.6.0
+
+# Package: Keil::STM32H7xx_DFP@3.1.1
+  Location: C:\Users\ChadPeng\AppData\Local\arm\packs/Keil/STM32H7xx_DFP/3.1.1/

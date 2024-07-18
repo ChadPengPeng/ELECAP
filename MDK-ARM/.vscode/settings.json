@@ -1,0 +1,13 @@
+{
+    "stm32-for-vscode.openOCDPath": "C:\\USERS\\CHADPENG\\APPDATA\\ROAMING\\CODE\\USER\\GLOBALSTORAGE\\BMD.STM32-FOR-VSCODE\\@XPACK-DEV-TOOLS\\OPENOCD\\0.12.0-3.1\\.CONTENT\\BIN\\OPENOCD.EXE",
+    "cmsis-csolution.actions": [
+        {
+            "path": "ELECAP.csolution.yml",
+            "target": "ELECAP",
+            "config": {
+                "run": "Flash Device"
+            }
+        }
+    ],
+    "cmake.sourceDirectory": "D:/my_project/ELECAP/MDK-ARM/tmp/ELECAP/ELECAP"
+}

@@ -1,0 +1,9 @@
+build-idx:
+  generated-by: csolution version 2.4.0
+  csolution: ELECAP.csolution.yml
+  cprojects:
+    - cproject: ELECAP.cproject.yml
+  cbuilds:
+    - cbuild: ELECAP+ELECAP.cbuild.yml
+      project: ELECAP
+      configuration: +ELECAP

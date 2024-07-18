@@ -1,0 +1,4 @@
+D:/my_project/ELECAP/MDK-ARM/build/CMakeFiles/database.dir
+D:/my_project/ELECAP/MDK-ARM/build/CMakeFiles/ELECAP.dir
+D:/my_project/ELECAP/MDK-ARM/build/CMakeFiles/edit_cache.dir
+D:/my_project/ELECAP/MDK-ARM/build/CMakeFiles/rebuild_cache.dir

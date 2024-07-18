@@ -1,0 +1,45 @@
+{
+	"kind" : "toolchains",
+	"toolchains" : 
+	[
+		{
+			"compiler" : 
+			{
+				"implicit" : {},
+				"path" : "c:/Users/ChadPeng/.vcpkg/artifacts/2139c4c6/compilers.arm.armclang/6.22.0/bin/armclang.exe",
+				"target" : "arm-arm-none-eabi"
+			},
+			"language" : "AS_ARM"
+		},
+		{
+			"compiler" : 
+			{
+				"id" : "ARMClang",
+				"implicit" : 
+				{
+					"includeDirectories" : 
+					[
+						"C:/Users/ChadPeng/.vcpkg/artifacts/2139c4c6/compilers.arm.armclang/6.22.0/include"
+					],
+					"linkDirectories" : [],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : []
+				},
+				"path" : "c:/Users/ChadPeng/.vcpkg/artifacts/2139c4c6/compilers.arm.armclang/6.22.0/bin/armclang.exe",
+				"target" : "arm-arm-none-eabi",
+				"version" : "6.22.0"
+			},
+			"language" : "C",
+			"sourceFileExtensions" : 
+			[
+				"c",
+				"m"
+			]
+		}
+	],
+	"version" : 
+	{
+		"major" : 1,
+		"minor" : 0
+	}
+}
