@@ -29,7 +29,10 @@
         "uibutton.h": "c",
         "dev_w25qxx_lz.h": "c",
         "touchevent.h": "c",
-        "main.h": "c"
+        "main.h": "c",
+        "ithandler.h": "c",
+        "stm32h7xx_hal.h": "c",
+        "tim.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

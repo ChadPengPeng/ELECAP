@@ -21,6 +21,7 @@
 #include "adc.h"
 #include "dac.h"
 #include "dma.h"
+#include "i2c.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -40,6 +41,7 @@
 #include "stm32h7xx.h"
 #include "stm32h7xx_hal.h"
 #include "touchEvent.h"
+#include "ITHandler.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -136,9 +138,12 @@ int main(void)
   MX_ADC2_Init();
   MX_DAC1_Init();
   MX_USART2_UART_Init();
+  MX_I2C1_Init();
+  MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
 
   HAL_TIM_Base_Start(&htim6);
+	HAL_TIM_Base_Start(&htim7);
 
   HAL_Delay(20);
   // 显示屏flash芯片初始
@@ -149,8 +154,16 @@ int main(void)
   tp_dev.init();
   // 图像界面初始
   graphInit();
+	
+	extern DMA_HandleTypeDef hdma_adc1;
+	hdma_adc1.XferM1CpltCallback = AdcCH1Finish;
 
   int turn = 0;
+	uint16_t dacWave[314];
+	for (int i = 0; i < 314; i++){
+		dacWave[i] = (int)(2000 + 2000.0*sinf((float)i/50));
+	}
+	HAL_DAC_Start_DMA(&hdac1,DAC_CHANNEL_1,(uint32_t*)dacWave,314,DAC_ALIGN_12B_R);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -172,8 +185,10 @@ int main(void)
     {
       adcNumber[i] = 0;
     }
+		HAL_TIM_Base_Start(&htim6);
     HAL_ADC_Start_DMA(&hadc1, (uint32_t *)adcNumber, WIDTH);
     HAL_Delay(10);
+		HAL_ADC_Stop_DMA(&hadc1);
     for (int i = 0; i < WIDTH; i++)
     {
       waveInt[i] = -((adcNumber[i] * 100.0f)) / 16383 + 50;
@@ -227,7 +242,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLM = 4;
   RCC_OscInitStruct.PLL.PLLN = 60;
   RCC_OscInitStruct.PLL.PLLP = 2;
-  RCC_OscInitStruct.PLL.PLLQ = 3;
+  RCC_OscInitStruct.PLL.PLLQ = 5;
   RCC_OscInitStruct.PLL.PLLR = 2;
   RCC_OscInitStruct.PLL.PLLRGE = RCC_PLL1VCIRANGE_3;
   RCC_OscInitStruct.PLL.PLLVCOSEL = RCC_PLL1VCOWIDE;
@@ -283,7 +298,6 @@ void PeriphCommonClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-// dma中断，告知cpu完成
 
 /* USER CODE END 4 */
 
