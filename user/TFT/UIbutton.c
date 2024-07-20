@@ -1,7 +1,6 @@
 #include "UIbutton.h"
 
 #define FoldPixel 40
-UIobject *drawer = NULL;
 enum FOLDSTATE
 {
     FOLD,
@@ -12,13 +11,14 @@ enum FOLDSTATE
 
 void buttonOnUpdate(UIobject *this, int deltaT)
 {
-    this->param[2] = FadeColor(this->param[2], 255 * (div - 1) / div);
+    if (this->param[2] != BLACK)
+        this->param[2] = FadeColor(this->param[2], 255 * (div - 1) / div);
 }
 
-void buttonCallback(UIobject *this, int x, int y)
+void buttonOnParentUpdate(UIobject *this, int deltaT, UIobject *parent)
 {
-    this->x = x + (short)this->param[3];
-    this->y = y + (short)this->param[4];
+    this->x = parent->x + (short)this->param[3];
+    this->y = parent->y + (short)this->param[4];
 }
 
 void buttonOnClick(UIobject *this, Event event)
@@ -45,11 +45,11 @@ param:
     6:initBackgroudColor
 selfStruct:nextButton
 */
-void buttonUI(int centerx, int centery, int width, int height, u16 color, u16 backgroudColor, int priority)
+UIobject *buttonUI(int centerx, int centery, int width, int height, u16 color, u16 backgroudColor, int priority, UIobject *father)
 {
     UIobject *result = getUIobject();
-    result->x = centerx + drawer->x;
-    result->y = centery + drawer->y;
+    result->x = centerx + father->x;
+    result->y = centery + father->y;
     result->box[0][1] = result->param[0] = width / 2;
     result->box[0][0] = -result->param[0];
     result->box[1][1] = result->param[1] = height / 2;
@@ -62,16 +62,12 @@ void buttonUI(int centerx, int centery, int width, int height, u16 color, u16 ba
     result->param[6] = backgroudColor;
     result->eventListener = buttonOnClick;
     result->update = buttonOnUpdate;
+    result->childUpdate = buttonOnParentUpdate;
     result->shader = buttonShader;
     result->priority = priority;
-    UIobject *button = drawer;
-    if (button == NULL) return;
-    while (button->selfStruct != NULL)
-    {
-        button = (UIobject *)button->selfStruct;
-    }
-    button->selfStruct = (void *)result;
     priorityInsert(result);
+    childInsert(father, result);
+    return result;
 }
 
 /*
@@ -100,12 +96,6 @@ void onFoldingUpdate(UIobject *this, int deltaT)
         }
         this->x = this->x * (div - 1) / div + (this->param[4] - FoldPixel) / div;
     }
-    UIobject *button = (UIobject *)this->selfStruct;
-    while (button != NULL)
-    {
-        buttonCallback(button, this->x, this->y);
-        button = (UIobject *)button->selfStruct;
-    }
 }
 
 void onCursor(UIobject *this, Event event)
@@ -117,7 +107,6 @@ void onCursor(UIobject *this, Event event)
         this->update = onFoldingUpdate;
     }
 }
-
 
 void drawerShader(UIobject *this)
 {
@@ -133,7 +122,7 @@ param:
     5:initY
     6:initBackgroudColor
 */
-void drawerUI(int centerx, int centery, int width, int height, u16 color, u16 backgroudColor, int priority)
+UIobject *drawerUI(int centerx, int centery, int width, int height, u16 color, u16 backgroudColor, int priority)
 {
     UIobject *result = getUIobject();
     result->x = centerx;
@@ -151,6 +140,6 @@ void drawerUI(int centerx, int centery, int width, int height, u16 color, u16 ba
     result->eventListener = onCursor;
     result->shader = drawerShader;
     result->priority = priority;
-    drawer = result;
     priorityInsert(result);
+    return result;
 }

@@ -23,6 +23,7 @@ typedef struct {
 } OscData;
 
 extern void getWave(uint16_t* wave, int length);
+extern int ifBusy();
 extern void processWave(uint16_t* wave, int length, OscData* data, int* waveUIlist);
 extern int getVoltageNum();
 extern void setXscale(OscData* data, int xscale);

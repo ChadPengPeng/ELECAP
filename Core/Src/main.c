@@ -158,8 +158,9 @@ int main(void)
   // 图像界面初始
   graphInit();
 	
-	// extern DMA_HandleTypeDef hdma_adc1;
-	// hdma_adc1.XferM1CpltCallback = AdcCH1Finish;
+//	extern DMA_HandleTypeDef hdma_adc1;
+//	hdma_adc1.XferM1CpltCallback = AdcCH1Finish;
+  
 	
 	
   
@@ -184,6 +185,7 @@ int main(void)
       adcNumber[i] = 0;
     }
 		getWave(adcNumber, wave_length);
+    while(ifBusy());
 		oscData.trigger = 8191;
     processWave(adcNumber, wave_length, &oscData, waveInt);
     // 更新视图

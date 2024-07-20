@@ -21,10 +21,13 @@ UIobject *getUIobject()
     }while(result == NULL);
     result->this = result;
     result->next = NULL;
+    result->child = NULL;
+    result->childNext = NULL;
     result->x = result->y = 0;
     result->box[0][0] = result->box[0][1] = result->box[1][0] = result->box[1][1] = 0;
     result->eventListener = NULL;
     result->update = NULL;
+    result->childUpdate = NULL;
     result->shader = NULL;
     result->selfStruct = NULL;
     // result->priority = 0;
@@ -56,4 +59,16 @@ void delNext(UIobject *node)
 {
     node->next = node->next->next;
     free(node->next);
+}
+
+void childInsert(UIobject *father, UIobject *child){
+    if(father->child != NULL){
+        UIobject *childPointer = father->child;
+        while(childPointer->childNext != NULL){
+            childPointer = childPointer->childNext;
+        }
+        childPointer->childNext = child;
+    }
+    else
+        father->child = child;
 }

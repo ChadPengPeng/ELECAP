@@ -152,18 +152,18 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>62</LineNumber>
+          <LineNumber>273</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134271466</Address>
+          <Address>134230064</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\user\Src\osc.c</Filename>
+          <Filename>../Core/Src/stm32h7xx_it.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\ELECAP\../user/Src/osc.c\62</Expression>
+          <Expression>\\ELECAP\../Core/Src/stm32h7xx_it.c\273</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -216,6 +216,16 @@
           <count>9</count>
           <WinNumber>1</WinNumber>
           <ItemText>trigger</ItemText>
+        </Ww>
+        <Ww>
+          <count>10</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>parent,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>11</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>busy</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>
@@ -432,7 +442,7 @@
 
   <Group>
     <GroupName>Drivers/STM32H7xx_HAL_Driver</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -752,7 +762,7 @@
 
   <Group>
     <GroupName>Drivers/CMSIS</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

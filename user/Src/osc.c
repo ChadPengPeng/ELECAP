@@ -1,14 +1,23 @@
 #include "osc.h"
 
+int busy = 0;
 void getWave(uint16_t* wave, int length)
 {
     // Initialize the oscillator
     HAL_TIM_Base_Start(&htim6);
     HAL_ADC_Start_DMA(&hadc1, (uint32_t*)wave, length);
+    busy = 1;
     //while (HAL_ADC_GetState(&hadc1)!= HAL_ADC_STATE_EOC);
-		HAL_Delay(10);
-    HAL_TIM_Base_Stop(&htim6);
-    HAL_ADC_Stop_DMA(&hadc1);
+    // HAL_Delay(10);
+}
+
+int ifBusy()
+{
+    if(busy == 0){
+        HAL_TIM_Base_Stop(&htim6);
+        HAL_ADC_Stop_DMA(&hadc1);
+    }
+    return busy;
 }
 
 int waveMax(uint16_t* wave, int length)

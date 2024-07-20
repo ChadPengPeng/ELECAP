@@ -205,9 +205,25 @@ void SysTick_Handler(void)
 void DMA1_Stream0_IRQHandler(void)
 {
   /* USER CODE BEGIN DMA1_Stream0_IRQn 0 */
-
+	extern DMA_HandleTypeDef hdma_dac1_ch1;
+	if (__HAL_DMA_GET_FLAG(&hdma_dac1_ch1, __HAL_DMA_GET_TC_FLAG_INDEX(&hdma_dac1_ch1)) != RESET)
+    {
+        __HAL_DMA_CLEAR_FLAG(&hdma_dac1_ch1, __HAL_DMA_GET_TC_FLAG_INDEX(&hdma_dac1_ch1));
+        //HAL_DMAEx_TCMpleteCallback(&hdma1_stream0);
+    }
+    
+    if (__HAL_DMA_GET_FLAG(&hdma_dac1_ch1, __HAL_DMA_GET_HT_FLAG_INDEX(&hdma_dac1_ch1)) != RESET)
+    {
+        __HAL_DMA_CLEAR_FLAG(&hdma_dac1_ch1, __HAL_DMA_GET_HT_FLAG_INDEX(&hdma_dac1_ch1));
+        //HAL_DMAEx_HTCMpleteCallback(&hdma1_stream0);
+    }
+    
+    if (__HAL_DMA_GET_FLAG(&hdma_dac1_ch1, __HAL_DMA_GET_TE_FLAG_INDEX(&hdma_dac1_ch1)) != RESET)
+		{
+        __HAL_DMA_CLEAR_FLAG(&hdma_dac1_ch1, __HAL_DMA_GET_TE_FLAG_INDEX(&hdma_dac1_ch1));
+        //HAL_DMAEx_ErrorCallback(&hdma1_stream0);
+    }
   /* USER CODE END DMA1_Stream0_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_dac1_ch1);
   /* USER CODE BEGIN DMA1_Stream0_IRQn 1 */
 
   /* USER CODE END DMA1_Stream0_IRQn 1 */
@@ -219,9 +235,27 @@ void DMA1_Stream0_IRQHandler(void)
 void DMA1_Stream1_IRQHandler(void)
 {
   /* USER CODE BEGIN DMA1_Stream1_IRQn 0 */
-
+	extern DMA_HandleTypeDef hdma_adc1;
+	if (__HAL_DMA_GET_FLAG(&hdma_adc1, __HAL_DMA_GET_TC_FLAG_INDEX(&hdma_adc1)) != RESET)
+    {
+        __HAL_DMA_CLEAR_FLAG(&hdma_adc1, __HAL_DMA_GET_TC_FLAG_INDEX(&hdma_adc1));
+        //HAL_DMAEx_TCMpleteCallback(&hdma1_stream0);
+				extern int busy;
+				busy = 0;
+    }
+    
+    if (__HAL_DMA_GET_FLAG(&hdma_adc1, __HAL_DMA_GET_HT_FLAG_INDEX(&hdma_adc1)) != RESET)
+    {
+        __HAL_DMA_CLEAR_FLAG(&hdma_adc1, __HAL_DMA_GET_HT_FLAG_INDEX(&hdma_adc1));
+        //HAL_DMAEx_HTCMpleteCallback(&hdma1_stream0);
+    }
+    
+    if (__HAL_DMA_GET_FLAG(&hdma_adc1, __HAL_DMA_GET_TE_FLAG_INDEX(&hdma_adc1)) != RESET)
+		{
+        __HAL_DMA_CLEAR_FLAG(&hdma_adc1, __HAL_DMA_GET_TE_FLAG_INDEX(&hdma_adc1));
+        //HAL_DMAEx_ErrorCallback(&hdma1_stream0);
+    }
   /* USER CODE END DMA1_Stream1_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_adc1);
   /* USER CODE BEGIN DMA1_Stream1_IRQn 1 */
 
   /* USER CODE END DMA1_Stream1_IRQn 1 */
