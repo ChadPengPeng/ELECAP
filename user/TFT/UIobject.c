@@ -15,7 +15,7 @@ UIobject *getHead()
 UIobject *getUIobject()
 {
 	UIobject *result;
-    // if malloc return NULL, make heap size bigger
+    //warning: if malloc return NULL, make heap size bigger
     do{
         result = (UIobject *)malloc(sizeof(UIobject));
     }while(result == NULL);

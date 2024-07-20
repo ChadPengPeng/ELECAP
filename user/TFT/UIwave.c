@@ -135,7 +135,7 @@ param:
     0:color
 */
 int *waveInt;
-void waveUI(u16 color, int priority)
+void waveUI(u16 color, int priority, UIwaveStruct *selfStruct)
 {
     UIobject *result = getUIobject();
     result->x = WIDTH / 2;
@@ -147,8 +147,9 @@ void waveUI(u16 color, int priority)
     result->param[0] = color;
     result->shader = waveShader;
     result->priority = priority;
-    UIwaveStruct *selfStruct = (UIwaveStruct *)malloc(sizeof(UIwaveStruct));
+    //UIwaveStruct *selfStruct = (UIwaveStruct *)malloc(sizeof(UIwaveStruct));
     result->selfStruct = selfStruct;
+    
     selfStruct->xScale = 400;
     selfStruct->yScale = 400;
 

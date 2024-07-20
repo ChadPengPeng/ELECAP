@@ -1306,6 +1306,16 @@
               <FileType>1</FileType>
               <FilePath>..\user\Src\ITHandler.c</FilePath>
             </File>
+            <File>
+              <FileName>osc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\user\Src\osc.c</FilePath>
+            </File>
+            <File>
+              <FileName>waveG.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\user\Src\waveG.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

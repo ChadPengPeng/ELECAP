@@ -12,12 +12,14 @@ void graphInit()
     // your init object
     backgroundUI();
     // recUI(120, 160, 100, 100, BLUE, 2);
+    // recUI(130, 160, 100, 100, PURPLE, 2);
     drawerUI(WIDTH - 50, HEIGHT / 2, 50, HEIGHT, RED, BLACK, 4);
     //drawerUI(100, 100, 100, 100, RED, GRAY, 4);
     buttonUI(20, -30, 40, 20, BLUE, LGRAYBLUE, 5);
     buttonUI(20, 0, 40, 20, BLUE, LGRAYBLUE, 5);
     buttonUI(20, 30, 40, 20, BLUE, LGRAYBLUE, 5);
-    waveUI(YELLOW, 1);
+    extern OscData oscData;
+    waveUI(YELLOW, 1, &oscData);
     debugUI();
 }
 
@@ -36,13 +38,17 @@ void processEvent()
     {
         Event event = dequeueEvent();
         // write your event process function
+        UIobject *pointer = getHead();
+        UIobject *beforepointer = NULL;
+        UIobject *beforeCursor = NULL;
         if (eventCodeMask(event) == OnClick)
         {
             int cursorX = cursorXmask(event);
             int cursorY = cursorYmask(event);
-            UIobject *pointer = getHead();
+            
             while (pointer->next != NULL)
             {
+                beforepointer = pointer;
                 pointer = pointer->next;
                 if (cursorX < pointer->x + pointer->box[0][0])
                     continue;
@@ -52,9 +58,20 @@ void processEvent()
                     continue;
                 else if (cursorY > pointer->y + pointer->box[1][1])
                     continue;
-                else
+                else{
                     cursor = pointer;
+                    beforeCursor = beforepointer;
+                }
             }
+        }
+        while(cursor->next != NULL){
+            if(cursor->priority != cursor->next->priority) break;
+            //交换cursor和next
+            UIobject *temp = cursor->next;
+            cursor->next = temp->next;
+            temp->next = cursor;
+            beforeCursor->next = temp;
+            beforepointer = temp;
         }
         if (cursor->eventListener != NULL)
         {

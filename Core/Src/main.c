@@ -42,6 +42,8 @@
 #include "stm32h7xx_hal.h"
 #include "touchEvent.h"
 #include "ITHandler.h"
+#include "osc.h"
+#include "waveG.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -75,7 +77,9 @@ void PeriphCommonClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 u16 debug = 0;
-uint16_t adcNumber[WIDTH];
+#define wave_length 500
+uint16_t adcNumber[wave_length];
+OscData oscData = {0};
 /* USER CODE END 0 */
 
 /**
@@ -141,9 +145,8 @@ int main(void)
   MX_I2C1_Init();
   MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
-
-  HAL_TIM_Base_Start(&htim6);
-	HAL_TIM_Base_Start(&htim7);
+  
+	initWaveG();
 
   HAL_Delay(20);
   // 显示屏flash芯片初始
@@ -155,15 +158,11 @@ int main(void)
   // 图像界面初始
   graphInit();
 	
-	extern DMA_HandleTypeDef hdma_adc1;
-	hdma_adc1.XferM1CpltCallback = AdcCH1Finish;
-
-  int turn = 0;
-	uint16_t dacWave[314];
-	for (int i = 0; i < 314; i++){
-		dacWave[i] = (int)(2000 + 2000.0*sinf((float)i/50));
-	}
-	HAL_DAC_Start_DMA(&hdac1,DAC_CHANNEL_1,(uint32_t*)dacWave,314,DAC_ALIGN_12B_R);
+	// extern DMA_HandleTypeDef hdma_adc1;
+	// hdma_adc1.XferM1CpltCallback = AdcCH1Finish;
+	
+	
+  
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -175,29 +174,18 @@ int main(void)
     int sta = Read_TP_2(&tp_dev.X, &tp_dev.Y);
     if (sta)
     {
-      
       tp_dev.sta = Key_Up;
     }
 		addTouchEvent((360 - tp_dev.Y / 21),256 - tp_dev.X / 29,sta);
     // debug
 
-    for (int i = 0; i < WIDTH; i++)
+    for (int i = 0; i < wave_length; i++)
     {
       adcNumber[i] = 0;
     }
-		HAL_TIM_Base_Start(&htim6);
-    HAL_ADC_Start_DMA(&hadc1, (uint32_t *)adcNumber, WIDTH);
-    HAL_Delay(10);
-		HAL_ADC_Stop_DMA(&hadc1);
-    for (int i = 0; i < WIDTH; i++)
-    {
-      waveInt[i] = -((adcNumber[i] * 100.0f)) / 16383 + 50;
-      if (waveInt[i] > 100)
-        waveInt[i] = 100;
-      if (waveInt[i] < -99)
-        waveInt[i] = -99;
-    }
-    turn++;
+		getWave(adcNumber, wave_length);
+		oscData.trigger = 8191;
+    processWave(adcNumber, wave_length, &oscData, waveInt);
     // 更新视图
     nextGraphic();
     /* USER CODE END WHILE */

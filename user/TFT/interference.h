@@ -159,4 +159,6 @@ extern void cacheRoundedRec(int x, int y, int width, int height, int r, u16 colo
 extern void cacheVLine(int x0, int x1, int y, u16 color);
 extern void cacheCenterRec(int centerX, int centerY, int halfWidth, int halfHeight, u16 color);
 extern void cacheCenterBlock(int centerX, int centerY, int halfWidth, int halfHeight, u16 color);
+extern void cacheRoundedRight(int x, int y, int width, int height, int r, u16 color);
+extern void cacheRoundedBackgroundRight(int x, int y, int width, int height, int r, u16 color, u16 backgroundColor);
 #endif // !__INTERFERENCE__

@@ -2,8 +2,8 @@
 // example of a cursor following rectangle
 void grabCursor(UIobject *this, Event event)
 {
-    int cursorX = event >> 8;
-    int cursorY = event & 0b11111111;
+    int cursorX = cursorXmask(event);
+    int cursorY = cursorYmask(event);
     this->x = cursorX / 2 + this->x / 2;
     this->y = cursorY / 2 + this->y / 2;
     if (this->x + this->box[0][0] < 0)

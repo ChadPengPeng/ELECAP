@@ -43,5 +43,6 @@ elecap/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\user\TOUCH\fontInclude.h ..\user\TFT\pipline.h \
   ..\user\TFT\UIobject.h ..\user\EVENT\event.h \
   ..\user\EVENT\touchEvent.h ..\user\TFT\shadeCursor.h \
-  ..\user\TFT\UIsample.h ..\user\TFT\UIwave.h ..\user\TFT\UIbutton.h \
-  ..\user\Src\ITHandler.h
+  ..\user\TFT\UIsample.h ..\user\TFT\UIwave.h ..\user\Src\osc.h \
+  ..\user\Src\mathDef.h ..\user\TFT\UIbutton.h ..\user\Src\ITHandler.h \
+  ..\user\Src\waveG.h
