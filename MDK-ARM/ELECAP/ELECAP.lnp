@@ -45,7 +45,6 @@
 "elecap\ctiic.o"
 "elecap\ft5206.o"
 "elecap\touch.o"
-"elecap\interference.o"
 "elecap\pipline.o"
 "elecap\uiobject.o"
 "elecap\uisample.o"
@@ -59,6 +58,8 @@
 "elecap\ithandler.o"
 "elecap\osc.o"
 "elecap\waveg.o"
+"elecap\uimessage.o"
+"elecap\interface.o"
 --library_type=microlib --strict --scatter "ELECAP\ELECAP.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

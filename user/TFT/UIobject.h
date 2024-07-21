@@ -4,7 +4,7 @@
 #include "stdlib.h"
 #include "event.h"
 #include "bsp_system.h"
-#include "interference.h"
+#include "interface.h"
 #include "string.h"
 
 typedef struct UIobject_struct

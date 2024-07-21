@@ -1,5 +1,5 @@
-#ifndef __INTERFERENCE__
-#define __INTERFERENCE__
+#ifndef __INTERFACE__
+#define __INTERFACE__
 
 #include "bsp_system.h"
 #include "dev_lcd.h"
@@ -129,6 +129,12 @@
 
 #define GRAPHICSIZE (WIDTH * HEIGHT)
 
+enum FOLDSTATE
+{
+    FOLD,
+    UNFOLD
+};
+
 #define SCREEN_Init() LCD_Init()
 #define DrawPoint(x, y, color) LCD_Fast_DrawPoint(x, y, color)
 #define SetWindow(sx, sy, width, height)   \
@@ -161,4 +167,5 @@ extern void cacheCenterRec(int centerX, int centerY, int halfWidth, int halfHeig
 extern void cacheCenterBlock(int centerX, int centerY, int halfWidth, int halfHeight, u16 color);
 extern void cacheRoundedRight(int x, int y, int width, int height, int r, u16 color);
 extern void cacheRoundedBackgroundRight(int x, int y, int width, int height, int r, u16 color, u16 backgroundColor);
-#endif // !__INTERFERENCE__
+extern void cacheRoundedRecBackground(int x, int y, int width, int height, int r, u16 color, u16 backgroundColor);
+#endif // !__INTERFACE__

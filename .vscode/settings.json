@@ -35,7 +35,9 @@
         "tim.h": "c",
         "osc.h": "c",
         "adc.h": "c",
-        "waveg.h": "c"
+        "waveg.h": "c",
+        "interface.h": "c",
+        "stdio.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

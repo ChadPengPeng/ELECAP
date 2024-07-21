@@ -5,7 +5,7 @@
 
 #include "adc.h"
 #include "tim.h"
-#include "interference.h"   //otherwise define WIDTH your TFT screen width
+#include "interface.h"   //otherwise define WIDTH your TFT screen width
 
 #define toVoltage(x) ((float)(x) * 2.5f / 16383.0)
 
@@ -19,10 +19,13 @@ typedef struct {
     int xScale;         //频率
     int yScale;         //1v含像素数
     int trigger;
-    int* wave;
+    int* waveCh1;
+    int* waveCh2;
 } OscData;
 
-extern void getWave(uint16_t* wave, int length);
+extern OscData* initOscData(int xBias, int yBias, int xScale, int yScale, int trigger, int* waveCh1, int* waveCh2);
+extern void getWaveCH1(uint16_t* wave, int length);
+extern void getWaveCH2(uint16_t* wave, int length);
 extern int ifBusy();
 extern void processWave(uint16_t* wave, int length, OscData* data, int* waveUIlist);
 extern int getVoltageNum();

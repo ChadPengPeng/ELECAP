@@ -34,7 +34,7 @@
 #include "dev_w25qxx_lz.h"
 #include "touch.h"
 #include "stdio.h"
-#include "interference.h"
+#include "interface.h"
 #include "bsp_delay.h"
 
 #include "pipline.h"
@@ -78,7 +78,6 @@ void PeriphCommonClock_Config(void);
 /* USER CODE BEGIN 0 */
 u16 debug = 0;
 #define wave_length 500
-uint16_t adcNumber[wave_length];
 OscData oscData = {0};
 /* USER CODE END 0 */
 
@@ -176,18 +175,21 @@ int main(void)
     if (sta)
     {
       tp_dev.sta = Key_Up;
-    }
-		addTouchEvent((360 - tp_dev.Y / 21),256 - tp_dev.X / 29,sta);
+    } 
+		addTouchEvent((360 - tp_dev.Y * 2 /43),256 - tp_dev.X / 29,sta);
     // debug
-
-    for (int i = 0; i < wave_length; i++)
-    {
-      adcNumber[i] = 0;
-    }
-		getWave(adcNumber, wave_length);
+		uint16_t adcNumberCh1[wave_length];
+		uint16_t adcNumberCh2[wave_length];
+		getWaveCH1(adcNumberCh1, wave_length);
+    getWaveCH2(adcNumberCh2, wave_length);
     while(ifBusy());
 		oscData.trigger = 8191;
-    processWave(adcNumber, wave_length, &oscData, waveInt);
+		int waveIntCh1[WIDTH];
+    int waveIntCh2[WIDTH];
+		oscData.waveCh1 = waveIntCh1;
+    oscData.waveCh2 = waveIntCh2;
+    processWave(adcNumberCh1, wave_length, &oscData, waveIntCh1);
+    processWave(adcNumberCh2, wave_length, &oscData, waveIntCh2);
     // 更新视图
     nextGraphic();
     /* USER CODE END WHILE */

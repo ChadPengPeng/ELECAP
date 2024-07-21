@@ -1,11 +1,7 @@
 #include "UIbutton.h"
 
 #define FoldPixel 40
-enum FOLDSTATE
-{
-    FOLD,
-    UNFOLD
-};
+
 
 #define div 5
 

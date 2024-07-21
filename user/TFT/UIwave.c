@@ -116,11 +116,16 @@ void drawLabel(UIobject *this)
 void drawWave(UIobject *this)
 {
     UIwaveStruct *selfSturct = (UIwaveStruct *)(this->selfStruct);
-    int *waveList = (int *)(selfSturct->wave);
-    for (int i = boundary; i < WIDTH - boundary; i++)
-    {
-        cacheLine(i, waveList[i] + this->y, i + 1, waveList[i + 1] + this->y, this->param[0]);
-    }
+    if (selfSturct->waveCh1 != NULL)
+        for (int i = boundary; i < WIDTH - boundary; i++)
+        {
+            cacheLine(i, selfSturct->waveCh1[i] + this->y, i + 1, selfSturct->waveCh1[i + 1] + this->y, this->param[0]);
+        }
+    if (selfSturct->waveCh2 != NULL)
+        for (int i = boundary; i < WIDTH - boundary; i++)
+        {
+            cacheLine(i, selfSturct->waveCh2[i] + this->y, i + 1, selfSturct->waveCh2[i + 1] + this->y, this->param[1]);
+        }
 }
 void waveShader(UIobject *this)
 {
@@ -132,10 +137,10 @@ void waveShader(UIobject *this)
 
 /*
 param:
-    0:color
+    0:colorCh1
+    1:colorCh2
 */
-int *waveInt;
-void waveUI(u16 color, int priority, UIwaveStruct *selfStruct)
+void waveUI(u16 colorCh1, u16 colorCh2, int priority, UIwaveStruct *selfStruct)
 {
     UIobject *result = getUIobject();
     result->x = WIDTH / 2;
@@ -144,15 +149,14 @@ void waveUI(u16 color, int priority, UIwaveStruct *selfStruct)
     // result->box[0][0]=0;
     // result->box[1][1]=0;
     // result->box[1][0]=0;
-    result->param[0] = color;
+    result->param[0] = colorCh1;
+    result->param[1] = colorCh2;
     result->shader = waveShader;
     result->priority = priority;
-    //UIwaveStruct *selfStruct = (UIwaveStruct *)malloc(sizeof(UIwaveStruct));
+    // UIwaveStruct *selfStruct = (UIwaveStruct *)malloc(sizeof(UIwaveStruct));
     result->selfStruct = selfStruct;
-    
+
     selfStruct->xScale = 400;
     selfStruct->yScale = 400;
-
-    waveInt = selfStruct->wave;
     priorityInsert(result);
 }

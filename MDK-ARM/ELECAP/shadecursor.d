@@ -1,5 +1,5 @@
 elecap/shadecursor.o: ..\user\TFT\shadeCursor.c ..\user\TFT\shadeCursor.h \
-  ..\user\TFT\interference.h ..\user\device\bsp_system.h \
+  ..\user\TFT\interface.h ..\user\device\bsp_system.h \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h750xx.h \
   ..\Drivers\CMSIS\Include\core_cm7.h \

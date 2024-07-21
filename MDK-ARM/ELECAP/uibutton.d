@@ -36,5 +36,5 @@ elecap/uibutton.o: ..\user\TFT\UIbutton.c ..\user\TFT\UIbutton.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim_ex.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h \
-  ..\user\TFT\interference.h ..\user\device\dev_lcd.h \
+  ..\user\TFT\interface.h ..\user\device\dev_lcd.h \
   ..\user\device\bsp_delay.h ..\user\TOUCH\fontInclude.h

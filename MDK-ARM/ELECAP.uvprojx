@@ -1247,11 +1247,6 @@
               <FilePath>..\user\TOUCH\touch.c</FilePath>
             </File>
             <File>
-              <FileName>interference.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\user\TFT\interference.c</FilePath>
-            </File>
-            <File>
               <FileName>pipline.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\user\TFT\pipline.c</FilePath>
@@ -1315,6 +1310,16 @@
               <FileName>waveG.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\user\Src\waveG.c</FilePath>
+            </File>
+            <File>
+              <FileName>UImessage.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\user\TFT\UImessage.c</FilePath>
+            </File>
+            <File>
+              <FileName>interface.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\user\TFT\interface.c</FilePath>
             </File>
           </Files>
         </Group>

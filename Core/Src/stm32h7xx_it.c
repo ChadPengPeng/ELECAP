@@ -56,6 +56,7 @@
 
 /* External variables --------------------------------------------------------*/
 extern DMA_HandleTypeDef hdma_adc1;
+extern DMA_HandleTypeDef hdma_adc2;
 extern DMA_HandleTypeDef hdma_dac1_ch1;
 /* USER CODE BEGIN EV */
 
@@ -241,7 +242,7 @@ void DMA1_Stream1_IRQHandler(void)
         __HAL_DMA_CLEAR_FLAG(&hdma_adc1, __HAL_DMA_GET_TC_FLAG_INDEX(&hdma_adc1));
         //HAL_DMAEx_TCMpleteCallback(&hdma1_stream0);
 				extern int busy;
-				busy = 0;
+				busy &= ~1;
     }
     
     if (__HAL_DMA_GET_FLAG(&hdma_adc1, __HAL_DMA_GET_HT_FLAG_INDEX(&hdma_adc1)) != RESET)
@@ -259,6 +260,38 @@ void DMA1_Stream1_IRQHandler(void)
   /* USER CODE BEGIN DMA1_Stream1_IRQn 1 */
 
   /* USER CODE END DMA1_Stream1_IRQn 1 */
+}
+
+/**
+  * @brief This function handles DMA1 stream2 global interrupt.
+  */
+void DMA1_Stream2_IRQHandler(void)
+{
+  /* USER CODE BEGIN DMA1_Stream2_IRQn 0 */
+  extern DMA_HandleTypeDef hdma_adc2;
+	if (__HAL_DMA_GET_FLAG(&hdma_adc2, __HAL_DMA_GET_TC_FLAG_INDEX(&hdma_adc2)) != RESET)
+    {
+        __HAL_DMA_CLEAR_FLAG(&hdma_adc2, __HAL_DMA_GET_TC_FLAG_INDEX(&hdma_adc2));
+        //HAL_DMAEx_TCMpleteCallback(&hdma1_stream0);
+				extern int busy;
+				busy &= ~(1<<1);
+    }
+    
+    if (__HAL_DMA_GET_FLAG(&hdma_adc2, __HAL_DMA_GET_HT_FLAG_INDEX(&hdma_adc2)) != RESET)
+    {
+        __HAL_DMA_CLEAR_FLAG(&hdma_adc2, __HAL_DMA_GET_HT_FLAG_INDEX(&hdma_adc2));
+        //HAL_DMAEx_HTCMpleteCallback(&hdma1_stream0);
+    }
+    
+    if (__HAL_DMA_GET_FLAG(&hdma_adc2, __HAL_DMA_GET_TE_FLAG_INDEX(&hdma_adc2)) != RESET)
+		{
+        __HAL_DMA_CLEAR_FLAG(&hdma_adc2, __HAL_DMA_GET_TE_FLAG_INDEX(&hdma_adc2));
+        //HAL_DMAEx_ErrorCallback(&hdma1_stream0);
+    }
+  /* USER CODE END DMA1_Stream2_IRQn 0 */
+  /* USER CODE BEGIN DMA1_Stream2_IRQn 1 */
+
+  /* USER CODE END DMA1_Stream2_IRQn 1 */
 }
 
 /**

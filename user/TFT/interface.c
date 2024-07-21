@@ -1,4 +1,4 @@
-#include "interference.h"
+#include "interface.h"
 // using function in interference.c to implement some other function
 u16 FadeColor(u16 color, u16 weight)
 {
@@ -455,6 +455,61 @@ void cacheRoundedBackgroundRight(int x, int y, int width, int height, int r, u16
             y--;
             if (y != r)
                 cacheLine(xnr - y, ypr + x, xnr - y, ynr - x, backgroundColor);
+        }
+        x++;
+    }
+}
+
+void cacheRoundedRecBackground(int x, int y, int width, int height, int r, u16 color, u16 backgroundColor)
+{
+    int dx = width / 2;
+    int dy = height / 2;
+    cacheLine(x - dx + r, y + dy, x + dx - r, y + dy, color); // down
+    cacheLine(x + dx, y + dy - r, x + dx, y - dy + r, color); // right
+    cacheLine(x + dx - r, y - dy, x - dx + r, y - dy, color); // up
+    cacheLine(x - dx, y - dy + r, x - dx, y + dy - r, color); // left
+    for (int j = y - dy + 1; j < y + dy; j++)
+    {
+        cacheVLine(x - dx + 1 + r, x + dx - r - 1, j, backgroundColor);
+    }
+
+    int x0 = x;
+    int y0 = y;
+    x = 0;
+    y = r;
+    int d = 3 - 2 * r;
+
+    int xnr = x0 - dx + r;
+    int xpr = x0 + dx - r;
+    int ynr = y0 - dy + r;
+    int ypr = y0 + dy - r;
+
+    while (x <= y)
+    {
+
+        cachePoint(xpr + x, ypr + y, color); // rightdown
+        cachePoint(xpr + y, ypr + x, color);
+        cachePoint(xnr - y, ypr + x, color); // leftdown
+        cachePoint(xnr - x, ypr + y, color);
+        cachePoint(xnr - x, ynr - y, color); // leftup
+        cachePoint(xnr - y, ynr - x, color);
+        cachePoint(xpr + y, ynr - x, color); // rightup
+        cachePoint(xpr + x, ynr - y, color);
+        cacheLine(xnr - x, ypr + y - 1, xnr - x, ynr - y + 1, backgroundColor);
+        cacheLine(xpr + x, ypr + y - 1, xpr + x, ynr - y + 1, backgroundColor);
+
+        if (d < 0)
+        {
+            d += 4 * x + 6;
+        }
+        else
+        {
+            d += 4 * (x - y) + 10;
+            y--;
+            if (y != r){
+                cacheLine(xnr - y, ypr + x, xnr - y, ynr - x, backgroundColor);
+                cacheLine(xpr + y, ypr + x, xpr + y, ynr - x, backgroundColor);
+            }
         }
         x++;
     }

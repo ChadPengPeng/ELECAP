@@ -1,12 +1,13 @@
-elecap/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
-  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
-  ..\Core\Inc\stm32h7xx_hal_conf.h \
-  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h \
-  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h \
+elecap/uimessage.o: ..\user\TFT\UImessage.c ..\user\TFT\UImessage.h \
+  ..\user\TFT\interface.h ..\user\device\bsp_system.h \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h750xx.h \
   ..\Drivers\CMSIS\Include\core_cm7.h \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\system_stm32h7xx.h \
+  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
+  ..\Core\Inc\stm32h7xx_hal_conf.h \
+  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h \
+  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc_ex.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio.h \
@@ -34,15 +35,6 @@ elecap/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim_ex.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h \
-  ..\Core\Inc\adc.h ..\Core\Inc\dac.h ..\Core\Inc\dma.h \
-  ..\Core\Inc\i2c.h ..\Core\Inc\tim.h ..\Core\Inc\usart.h \
-  ..\Core\Inc\gpio.h ..\Core\Inc\fmc.h ..\user\device\dev_lcd.h \
-  ..\user\device\bsp_system.h ..\user\device\bsp_delay.h \
-  ..\user\device\dev_w25qxx_lz.h ..\user\TOUCH\touch.h \
-  ..\user\system\system.h ..\user\TFT\interface.h \
-  ..\user\TOUCH\fontInclude.h ..\user\TFT\pipline.h \
-  ..\user\TFT\UIobject.h ..\user\EVENT\event.h \
-  ..\user\EVENT\touchEvent.h ..\user\TFT\shadeCursor.h \
-  ..\user\TFT\UIsample.h ..\user\TFT\UIwave.h ..\user\Src\osc.h \
-  ..\user\Src\mathDef.h ..\user\TFT\UIbutton.h ..\user\TFT\UImessage.h \
-  ..\user\Src\ITHandler.h ..\user\Src\waveG.h
+  ..\user\device\dev_lcd.h ..\user\device\bsp_delay.h \
+  ..\user\TOUCH\fontInclude.h ..\user\TFT\UIobject.h \
+  ..\user\EVENT\event.h

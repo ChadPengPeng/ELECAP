@@ -2,14 +2,14 @@
 #define __UIWAVE__
 
 #include "UIobject.h"
-#include "interference.h"
+#include "interface.h"
 #include "stdio.h"
 #include "osc.h"
 
 typedef OscData UIwaveStruct;
 
 extern int* waveInt;
-extern void waveUI(u16 color, int priority, UIwaveStruct *selfStruct);
+extern void waveUI(u16 colorCh1, u16 colorCh2, int priority, UIwaveStruct *selfStruct);
 
 // typedef struct UIwave_struct
 // {

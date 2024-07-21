@@ -11,18 +11,19 @@ void graphInit()
     eventInit();
     // your init object
     backgroundUI();
-    recUI(120, 160, 100, 100, BLUE, 2);
-    recUI(130, 160, 100, 100, PURPLE, 2);
-    recUI(140, 160, 100, 100, GREEN, 2);
-    recUI(150, 160, 100, 100, YELLOW, 2);
-    recUI(160, 160, 100, 100, ORANGE, 2);
-    UIobject* drawer = drawerUI(WIDTH - 50, HEIGHT / 2, 50, HEIGHT, RED, BLACK, 4);
-    //drawerUI(100, 100, 100, 100, RED, GRAY, 4);
+    // recUI(120, 160, 100, 100, BLUE, 2);
+    // recUI(130, 160, 100, 100, PURPLE, 2);
+    // recUI(140, 160, 100, 100, GREEN, 2);
+    // recUI(150, 160, 100, 100, YELLOW, 2);
+    // recUI(160, 160, 100, 100, ORANGE, 2);
+    UIobject *drawer = drawerUI(WIDTH - 50, HEIGHT / 2, 50, HEIGHT, RED, BLACK, 4);
+    // drawerUI(100, 100, 100, 100, RED, GRAY, 4);
     buttonUI(20, -30, 40, 20, BLUE, LGRAYBLUE, 5, drawer);
     buttonUI(20, 0, 40, 20, BLUE, LGRAYBLUE, 5, drawer);
     buttonUI(20, 30, 40, 20, BLUE, LGRAYBLUE, 5, drawer);
+    messageUI(WIDTH / 2, HEIGHT * 3 / 4, WIDTH * 3 / 4, HEIGHT / 4, WHITE, BLACK, 6);
     extern OscData oscData;
-    waveUI(YELLOW, 1, &oscData);
+    waveUI(YELLOW, PURPLE, 1, &oscData);
     debugUI();
 }
 
@@ -41,7 +42,7 @@ void processEvent()
     {
         Event event = dequeueEvent();
         // write your event process function
-        
+
         UIobject *beforeCursor = NULL;
         if (eventCodeMask(event) == OnClick)
         {
@@ -50,7 +51,7 @@ void processEvent()
 
             UIobject *pointer = getHead();
             UIobject *beforepointer = NULL;
-            
+
             while (pointer->next != NULL)
             {
                 beforepointer = pointer;
@@ -63,24 +64,27 @@ void processEvent()
                     continue;
                 else if (cursorY > pointer->y + pointer->box[1][1])
                     continue;
-                else{
+                else
+                {
                     cursor = pointer;
                     beforeCursor = beforepointer;
                 }
             }
         }
-        //if cursor has same priority with next, swap them until they have different priority
-        //this make cursor the last object (among other same priority objects) that will be shaded last  
-        while(cursor->next != NULL){
-            if(cursor->priority != cursor->next->priority) break;
-            //交换cursor和next
+        // if cursor has same priority with next, swap them until they have different priority
+        // this make cursor the last object (among other same priority objects) that will be shaded last
+        while (cursor->next != NULL)
+        {
+            if (cursor->priority != cursor->next->priority)
+                break;
+            // 交换cursor和next
             UIobject *temp = cursor->next;
             cursor->next = temp->next;
             temp->next = cursor;
             beforeCursor->next = temp;
             beforeCursor = beforeCursor->next;
         }
-        
+
         if (cursor->eventListener != NULL)
         {
             cursor->eventListener(cursor, event);
@@ -94,16 +98,19 @@ void updataUI(int deltaT)
     while (pointer->next != NULL)
     {
         pointer = pointer->next;
-        if (pointer->update != NULL){
+        if (pointer->update != NULL)
+        {
             pointer->update(pointer, deltaT);
-            //make sure child objects are updated too
-            //expecially when child position is relative to parent
-            if(pointer->child != NULL){
+            // make sure child objects are updated too
+            // expecially when child position is relative to parent
+            if (pointer->child != NULL)
+            {
                 UIobject *child = pointer->child;
-                do{
+                do
+                {
                     child->childUpdate(child, deltaT, pointer);
                     child = child->childNext;
-                }while(child != NULL);
+                } while (child != NULL);
             }
         }
     }

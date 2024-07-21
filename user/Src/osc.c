@@ -1,14 +1,20 @@
 #include "osc.h"
 
 int busy = 0;
-void getWave(uint16_t* wave, int length)
+void getWaveCH1(uint16_t* wave, int length)
 {
     // Initialize the oscillator
     HAL_TIM_Base_Start(&htim6);
     HAL_ADC_Start_DMA(&hadc1, (uint32_t*)wave, length);
-    busy = 1;
-    //while (HAL_ADC_GetState(&hadc1)!= HAL_ADC_STATE_EOC);
-    // HAL_Delay(10);
+    busy |= 1;
+}
+
+void getWaveCH2(uint16_t* wave, int length)
+{
+    // Initialize the oscillator
+    HAL_TIM_Base_Start(&htim6);
+    HAL_ADC_Start_DMA(&hadc2, (uint32_t*)wave, length);
+    busy |= 1<<1;
 }
 
 int ifBusy()
@@ -16,6 +22,7 @@ int ifBusy()
     if(busy == 0){
         HAL_TIM_Base_Stop(&htim6);
         HAL_ADC_Stop_DMA(&hadc1);
+        HAL_ADC_Stop_DMA(&hadc2);
     }
     return busy;
 }
@@ -105,3 +112,14 @@ void setYbias(OscData* data, int ybias)
     //todo
 }
 
+OscData* initOscData(int xBias, int yBias, int xScale, int yScale, int trigger, int* waveCh1, int* waveCh2){
+    OscData* data = (OscData*)malloc(sizeof(OscData));
+    data->xBias = xBias;
+    data->yBias = yBias;
+    data->xScale = xScale;
+    data->yScale = yScale;
+    data->trigger = trigger;
+    data->waveCh1 = waveCh1;
+    data->waveCh2 = waveCh2;
+    return data;
+}

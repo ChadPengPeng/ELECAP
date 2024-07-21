@@ -2,7 +2,7 @@
 #define __UISAMPLE__
 
 #include "UIobject.h"
-#include "interference.h"
+#include "interface.h"
 #include "stdio.h"
 #include "touchEvent.h"
 

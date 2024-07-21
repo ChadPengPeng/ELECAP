@@ -1,5 +1,5 @@
 elecap/pipline.o: ..\user\TFT\pipline.c ..\user\TFT\pipline.h \
-  ..\user\TFT\interference.h ..\user\device\bsp_system.h \
+  ..\user\TFT\interface.h ..\user\device\bsp_system.h \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h750xx.h \
   ..\Drivers\CMSIS\Include\core_cm7.h \
@@ -40,4 +40,4 @@ elecap/pipline.o: ..\user\TFT\pipline.c ..\user\TFT\pipline.h \
   ..\user\EVENT\event.h ..\user\EVENT\touchEvent.h ..\Core\Inc\main.h \
   ..\user\TFT\shadeCursor.h ..\user\TFT\UIsample.h ..\user\TFT\UIwave.h \
   ..\user\Src\osc.h ..\user\Src\mathDef.h ..\Core\Inc\adc.h \
-  ..\Core\Inc\tim.h ..\user\TFT\UIbutton.h
+  ..\Core\Inc\tim.h ..\user\TFT\UIbutton.h ..\user\TFT\UImessage.h
