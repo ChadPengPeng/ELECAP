@@ -1,6 +1,6 @@
 #include "osc.h"
 
-int busy = 0;
+volatile int busy = 0;
 void getWaveCH1(uint16_t* wave, int length)
 {
     // Initialize the oscillator

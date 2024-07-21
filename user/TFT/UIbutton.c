@@ -2,11 +2,9 @@
 
 #define FoldPixel 40
 
-
-#define div 5
-
 void buttonOnUpdate(UIobject *this, int deltaT)
 {
+    int div = getDiv(500, deltaT);
     if (this->param[2] != BLACK)
         this->param[2] = FadeColor(this->param[2], 255 * (div - 1) / div);
 }
@@ -19,6 +17,7 @@ void buttonOnParentUpdate(UIobject *this, int deltaT, UIobject *parent)
 
 void buttonOnClick(UIobject *this, Event event)
 {
+    int div = getDiv(500, 10);
     this->param[2] = FadeColor(this->param[2], 255 * (div - 1) / div) + FadeColor(this->param[6], 255 / div);
     if (eventCodeMask(event) == OnClick)
     {
@@ -74,6 +73,7 @@ drawer!!!
 
 void onFoldingUpdate(UIobject *this, int deltaT)
 {
+    int div = getDiv(500, deltaT);
     if (this->param[3] == FOLD)
     {
         if (this->x == this->param[4])
@@ -81,7 +81,7 @@ void onFoldingUpdate(UIobject *this, int deltaT)
             this->update = NULL;
             return;
         }
-        this->x = this->x * 4 / 5 + this->param[4] / 5;
+        this->x = approachDiv(this->x, this->param[4], div);
     }
     if (this->param[3] == UNFOLD)
     {
@@ -90,7 +90,7 @@ void onFoldingUpdate(UIobject *this, int deltaT)
             this->update = NULL;
             return;
         }
-        this->x = this->x * (div - 1) / div + (this->param[4] - FoldPixel) / div;
+        this->x = approachDiv(this->x, this->param[4] - FoldPixel, div);
     }
 }
 

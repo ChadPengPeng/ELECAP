@@ -1,5 +1,5 @@
 elecap/interface.o: ..\user\TFT\interface.c ..\user\TFT\interface.h \
-  ..\user\device\bsp_system.h \
+  ..\user\device\dev_lcd.h ..\user\device\bsp_system.h \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h750xx.h \
   ..\Drivers\CMSIS\Include\core_cm7.h \
@@ -35,5 +35,5 @@ elecap/interface.o: ..\user\TFT\interface.c ..\user\TFT\interface.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim_ex.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h \
-  ..\user\device\dev_lcd.h ..\user\device\bsp_delay.h \
-  ..\user\TOUCH\fontInclude.h
+  ..\user\device\bsp_delay.h ..\user\TOUCH\fontInclude.h \
+  ..\user\Src\mathDef.h

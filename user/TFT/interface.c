@@ -7,8 +7,10 @@ u16 FadeColor(u16 color, u16 weight)
 
 void DrawTransparentPoint(int x, int y, u16 color, u16 weight)
 {
-    if(x<0||x>=WIDTH)return;
-    if(y<0||y>=HEIGHT)return;
+    if (x < 0 || x >= WIDTH)
+        return;
+    if (y < 0 || y >= HEIGHT)
+        return;
     cachePoint(x, y, FadeColor(color, weight) + FadeColor(getPoint(x, y), 256 - weight));
 }
 
@@ -246,16 +248,6 @@ void cacheOneCenter(int x, int y, u8 size, char *p, u16 color)
     }
 }
 
-void cacheRec(int x, int y, int width, int height, u16 color)
-{
-    int dx = width / 2;
-    int dy = height / 2;
-    cacheLine(x - dx, y + dy, x + dx - 1, y + dy, color); // down
-    cacheLine(x + dx, y + dy, x + dx, y - dy + 1, color); // right
-    cacheLine(x + dx, y - dy, x - dx + 1, y - dy, color); // up
-    cacheLine(x - dx, y - dy, x - dx, y + dy - 1, color); // left
-}
-
 void cacheCircle(int x0, int y0, int r, u16 color)
 {
     int x = 0;
@@ -358,6 +350,15 @@ void cacheVLine(int x0, int x1, int y, u16 color)
     {
         thisLine[i] = color;
     }
+}
+
+void cacheRec(int x1, int y1, int x2, int y2, u16 color)
+{
+    
+    cacheLine(x1, y1, x2, y1, color);
+    cacheLine(x2, y1, x2, y2, color);
+    cacheLine(x2, y2, x1, y2, color);
+    cacheLine(x1, y2, x1, y1, color);
 }
 
 void cacheCenterRec(int centerX, int centerY, int halfWidth, int halfHeight, u16 color)
@@ -506,7 +507,8 @@ void cacheRoundedRecBackground(int x, int y, int width, int height, int r, u16 c
         {
             d += 4 * (x - y) + 10;
             y--;
-            if (y != r){
+            if (y != r)
+            {
                 cacheLine(xnr - y, ypr + x, xnr - y, ynr - x, backgroundColor);
                 cacheLine(xpr + y, ypr + x, xpr + y, ynr - x, backgroundColor);
             }

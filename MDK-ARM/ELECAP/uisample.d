@@ -38,5 +38,5 @@ elecap/uisample.o: ..\user\TFT\UIsample.c ..\user\TFT\UIsample.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h \
   ..\user\TFT\interface.h ..\user\device\dev_lcd.h \
   ..\user\device\bsp_delay.h ..\user\TOUCH\fontInclude.h \
-  ..\user\EVENT\touchEvent.h ..\Core\Inc\main.h ..\user\TOUCH\touch.h \
-  ..\user\system\system.h
+  ..\user\Src\mathDef.h ..\user\EVENT\touchEvent.h ..\Core\Inc\main.h \
+  ..\user\TOUCH\touch.h ..\user\system\system.h

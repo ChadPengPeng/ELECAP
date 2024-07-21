@@ -1,6 +1,5 @@
 #include "shadeCursor.h"
 
-#define abs(x) ((x) > 0 ? (x) : -(x))
 #define holdingR 30
 #define slideR 15
 int weight;
@@ -9,7 +8,7 @@ void shadeCursor()
 {
     int x0 = touchingParam.cursorNowX;
     int y0 = touchingParam.cursorNowY;
-    int holdLong = abs(touchingParam.cursorNowX - touchingParam.clickX) + abs(touchingParam.cursorNowY - touchingParam.clickY);
+    int holdLong = absM(touchingParam.cursorNowX - touchingParam.clickX) + absM(touchingParam.cursorNowY - touchingParam.clickY);
     if (maxHoldLong<holdLong) maxHoldLong=holdLong;
     int r = touchingParam.holding * 2;
     if (r > holdingR)

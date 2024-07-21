@@ -36,4 +36,5 @@ elecap/uiobject.o: ..\user\TFT\UIobject.c ..\user\TFT\UIobject.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h \
   ..\user\TFT\interface.h ..\user\device\dev_lcd.h \
-  ..\user\device\bsp_delay.h ..\user\TOUCH\fontInclude.h
+  ..\user\device\bsp_delay.h ..\user\TOUCH\fontInclude.h \
+  ..\user\Src\mathDef.h

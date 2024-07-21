@@ -116,7 +116,7 @@ void updataUI(int deltaT)
     }
 }
 // extern void graph();
-
+#define ShowBox
 void shadeUI()
 {
     UIobject *pointer = getHead();
@@ -125,6 +125,9 @@ void shadeUI()
         pointer = pointer->next;
         if (pointer->shader != NULL)
             pointer->shader(pointer);
+#ifdef ShowBox
+        cacheRec(pointer->x + pointer->box[0][0], pointer->y + pointer->box[1][0], pointer->x + pointer->box[0][1], pointer->y + pointer->box[1][1], pointer->color);
+#endif
         // HAL_Delay(100);      //debug
         // graph();
     }

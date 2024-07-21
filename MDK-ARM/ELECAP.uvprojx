@@ -1222,11 +1222,6 @@
               <FilePath>..\user\device\bsp_delay.c</FilePath>
             </File>
             <File>
-              <FileName>bsp_system.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\user\device\bsp_system.c</FilePath>
-            </File>
-            <File>
               <FileName>bsp_key.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\user\device\bsp_key.c</FilePath>

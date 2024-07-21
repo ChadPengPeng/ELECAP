@@ -70,6 +70,7 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 void PeriphCommonClock_Config(void);
+static void MPU_Config(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -79,6 +80,7 @@ void PeriphCommonClock_Config(void);
 u16 debug = 0;
 #define wave_length 500
 OscData oscData = {0};
+volatile int dummy = 0;
 /* USER CODE END 0 */
 
 /**
@@ -92,6 +94,12 @@ int main(void)
   SCB_EnableICache();
   /* USER CODE END 1 */
 
+  /* MPU Configuration--------------------------------------------------------*/
+  MPU_Config();
+
+  /* Enable D-Cache---------------------------------------------------------*/
+  SCB_EnableDCache();
+
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
@@ -99,7 +107,7 @@ int main(void)
 
   /* USER CODE BEGIN Init */
   // 读写权限保护
-  MPU_Memory_Protection();
+  //MPU_Memory_Protection();
   //	MPU_Set_Protection(
   //			MPU_REGION_NUMBER1,
   //			0x60000000,
@@ -182,7 +190,11 @@ int main(void)
 		uint16_t adcNumberCh2[wave_length];
 		getWaveCH1(adcNumberCh1, wave_length);
     getWaveCH2(adcNumberCh2, wave_length);
-    while(ifBusy());
+		dummy = 0;
+    while(ifBusy()) {
+			//dummy++;
+			HAL_Delay(1);
+		}
 		oscData.trigger = 8191;
 		int waveIntCh1[WIDTH];
     int waveIntCh2[WIDTH];
@@ -292,6 +304,44 @@ void PeriphCommonClock_Config(void)
 /* USER CODE BEGIN 4 */
 
 /* USER CODE END 4 */
+
+ /* MPU Configuration */
+
+void MPU_Config(void)
+{
+  MPU_Region_InitTypeDef MPU_InitStruct = {0};
+
+  /* Disables the MPU */
+  HAL_MPU_Disable();
+
+  /** Initializes and configures the Region and the memory to be protected
+  */
+  MPU_InitStruct.Enable = MPU_REGION_ENABLE;
+  MPU_InitStruct.Number = MPU_REGION_NUMBER0;
+  MPU_InitStruct.BaseAddress = 0x24000000;
+  MPU_InitStruct.Size = MPU_REGION_SIZE_512KB;
+  MPU_InitStruct.SubRegionDisable = 0x0;
+  MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL0;
+  MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
+  MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
+  MPU_InitStruct.IsShareable = MPU_ACCESS_NOT_SHAREABLE;
+  MPU_InitStruct.IsCacheable = MPU_ACCESS_CACHEABLE;
+  MPU_InitStruct.IsBufferable = MPU_ACCESS_BUFFERABLE;
+
+  HAL_MPU_ConfigRegion(&MPU_InitStruct);
+
+  /** Initializes and configures the Region and the memory to be protected
+  */
+  MPU_InitStruct.Number = MPU_REGION_NUMBER1;
+  MPU_InitStruct.BaseAddress = 0x60000000;
+  MPU_InitStruct.Size = MPU_REGION_SIZE_64MB;
+  MPU_InitStruct.IsCacheable = MPU_ACCESS_NOT_CACHEABLE;
+
+  HAL_MPU_ConfigRegion(&MPU_InitStruct);
+  /* Enables the MPU */
+  HAL_MPU_Enable(MPU_HFNMI_PRIVDEF);
+
+}
 
 /**
   * @brief  This function is executed in case of error occurrence.

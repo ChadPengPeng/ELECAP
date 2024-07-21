@@ -34,4 +34,7 @@ elecap/stm32h7xx_it.o: ..\Core\Src\stm32h7xx_it.c ..\Core\Inc\main.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim_ex.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h \
-  ..\Core\Inc\stm32h7xx_it.h
+  ..\Core\Inc\stm32h7xx_it.h ..\user\Src\osc.h ..\user\Src\mathDef.h \
+  ..\Core\Inc\adc.h ..\Core\Inc\tim.h ..\user\TFT\interface.h \
+  ..\user\device\dev_lcd.h ..\user\device\bsp_system.h \
+  ..\user\device\bsp_delay.h ..\user\TOUCH\fontInclude.h

@@ -40,7 +40,6 @@
 "elecap\system_stm32h7xx.o"
 "elecap\dev_lcd.o"
 "elecap\bsp_delay.o"
-"elecap\bsp_system.o"
 "elecap\bsp_key.o"
 "elecap\ctiic.o"
 "elecap\ft5206.o"

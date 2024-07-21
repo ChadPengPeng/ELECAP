@@ -65,7 +65,8 @@ void debugShader()
     sprintf(fps, "fps:%4.1f", fpsN);
     sprintf(x, "x:%.3d", 360 - tp_dev.Y / 23);
     sprintf(y, "y:%.3d", 256 - tp_dev.X / 30);
-    sprintf(event, "debug:%2x", tp_dev.sta);
+    extern volatile int dummy;
+    sprintf(event, "debug:%d", dummy);
     cacheString(0, 0, 100, 100, 12, fps, 0xaf7d);
     cacheString(0, 16, 100, 100, 12, x, 0xaf7d);
     cacheString(0, 32, 100, 100, 12, y, 0xaf7d);

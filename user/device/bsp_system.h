@@ -52,10 +52,7 @@ typedef __I uint8_t 		vuc8;
 //-----------------------------------------------------------------
 // 外部函数声明
 //-----------------------------------------------------------------
-extern void SystemClock_Config(void);// 时钟系统配置
-extern void CPU_CACHE_Enable(void);
-extern void MPU_Set_Protection(u32 Number,u32 BASEADDR,u32 SIZE,u8 AP,u8 DE,u8 S,u8 C,u8 B);
-extern void MPU_Memory_Protection(void);
+
 #endif
 
 //-----------------------------------------------------------------

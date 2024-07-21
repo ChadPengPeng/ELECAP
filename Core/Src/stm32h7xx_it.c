@@ -241,8 +241,8 @@ void DMA1_Stream1_IRQHandler(void)
     {
         __HAL_DMA_CLEAR_FLAG(&hdma_adc1, __HAL_DMA_GET_TC_FLAG_INDEX(&hdma_adc1));
         //HAL_DMAEx_TCMpleteCallback(&hdma1_stream0);
-				extern int busy;
 				busy &= ~1;
+			
     }
     
     if (__HAL_DMA_GET_FLAG(&hdma_adc1, __HAL_DMA_GET_HT_FLAG_INDEX(&hdma_adc1)) != RESET)
@@ -273,7 +273,6 @@ void DMA1_Stream2_IRQHandler(void)
     {
         __HAL_DMA_CLEAR_FLAG(&hdma_adc2, __HAL_DMA_GET_TC_FLAG_INDEX(&hdma_adc2));
         //HAL_DMAEx_TCMpleteCallback(&hdma1_stream0);
-				extern int busy;
 				busy &= ~(1<<1);
     }
     

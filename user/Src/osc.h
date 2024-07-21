@@ -9,6 +9,8 @@
 
 #define toVoltage(x) ((float)(x) * 2.5f / 16383.0)
 
+extern volatile int busy;
+
 typedef struct {
     int max;
     int min;
