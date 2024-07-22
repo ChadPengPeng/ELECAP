@@ -37,7 +37,8 @@
         "adc.h": "c",
         "waveg.h": "c",
         "interface.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "uifloatingwindow.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

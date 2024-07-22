@@ -1,17 +1,44 @@
 #include "interface.h"
 // using function in interference.c to implement some other function
-u16 FadeColor(u16 color, u16 weight)
+u16 fadeColor(u16 color, u16 weight)
 {
     return Migrate((getR(color) * weight) >> 8, (getG(color) * weight) >> 8, (getB(color) * weight) >> 8);
 }
 
-void DrawTransparentPoint(int x, int y, u16 color, u16 weight)
+u16 approachColor(u16 color, u16 target, u16 weight)
+{
+    int r = getR(color);
+    int g = getG(color);
+    int b = getB(color);
+    int tr = getR(target);
+    int tg = getG(target);
+    int tb = getB(target);
+    r = approach((float)r, (float)tr, (float)(weight/256.0));
+    g = approach((float)g, (float)tg, (float)(weight/256.0));
+    b = approach((float)b, (float)tb, (float)(weight/256.0));
+    return Migrate(r, g, b);
+}
+
+u16 approachColorDiv(u16 color, u16 target, int div){
+    int r = getR(color);
+    int g = getG(color);
+    int b = getB(color);
+    int tr = getR(target);
+    int tg = getG(target);
+    int tb = getB(target);
+    r = approachDiv(r, tr, div);
+    g = approachDiv(g, tg, div);
+    b = approachDiv(b, tb, div);
+    return Migrate(r, g, b);
+}
+
+void drawTransparentPoint(int x, int y, u16 color, u16 weight)
 {
     if (x < 0 || x >= WIDTH)
         return;
     if (y < 0 || y >= HEIGHT)
         return;
-    cachePoint(x, y, FadeColor(color, weight) + FadeColor(getPoint(x, y), 256 - weight));
+    cachePoint(x, y, fadeColor(color, weight) + fadeColor(getPoint(x, y), 256 - weight));
 }
 
 void cacheLine(int x1, int y1, int x2, int y2, u16 color)
@@ -191,7 +218,6 @@ void cacheCenterString(int x, int y, int width, int height, u8 size, char *p, u1
             x = 0;
             y += size;
         }
-        // cacheChar(x, y, *p, size, color);
         x += size / 2;
         length++;
         p++;
@@ -225,6 +251,33 @@ void cacheCenterString(int x, int y, int width, int height, u8 size, char *p, u1
             x += size / 2;
             p++;
         }
+}
+
+int getRow(int x, int y, int width, int size, char *p){
+    int row = 1;
+    int length = 0;
+	  int x0 = x;
+    width += x;
+    while ((*p <= '~') && (*p >= ' ')) // 判断是不是非法字符!
+    {
+        if (x >= width)
+        {
+            x = x0;
+            y += size;
+            row++;
+        }
+        if (y >= HEIGHT)
+            break; // 退出
+        if ((x + size / 2) > WIDTH)
+        {
+            x = 0;
+            y += size;
+        }
+        x += size / 2;
+        length++;
+        p++;
+    }
+    return row;
 }
 
 void cacheOneCenter(int x, int y, u8 size, char *p, u16 color)

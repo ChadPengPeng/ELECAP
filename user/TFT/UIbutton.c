@@ -1,12 +1,12 @@
 #include "UIbutton.h"
 
-#define FoldPixel 40
+#define FoldPixel 80
 
 void buttonOnUpdate(UIobject *this, int deltaT)
 {
     int div = getDiv(500, deltaT);
     if (this->param[2] != BLACK)
-        this->param[2] = FadeColor(this->param[2], 255 * (div - 1) / div);
+        this->param[2] = approachColorDiv(this->param[2], BLACK, div);
 }
 
 void buttonOnParentUpdate(UIobject *this, int deltaT, UIobject *parent)
@@ -18,10 +18,13 @@ void buttonOnParentUpdate(UIobject *this, int deltaT, UIobject *parent)
 void buttonOnClick(UIobject *this, Event event)
 {
     int div = getDiv(500, 10);
-    this->param[2] = FadeColor(this->param[2], 255 * (div - 1) / div) + FadeColor(this->param[6], 255 / div);
+    this->param[2] = approachColorDiv(this->param[2], this->param[6], div);
     if (eventCodeMask(event) == OnClick)
     {
         // todo:your button
+        extern void floatingMessage(char *message);
+
+        floatingMessage("Button Clicked!");
     }
 }
 void buttonShader(UIobject *this)
@@ -111,7 +114,7 @@ void drawerShader(UIobject *this)
 /*
 param:
     0:width
-    1:heigt
+    1:heigt9
     2:backgroudColor
     3:ifUnfold
     4:initX
@@ -123,10 +126,12 @@ UIobject *drawerUI(int centerx, int centery, int width, int height, u16 color, u
     UIobject *result = getUIobject();
     result->x = centerx;
     result->y = centery;
-    result->box[0][1] = result->param[0] = width / 2;
-    result->box[0][0] = -result->param[0];
-    result->box[1][1] = result->param[1] = height / 2;
-    result->box[1][0] = -result->param[1];
+    result->box[0][0] = -width / 2;
+    result->box[0][1] = width / 2;
+    result->box[1][0] = -height / 2;
+    result->box[1][1] = height / 2;
+    result->param[0] = width;
+    result->param[1] = height;
     result->color = color;
     result->param[2] = backgroudColor;
     result->param[3] = FOLD;

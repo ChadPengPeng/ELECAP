@@ -18,7 +18,7 @@ void messageOnFoldingUpdate(UIobject *this, int deltaT)
         }
         this->param[0] = approachDiv(this->param[0], this->param[4]/5, div) ;
         this->param[1] = approachDiv(this->param[1], this->param[5]/5, div) ;
-        this->param[6] = FadeColor(this->param[6], 255*(div-1)/div);
+        this->param[6] = approachColorDiv(this->param[6], BLACK, div);
     }
     if (this->param[3] == UNFOLD)
     {
@@ -34,7 +34,7 @@ void messageOnFoldingUpdate(UIobject *this, int deltaT)
         }
         this->param[0] = approachDiv(this->param[0], this->param[4], div) ;
         this->param[1] = approachDiv(this->param[1], this->param[5], div) ;
-        this->param[6] = FadeColor(this->param[6], 255*(div-1)/div) + FadeColor(WHITE , 255/div);
+        this->param[6] = approachColorDiv(this->param[6], WHITE, div);
     }
 }
 

@@ -46,14 +46,14 @@ void shadeCursor()
 
     while (x <= y)
     {
-        DrawTransparentPoint(x0 + x, y0 + y, color, weight); // down
-        DrawTransparentPoint(x0 - x, y0 + y, color, weight);
-        DrawTransparentPoint(x0 + y, y0 + x, color, weight); // right
-        DrawTransparentPoint(x0 + y, y0 - x, color, weight);
-        DrawTransparentPoint(x0 - y, y0 + x, color, weight); // left
-        DrawTransparentPoint(x0 - y, y0 - x, color, weight);
-        DrawTransparentPoint(x0 - x, y0 - y, color, weight); // up
-        DrawTransparentPoint(x0 + x, y0 - y, color, weight);
+        drawTransparentPoint(x0 + x, y0 + y, color, weight); // down
+        drawTransparentPoint(x0 - x, y0 + y, color, weight);
+        drawTransparentPoint(x0 + y, y0 + x, color, weight); // right
+        drawTransparentPoint(x0 + y, y0 - x, color, weight);
+        drawTransparentPoint(x0 - y, y0 + x, color, weight); // left
+        drawTransparentPoint(x0 - y, y0 - x, color, weight);
+        drawTransparentPoint(x0 - x, y0 - y, color, weight); // up
+        drawTransparentPoint(x0 + x, y0 - y, color, weight);
 
         if (d < 0)
         {

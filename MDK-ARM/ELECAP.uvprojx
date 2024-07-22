@@ -1316,6 +1316,11 @@
               <FileType>1</FileType>
               <FilePath>..\user\TFT\interface.c</FilePath>
             </File>
+            <File>
+              <FileName>UIfloatingWindow.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\user\TFT\UIfloatingWindow.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

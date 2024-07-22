@@ -1,6 +1,6 @@
-elecap/pipline.o: ..\user\TFT\pipline.c ..\user\TFT\pipline.h \
-  ..\user\TFT\interface.h ..\user\device\dev_lcd.h \
-  ..\user\device\bsp_system.h \
+elecap/uifloatingwindow.o: ..\user\TFT\UIfloatingWindow.c \
+  ..\user\TFT\UIfloatingWindow.h ..\user\TFT\interface.h \
+  ..\user\device\dev_lcd.h ..\user\device\bsp_system.h \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h \
   ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h750xx.h \
   ..\Drivers\CMSIS\Include\core_cm7.h \
@@ -38,8 +38,4 @@ elecap/pipline.o: ..\user\TFT\pipline.c ..\user\TFT\pipline.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h \
   ..\user\device\bsp_delay.h ..\user\TOUCH\fontInclude.h \
   ..\user\Src\mathDef.h ..\user\TFT\UIobject.h ..\user\EVENT\event.h \
-  ..\user\EVENT\touchEvent.h ..\Core\Inc\main.h \
-  ..\user\TFT\shadeCursor.h ..\user\TFT\UIsample.h \
-  ..\user\TFT\UIfloatingWindow.h ..\user\TFT\UIwave.h ..\user\Src\osc.h \
-  ..\Core\Inc\adc.h ..\Core\Inc\tim.h ..\user\TFT\UIbutton.h \
   ..\user\TFT\UImessage.h

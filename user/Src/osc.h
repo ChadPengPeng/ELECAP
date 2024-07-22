@@ -1,7 +1,7 @@
 #ifndef __OSC__
 #define __OSC__
 
-#include "mathDef.h"
+//#include "mathDef.h"
 
 #include "adc.h"
 #include "tim.h"

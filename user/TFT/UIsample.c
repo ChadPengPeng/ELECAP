@@ -58,8 +58,9 @@ void debugShader()
     fpsN = (0.9f * fpsN + 100.0f / (float)deltaT);
     int node = 0;
     UIobject *head = getHead();
-    while(head->next != NULL){
-        head=head->next;
+    while (head->next != NULL)
+    {
+        head = head->next;
         node++;
     }
     sprintf(fps, "fps:%4.1f", fpsN);
@@ -81,20 +82,88 @@ void debugUI()
     priorityInsert(result);
 }
 
-// extern int wave[300];
-// void oscShader(UIobject* this){
-//     for (int i){
-//         cachePoint(x+i,y+wave[i]);
-//     }
-// }
+// used for gesures processing
+char gesureString[64];
+#define gestureThreshold 100
+void backgourndEventlistener(UIobject *this, Event event)
+{
+    static int beginLongHold = 0;
+    int direction;
+    int gesturenum;
+    int eventCode = eventCodeMask(event);
+    if (touchingParam.longHold)
+    {
+        int deltaX = touchingParam.cursorNowX - touchingParam.clickX;
+        int deltaY = touchingParam.cursorNowY - touchingParam.clickY;
+        direction = absM(deltaX) > absM(deltaY);
+        if (direction)
+        {
+            gesturenum = deltaX / gestureThreshold;
+            if (deltaX > 0)
+            {
+                int i;
+                for (i = 0; i < gesturenum; i++)
+                {
+                    gesureString[i] = '>';
+                }
+                gesureString[i] = 'R';
+                gesureString[i + 1] = '\0';
+            }
+            else
+            {
+                int i;
+                for (i = 0; i < -gesturenum; i++)
+                {
+                    gesureString[i] = '<';
+                }
+                gesureString[i] = 'L';
+                gesureString[i + 1] = '\0';
+            }
+        }
+        else
+        {
+            gesturenum = deltaY / gestureThreshold;
+            if (deltaY > 0)
+            {
+                int i;
+                for (i = 0; i < gesturenum; i++)
+                {
+                    gesureString[i] = '^';
+                }
+                gesureString[i] = 'D';
+                gesureString[i + 1] = '\0';
+            }
+            else
+            {
+                int i;
+                for (i = 0; i < -gesturenum; i++)
+                {
+                    gesureString[i] = 'v';
+                }
+                gesureString[i] = 'U';
+                gesureString[i + 1] = '\0';
+            }
+        }
 
-// void oscUI(){
-//     UIobject* result = getUIobject();
-//     result->x=0;
-//     result->y=0;
-//     result->shader=oscShader;
-//     return result;
-// }
+        if (beginLongHold == 1)
+        {
+            floatingMessage(gesureString);
+            beginLongHold = 0;
+        }
+        else if (eventCode == Touching)
+        {
+            updateMessage(gesureString);
+        }
+        else if (eventCode == TouchingEnd)
+        {
+            // todo
+        }
+    }
+    if (eventCode == OnClick)
+    {
+        beginLongHold = 1;
+    }
+}
 void backgroundShader(UIobject *this)
 {
     memset(frameCache, 0x0000, sizeof(frameCache));
@@ -109,6 +178,7 @@ void backgroundUI()
     background->box[1][1] = HEIGHT;
     background->box[1][0] = 0;
     background->priority = 0;
+    background->eventListener = backgourndEventlistener;
     background->shader = backgroundShader;
     priorityInsert(background);
 }

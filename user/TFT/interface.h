@@ -155,10 +155,14 @@ extern u16 frameCache[HEIGHT][WIDTH];
 #define cachePoint(x, y, color) frameCache[y][x] = (color)
 #define getPoint(x, y) (frameCache[y][x])
 
-extern u16 FadeColor(u16 color, u16 weight);
-extern void DrawTransparentPoint(int x, int y, u16 color, u16 weight);
+extern u16 fadeColor(u16 color, u16 weight);
+extern u16 approachColor(u16 color, u16 target, u16 weight);
+extern u16 approachColorDiv(u16 color, u16 target, int div);
+extern void drawTransparentPoint(int x, int y, u16 color, u16 weight);
 extern void cacheLine(int x1, int y1, int x2, int y2, u16 color);
 extern void cacheString(int x, int y, int width, int height, u8 size, char *p, u16 color);
+extern void cacheCenterString(int x, int y, int width, int height, u8 size, char *p, u16 color);
+extern int getRow(int x, int y, int width, int size, char *p);
 extern void cacheOneCenter(int x, int y, u8 size, char *p, u16 color);
 extern void cacheCircle(int x0, int y0, int r, u16 color);
 extern void cacheRoundedRec(int x, int y, int width, int height, int r, u16 color);
