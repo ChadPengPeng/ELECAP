@@ -1,6 +1,6 @@
 elecap/waveg.o: ..\user\Src\waveG.c ..\user\Src\waveG.h \
-  ..\user\Src\mathDef.h ..\Core\Inc\tim.h ..\Core\Inc\main.h \
-  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
+  ..\user\Src\mathDef.h ..\user\Src\volDef.h ..\Core\Inc\tim.h \
+  ..\Core\Inc\main.h ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
   ..\Core\Inc\stm32h7xx_hal_conf.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h \

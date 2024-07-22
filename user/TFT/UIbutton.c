@@ -19,7 +19,7 @@ void buttonOnClick(UIobject *this, Event event)
 {
     int div = getDiv(500, 10);
     this->param[2] = approachColorDiv(this->param[2], this->param[6], div);
-    if (eventCodeMask(event) == OnClick)
+    if (eventCodeMask(event) == OnClick || eventCodeMask(event) >= KEY1)
     {
         // todo:your button
         extern void floatingMessage(char *message);
@@ -100,7 +100,7 @@ void onFoldingUpdate(UIobject *this, int deltaT)
 void onCursor(UIobject *this, Event event)
 {
 
-    if (eventCodeMask(event) == OnClick)
+    if (eventCodeMask(event) == OnClick || eventCodeMask(event) >= KEY1)
     {
         this->param[3] = !this->param[3];
         this->update = onFoldingUpdate;

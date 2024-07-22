@@ -3,12 +3,12 @@
 
 
 #include "mathDef.h"
-
+#include "volDef.h"
 #include "tim.h"
 #include "dac.h"
 #define WAVE_LEN 256
 
-#define toDacNum(x) ((uint16_t)((float)(x) / 2.5f * 4095.0f))
+#define toDacNum(x) ((uint16_t)((float)(x) / VREF * (float)DAC_MAX))
 
 extern uint16_t dacWave[];
 
@@ -21,6 +21,7 @@ typedef enum {
 
 typedef struct {
     float freq;
+    int dacFreq;
     float amp;
     float phase;
     int length;
@@ -38,6 +39,6 @@ extern void setFreq(float freq);
 extern void setAmp(float amp);
 extern void setPhase(float phase);
 extern void setWaveType(WaveType waveType);
-extern void setWave(float freq, float amp, float phase, WaveType type);
+extern void setWave(float freq, int dacFreq, float amp, float phase, WaveType type);
 
 #endif // !__WAVEG__

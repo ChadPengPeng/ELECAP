@@ -39,7 +39,7 @@ elecap/pipline.o: ..\user\TFT\pipline.c ..\user\TFT\pipline.h \
   ..\user\device\bsp_delay.h ..\user\TOUCH\fontInclude.h \
   ..\user\Src\mathDef.h ..\user\TFT\UIobject.h ..\user\EVENT\event.h \
   ..\user\EVENT\touchEvent.h ..\Core\Inc\main.h \
-  ..\user\TFT\shadeCursor.h ..\user\TFT\UIsample.h \
-  ..\user\TFT\UIfloatingWindow.h ..\user\TFT\UIwave.h ..\user\Src\osc.h \
-  ..\Core\Inc\adc.h ..\Core\Inc\tim.h ..\user\TFT\UIbutton.h \
-  ..\user\TFT\UImessage.h
+  ..\user\TFT\shadeCursor.h ..\user\TFT\UIsample.h ..\user\TFT\UIwave.h \
+  ..\user\Src\osc.h ..\user\Src\volDef.h ..\Core\Inc\adc.h \
+  ..\Core\Inc\tim.h ..\user\TFT\UIfloatingWindow.h \
+  ..\user\TFT\UIbutton.h ..\user\TFT\UImessage.h

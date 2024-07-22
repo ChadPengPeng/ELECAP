@@ -22,6 +22,8 @@
 #include "stm32h7xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "osc.h"
+#include "event.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -31,7 +33,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define TIM13UpdateFreq 100
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -41,7 +43,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-
+extern OscData *thisOsc;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -58,6 +60,7 @@
 extern DMA_HandleTypeDef hdma_adc1;
 extern DMA_HandleTypeDef hdma_adc2;
 extern DMA_HandleTypeDef hdma_dac1_ch1;
+extern TIM_HandleTypeDef htim13;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -201,6 +204,90 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
+  * @brief This function handles EXTI line0 interrupt.
+  */
+void EXTI0_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI0_IRQn 0 */
+  static uint32_t tick = 0;
+  if(__HAL_GPIO_EXTI_GET_IT(GPIO_PIN_0) != RESET)
+  {
+    if(HAL_GetTick() - tick > 50){
+      addEvent(KEY1);
+      tick = HAL_GetTick();
+    }
+    __HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_0);
+  }
+  /* USER CODE END EXTI0_IRQn 0 */
+  /* USER CODE BEGIN EXTI0_IRQn 1 */
+
+  /* USER CODE END EXTI0_IRQn 1 */
+}
+
+/**
+  * @brief This function handles EXTI line1 interrupt.
+  */
+void EXTI1_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI1_IRQn 0 */
+  static uint32_t tick = 0;
+  if(__HAL_GPIO_EXTI_GET_IT(GPIO_PIN_1) != RESET)
+  {
+    if(HAL_GetTick() - tick > 50){
+      addEvent(KEY2);
+      tick = HAL_GetTick();
+    }
+    __HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_1);
+  }
+  /* USER CODE END EXTI1_IRQn 0 */
+  /* USER CODE BEGIN EXTI1_IRQn 1 */
+
+  /* USER CODE END EXTI1_IRQn 1 */
+}
+
+/**
+  * @brief This function handles EXTI line2 interrupt.
+  */
+void EXTI2_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI2_IRQn 0 */
+  static uint32_t tick = 0;
+  if(__HAL_GPIO_EXTI_GET_IT(GPIO_PIN_2) != RESET)
+  {
+    if(HAL_GetTick() - tick > 50){
+      addEvent(KEY3);
+      tick = HAL_GetTick();
+    }
+    __HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_2);
+  }
+  /* USER CODE END EXTI2_IRQn 0 */
+  /* USER CODE BEGIN EXTI2_IRQn 1 */
+
+  /* USER CODE END EXTI2_IRQn 1 */
+}
+
+/**
+  * @brief This function handles EXTI line3 interrupt.
+  */
+void EXTI3_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI3_IRQn 0 */
+  static uint32_t tick = 0;   
+  if(__HAL_GPIO_EXTI_GET_IT(GPIO_PIN_3) != RESET)
+  {
+    if(HAL_GetTick() - tick > 50){
+      addEvent(KEY4);
+      tick = HAL_GetTick();
+    }
+    __HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_3);
+  }
+  /* USER CODE END EXTI3_IRQn 0 */
+  /* USER CODE BEGIN EXTI3_IRQn 1 */
+
+  /* USER CODE END EXTI3_IRQn 1 */
+}
+
+/**
   * @brief This function handles DMA1 stream0 global interrupt.
   */
 void DMA1_Stream0_IRQHandler(void)
@@ -291,6 +378,25 @@ void DMA1_Stream2_IRQHandler(void)
   /* USER CODE BEGIN DMA1_Stream2_IRQn 1 */
 
   /* USER CODE END DMA1_Stream2_IRQn 1 */
+}
+
+/**
+  * @brief This function handles TIM8 update interrupt and TIM13 global interrupt.
+  */
+void TIM8_UP_TIM13_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM8_UP_TIM13_IRQn 0 */
+	if(__HAL_TIM_GET_FLAG(&htim13,TIM_IT_UPDATE) != RESET)
+	{
+		static int lastWaveNum = 0;
+    thisOsc->freq = (TIM15->CNT - lastWaveNum) * TIM13UpdateFreq;
+		lastWaveNum = TIM15->CNT;
+		__HAL_TIM_CLEAR_IT(&htim13,TIM_IT_UPDATE);
+	}	
+  /* USER CODE END TIM8_UP_TIM13_IRQn 0 */
+  /* USER CODE BEGIN TIM8_UP_TIM13_IRQn 1 */
+
+  /* USER CODE END TIM8_UP_TIM13_IRQn 1 */
 }
 
 /**

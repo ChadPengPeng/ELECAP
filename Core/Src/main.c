@@ -77,10 +77,8 @@ static void MPU_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-u16 debug = 0;
 #define wave_length 500
-OscData oscData = {0};
-volatile int dummy = 0;
+OscData* thisOsc;
 /* USER CODE END 0 */
 
 /**
@@ -144,17 +142,19 @@ int main(void)
   MX_FMC_Init();
   MX_USART1_UART_Init();
   MX_ADC1_Init();
-  MX_TIM12_Init();
   MX_TIM6_Init();
   MX_ADC2_Init();
   MX_DAC1_Init();
   MX_USART2_UART_Init();
   MX_I2C1_Init();
   MX_TIM7_Init();
+  MX_TIM13_Init();
+  MX_TIM15_Init();
   /* USER CODE BEGIN 2 */
-  
+  HAL_TIM_Base_Start(&htim15);
+  HAL_TIM_Base_Start_IT(&htim13);
 	initWaveG();
-
+	thisOsc = initOscData(0,0,100000,Amplify1x,DC,Auto);
   HAL_Delay(20);
   // 显示屏flash芯片初始
   W25QXX_Init();
@@ -187,21 +187,19 @@ int main(void)
 		addTouchEvent((360 - tp_dev.Y * 2 /43),256 - tp_dev.X / 29,sta);
     // debug
 		uint16_t adcNumberCh1[wave_length];
-		uint16_t adcNumberCh2[wave_length];
+		//uint16_t adcNumberCh2[wave_length];
 		getWaveCH1(adcNumberCh1, wave_length);
-    getWaveCH2(adcNumberCh2, wave_length);
-		dummy = 0;
+    //getWaveCH2(adcNumberCh2, wave_length);
     while(ifBusy()) {
 			//dummy++;
 			HAL_Delay(1);
 		}
-		oscData.trigger = 8191;
 		int waveIntCh1[WIDTH];
     int waveIntCh2[WIDTH];
-		oscData.waveCh1 = waveIntCh1;
-    oscData.waveCh2 = waveIntCh2;
-    processWave(adcNumberCh1, wave_length, &oscData, waveIntCh1);
-    processWave(adcNumberCh2, wave_length, &oscData, waveIntCh2);
+    bindOscWaveCh1(thisOsc, waveIntCh1);
+    //bindOscWaveCh2(thisOsc, waveIntCh2);
+    processWave(thisOsc, adcNumberCh1, wave_length, waveIntCh1);
+    //processWave(thisOsc, adcNumberCh2, wave_length, waveIntCh2);
     // 更新视图
     nextGraphic();
     /* USER CODE END WHILE */

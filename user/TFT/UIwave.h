@@ -5,6 +5,8 @@
 #include "interface.h"
 #include "stdio.h"
 #include "osc.h"
+#include "UIfloatingWindow.h"
+#include "touchEvent.h"
 
 typedef OscData UIwaveStruct;
 

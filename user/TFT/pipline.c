@@ -17,15 +17,15 @@ void graphInit()
     // recUI(140, 160, 100, 100, GREEN, 2);
     // recUI(150, 160, 100, 100, YELLOW, 2);
     // recUI(160, 160, 100, 100, ORANGE, 2);
-    UIobject *drawer = drawerUI(WIDTH , HEIGHT / 2, 50, HEIGHT*3/4, MacaronGREEN, BLACK, 4);
+    UIobject *drawer = drawerUI(WIDTH-1, HEIGHT / 2, 50, HEIGHT * 3 / 4, MacaronGREEN, BLACK, 4);
     // drawerUI(100, 100, 100, 100, RED, GRAY, 4);
     buttonUI(20, -30, 40, 20, MacaronBLUE, BLUE, 5, drawer);
     buttonUI(20, 0, 40, 20, MacaronBLUE, BLUE, 5, drawer);
     buttonUI(20, 30, 40, 20, MacaronBLUE, BLUE, 5, drawer);
     messageUI(WIDTH / 2, HEIGHT * 3 / 4, WIDTH * 3 / 4, HEIGHT / 4, MacaronWHITE, BLACK, 6);
-    
-    extern OscData oscData;
-    waveUI(MacaronYELLOW, MacaronPINK, 1, &oscData);
+
+    extern OscData *thisOsc;
+    waveUI(MacaronYELLOW, MacaronPINK, 1, thisOsc);
     debugUI();
 }
 
@@ -38,22 +38,23 @@ int getTimeInterval()
     return deltaT;
 }
 
+int ifLastEventTouch = 0;
+#define KeyableObject(obj) (obj->eventListener != NULL && inScreen(obj->x, obj->y))
 void processEvent()
 {
     while (haveEvent())
     {
         Event event = dequeueEvent();
         // write your event process function
-
-        UIobject *beforeCursor = NULL;
+				UIobject *beforeCursor = NULL;
         if (eventCodeMask(event) == OnClick)
         {
+            ifLastEventTouch = 1;
             int cursorX = cursorXmask(event);
             int cursorY = cursorYmask(event);
 
             UIobject *pointer = getHead();
             UIobject *beforepointer = NULL;
-
             while (pointer->next != NULL)
             {
                 beforepointer = pointer;
@@ -73,23 +74,87 @@ void processEvent()
                 }
             }
         }
-        // if cursor has same priority with next, swap them until they have different priority
-        // this make cursor the last object (among other same priority objects) that will be shaded last
-        while (cursor->next != NULL)
+        if (eventCodeMask(event) >= KEY1) // key event
         {
-            if (cursor->priority != cursor->next->priority)
-                break;
-            // 交换cursor和next
-            UIobject *temp = cursor->next;
-            cursor->next = temp->next;
-            temp->next = cursor;
-            beforeCursor->next = temp;
-            beforeCursor = beforeCursor->next;
+            ifLastEventTouch = 0;
+            if (eventCodeMask(event) == KEY1)
+            {
+                UIobject *pointer = getHead();
+                UIobject *beforeWithEvent = NULL;
+                while (pointer->next != NULL)
+                {
+                    if (KeyableObject(pointer))
+                    {
+                        beforeWithEvent = pointer;
+                    }
+                    if (pointer->next == cursor)
+                        break;
+                    pointer = pointer->next;
+                }
+                // cursor pointing the first object, move to the last object
+                if (beforeWithEvent == NULL)
+                {
+                    while (cursor->next != NULL)
+                    {
+                        if (KeyableObject(cursor))
+                        {
+                            beforeWithEvent = cursor;
+                        }
+                        cursor = cursor->next;
+                    }
+                    cursor = beforeWithEvent;
+                }
+                else
+                    cursor = beforeWithEvent;
+            }
+            else if (eventCodeMask(event) == KEY2)
+            {
+                // your key2 event process function
+                if (cursor->eventListener != NULL)
+                {
+                    cursor->eventListener(cursor, event);
+                }
+            }
+            else if (eventCodeMask(event) == KEY3)
+            {
+                // your key3 event process function
+                while (cursor->next != NULL){
+                    cursor = cursor->next;
+                    if (KeyableObject(cursor)) break;
+                }
+                if (! KeyableObject(cursor)){
+                    cursor = getHead();
+                    while(cursor->next != NULL){
+                        cursor = cursor->next;
+                        if (KeyableObject(cursor)) break;
+                    }
+                }
+            }
+            else if (eventCodeMask(event) == KEY4)
+            {
+                // your key4 event process function
+            }
         }
+        // if event is not key event, run cursor's event listener as usual
+        else{
+            // if cursor has same priority with next, swap them until they have different priority
+            // this make cursor the last object (among other same priority objects) that will be shaded last
+            while (cursor->next != NULL)
+            {
+                if (cursor->priority != cursor->next->priority)
+                    break;
+                // 交换cursor和next
+                UIobject *temp = cursor->next;
+                cursor->next = temp->next;
+                temp->next = cursor;
+                beforeCursor->next = temp;
+                beforeCursor = beforeCursor->next;
+            }
 
-        if (cursor->eventListener != NULL)
-        {
-            cursor->eventListener(cursor, event);
+            if (cursor->eventListener != NULL)
+            {
+                cursor->eventListener(cursor, event);
+            }
         }
     }
 }
@@ -118,7 +183,7 @@ void updataUI(int deltaT)
     }
 }
 // extern void graph();
-//#define ShowBox
+// #define ShowBox
 void shadeUI()
 {
     UIobject *pointer = getHead();
@@ -133,7 +198,12 @@ void shadeUI()
         // HAL_Delay(100);      //debug
         // graph();
     }
-    shadeCursor();
+    // when key is pressed, cursor object box will be shaded
+    if (ifLastEventTouch == 0)
+        cacheRec(cursor->x + cursor->box[0][0], cursor->y + cursor->box[1][0], cursor->x + cursor->box[0][1], cursor->y + cursor->box[1][1], PINK);
+    // shade touching cursor
+    else
+        shadeCursor();
 }
 
 void graph()

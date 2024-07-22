@@ -2,8 +2,91 @@
 
 #define boundary 20
 #define meshPixel 10
-#define numPixel 40
+#define numPixel 50
 #define dotLineInterval 3
+
+// used for gesures processing
+char gesureString[64];
+#define gestureThreshold 100
+void UIwaveEventlistener(UIobject *this, Event event)
+{
+    static int beginLongHold = 0;
+    int direction;
+    int gesturenum;
+    int eventCode = eventCodeMask(event);
+    if (touchingParam.longHold)
+    {
+        int deltaX = touchingParam.cursorNowX - touchingParam.clickX;
+        int deltaY = touchingParam.cursorNowY - touchingParam.clickY;
+        direction = absM(deltaX) > absM(deltaY);
+        if (direction)
+        {
+            gesturenum = deltaX / gestureThreshold;
+            if (deltaX > 0)
+            {
+                int i;
+                for (i = 0; i < gesturenum; i++)
+                {
+                    gesureString[i] = '>';
+                }
+                gesureString[i] = 'R';
+                gesureString[i + 1] = '\0';
+            }
+            else
+            {
+                int i;
+                for (i = 0; i < -gesturenum; i++)
+                {
+                    gesureString[i] = '<';
+                }
+                gesureString[i] = 'L';
+                gesureString[i + 1] = '\0';
+            }
+        }
+        else
+        {
+            gesturenum = deltaY / gestureThreshold;
+            if (deltaY > 0)
+            {
+                int i;
+                for (i = 0; i < gesturenum; i++)
+                {
+                    gesureString[i] = '^';
+                }
+                gesureString[i] = 'D';
+                gesureString[i + 1] = '\0';
+            }
+            else
+            {
+                int i;
+                for (i = 0; i < -gesturenum; i++)
+                {
+                    gesureString[i] = 'v';
+                }
+                gesureString[i] = 'U';
+                gesureString[i + 1] = '\0';
+            }
+        }
+
+        if (beginLongHold == 1)
+        {
+            floatingMessage(gesureString);
+            beginLongHold = 0;
+        }
+        else if (eventCode == Touching)
+        {
+            updateMessage(gesureString);
+        }
+        else if (eventCode == TouchingEnd)
+        {
+            // todo
+        }
+    }
+    if (eventCode == OnClick)
+    {
+        beginLongHold = 1;
+    }
+}
 
 void drawMesh()
 {
@@ -29,11 +112,11 @@ void drawMesh()
         }
     }
     // num line
-    for (int i = boundary + boundary % numPixel; i < WIDTH - boundary; i += numPixel)
+    for (int i = boundary + (WIDTH / 2 - boundary) % numPixel; i < WIDTH - boundary; i += numPixel)
     {
         cacheLine(i, boundary + 1, i, HEIGHT - boundary - 1, GRAY);
     }
-    for (int j = boundary + boundary % numPixel; j < HEIGHT - boundary; j += numPixel)
+    for (int j = boundary + (HEIGHT / 2 - boundary) % numPixel; j < HEIGHT - boundary; j += numPixel)
     {
         cacheLine(boundary + 1, j, WIDTH - boundary - 1, j, GRAY);
     }
@@ -101,14 +184,14 @@ void drawLabel(UIobject *this)
 {
     char pData[16];
     UIwaveStruct *selfStruct = (UIwaveStruct *)this->selfStruct;
-    for (int i = boundary + boundary % numPixel; i < WIDTH - boundary; i += numPixel)
+    for (int i = boundary + (WIDTH / 2 - boundary) % numPixel; i < WIDTH - boundary; i += numPixel)
     {
         writeTime(i - WIDTH / 2, selfStruct->xScale, pData);
         cacheOneCenter(i, HEIGHT / 2 + 12, 12, pData, WHITE);
     }
-    for (int i = boundary + boundary % numPixel; i < HEIGHT - boundary; i += numPixel)
+    for (int i = boundary + (HEIGHT / 2 - boundary) % numPixel; i < HEIGHT - boundary; i += numPixel)
     {
-        writeVol(i - HEIGHT / 2, selfStruct->xScale, pData);
+        writeVol(-(i - HEIGHT / 2), selfStruct->yScale, pData);
         cacheOneCenter(WIDTH / 2 - 12, i, 12, pData, WHITE);
     }
 }
@@ -145,18 +228,19 @@ void waveUI(u16 colorCh1, u16 colorCh2, int priority, UIwaveStruct *selfStruct)
     UIobject *result = getUIobject();
     result->x = WIDTH / 2;
     result->y = HEIGHT / 2;
-    // result->box[0][1]=0;
-    // result->box[0][0]=0;
-    // result->box[1][1]=0;
-    // result->box[1][0]=0;
+    result->box[0][0] = -WIDTH / 2 + boundary;
+    result->box[0][1] = WIDTH / 2 - boundary;
+    result->box[1][0] = -HEIGHT / 2 + boundary;
+    result->box[1][1] = HEIGHT / 2 - boundary;
     result->param[0] = colorCh1;
     result->param[1] = colorCh2;
+    result->eventListener = UIwaveEventlistener;
     result->shader = waveShader;
     result->priority = priority;
     // UIwaveStruct *selfStruct = (UIwaveStruct *)malloc(sizeof(UIwaveStruct));
     result->selfStruct = selfStruct;
 
-    selfStruct->xScale = 400;
-    selfStruct->yScale = 400;
+    // selfStruct->xScale = 120000;
+    // selfStruct->yScale = 40;
     priorityInsert(result);
 }

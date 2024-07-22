@@ -150,6 +150,7 @@ enum FOLDSTATE
 #define getB(color) ((color) & 0b0000000000011111)
 #define Migrate(R, G, B) (((R) << 11) + ((G) << 5) + (B))
 #define to565(color) (((Color & 0X00FCFCFC) >> 2) | ((Color & 0X0000FC00) >> 4) | ((Color & 0X00FC0000) >> 6))
+#define inScreen(x, y) (((x) >= 0) && ((x) < WIDTH) && ((y) >= 0) && ((y) < HEIGHT))
 
 extern u16 frameCache[HEIGHT][WIDTH];
 #define cachePoint(x, y, color) frameCache[y][x] = (color)

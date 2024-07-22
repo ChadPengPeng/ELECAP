@@ -39,5 +39,4 @@ elecap/uisample.o: ..\user\TFT\UIsample.c ..\user\TFT\UIsample.h \
   ..\user\TFT\interface.h ..\user\device\dev_lcd.h \
   ..\user\device\bsp_delay.h ..\user\TOUCH\fontInclude.h \
   ..\user\Src\mathDef.h ..\user\EVENT\touchEvent.h ..\Core\Inc\main.h \
-  ..\user\TFT\UIfloatingWindow.h ..\user\TOUCH\touch.h \
-  ..\user\system\system.h
+  ..\user\TOUCH\touch.h ..\user\system\system.h

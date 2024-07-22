@@ -12,7 +12,7 @@
 #include "UImessage.h"
 #include "UIfloatingWindow.h"
 
-#define demicalDigit 8
+// #define demicalDigit 8
 
 extern void graphInit();
 extern void nextGraphic();

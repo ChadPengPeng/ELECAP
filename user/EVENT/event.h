@@ -9,10 +9,10 @@ enum Event_enum
     Touching = 2,
     OnClick = 1,
     NoneEvent = 0,
-    KEY1 = -1,
-    KEY2 = -2,
-    KEY3 = -3,
-    KEY4 = -4 // x<<12+y<<4+eventcode as touch event
+    KEY1 = 4,
+    KEY2 = 5,
+    KEY3 = 6,
+    KEY4 = 7 // x<<12+y<<4+eventcode as touch event
 };
 
 typedef struct EventBuffer_struct
