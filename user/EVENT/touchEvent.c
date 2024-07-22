@@ -1,38 +1,42 @@
 #include "touchEvent.h"
 
-unsigned char lastClick = 0;
+
 touchParam touchingParam = {0};
 void addTouchEvent(int x, int y, int sta)
 {
-    int eventCode = NoneEvent;
+    static unsigned char lastClick = 0;
+    static State state = NoneState;
     touchingParam.cursorNowX = x;
     touchingParam.cursorNowY = y;
+    if (state == OnClick)
+        state = Hold;
+    if (state == HoldEnd)
+        state = NoneState;
+
     if (lastClick == 0b01111111 && sta)
     {
-        eventCode = OnClick;
+        state = OnClick;
         touchingParam.clickX = x;
         touchingParam.clickY = y;
         touchingParam.holding = 0;
         touchingParam.clickingTick = HAL_GetTick();
-        touchingParam.touching = 1;
-    }
-    if (lastClick == 0b11111111)
-    {
-        eventCode = Touching;
-        touchingParam.holding++;
     }
     if (lastClick == 0b10000000 && (!sta))
     {
-        eventCode = TouchingEnd;
-        touchingParam.touching = 0;
+        state = HoldEnd;
     }
-    if (lastClick == 0)
+    if (state == Hold)
     {
-        touchingParam.holding--;
+        touchingParam.holding++;
+    }
+    else
+    {
+        touchingParam.holding = (touchingParam.holding > 0) ? touchingParam.holding - 1 : 0;
     }
     lastClick = (lastClick << 1) | (sta != 0); // save last sta 8 times
-    if (eventCode)
+    if (state)
     {
-        addEvent(getCursorEvent(x, y, eventCode));
+        addEvent(getCursorEvent(x, y, Touch, state));
     }
+    touchingParam.touching = state == Hold;
 }

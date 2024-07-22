@@ -1,19 +1,29 @@
 #ifndef __EVENT__
 #define __EVENT__
 
-typedef int Event;
+typedef unsigned int Event;
 #define eventCodeMask(event) ((event)&0b1111)
-enum Event_enum
+#define stateMask(event) ((event>>4)&0b11)
+#define getEvent(eventCode, state) (state<<4 | eventCode )
+#define keyNum 4
+typedef enum EventCode_enum
 {
-    TouchingEnd = 3,
-    Touching = 2,
-    OnClick = 1,
     NoneEvent = 0,
-    KEY1 = 4,
-    KEY2 = 5,
-    KEY3 = 6,
-    KEY4 = 7 // x<<12+y<<4+eventcode as touch event
-};
+    Touch = 1,
+    KEY1 = 2,
+    KEY2 = 3,
+    KEY3 = 4,
+    KEY4 = 5 // x<<12+y<<4+eventcode as touch event
+} EventCode;
+
+typedef enum State_enum
+{
+    NoneState = 0,
+    OnClick = 1,
+    Hold = 2,
+    HoldEnd = 3
+} State;
+
 
 typedef struct EventBuffer_struct
 {

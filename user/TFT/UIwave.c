@@ -13,7 +13,7 @@ void UIwaveEventlistener(UIobject *this, Event event)
     static int beginLongHold = 0;
     int direction;
     int gesturenum;
-    int eventCode = eventCodeMask(event);
+    State state = stateMask(event);
     if (touchingParam.longHold)
     {
         int deltaX = touchingParam.cursorNowX - touchingParam.clickX;
@@ -73,16 +73,16 @@ void UIwaveEventlistener(UIobject *this, Event event)
             floatingMessage(gesureString);
             beginLongHold = 0;
         }
-        else if (eventCode == Touching)
+        else if (state == Hold)
         {
             updateMessage(gesureString);
         }
-        else if (eventCode == TouchingEnd)
+        else if (state == HoldEnd)
         {
             // todo
         }
     }
-    if (eventCode == OnClick)
+    if (state == OnClick)
     {
         beginLongHold = 1;
     }

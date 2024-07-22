@@ -1,14 +1,13 @@
-elecap/pipline.o: ..\user\TFT\pipline.c ..\user\TFT\pipline.h \
-  ..\user\TFT\interface.h ..\user\device\dev_lcd.h \
-  ..\user\device\bsp_system.h \
-  ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h \
-  ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h750xx.h \
-  ..\Drivers\CMSIS\Include\core_cm7.h \
-  ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\system_stm32h7xx.h \
+elecap/keyevent.o: ..\user\EVENT\keyEvent.c ..\user\EVENT\keyEvent.h \
+  ..\user\EVENT\event.h ..\Core\Inc\main.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h \
   ..\Core\Inc\stm32h7xx_hal_conf.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h \
+  ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h \
+  ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h750xx.h \
+  ..\Drivers\CMSIS\Include\core_cm7.h \
+  ..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\system_stm32h7xx.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc_ex.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio.h \
@@ -35,8 +34,4 @@ elecap/pipline.o: ..\user\TFT\pipline.c ..\user\TFT\pipline.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim_ex.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h \
-  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h \
-  ..\user\device\bsp_delay.h ..\user\TOUCH\fontInclude.h \
-  ..\user\Src\mathDef.h ..\user\TFT\UIobject.h ..\user\EVENT\event.h \
-  ..\user\EVENT\touchEvent.h ..\Core\Inc\main.h \
-  ..\user\TFT\shadeCursor.h ..\user\TFT\UIsample.h
+  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h

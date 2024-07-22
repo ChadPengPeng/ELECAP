@@ -39,7 +39,8 @@
         "interface.h": "c",
         "stdio.h": "c",
         "uifloatingwindow.h": "c",
-        "voldef.h": "c"
+        "voldef.h": "c",
+        "keyevent.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

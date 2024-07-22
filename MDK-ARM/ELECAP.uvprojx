@@ -1321,6 +1321,16 @@
               <FileType>1</FileType>
               <FilePath>..\user\TFT\UIfloatingWindow.c</FilePath>
             </File>
+            <File>
+              <FileName>UserInterface.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\user\Src\UserInterface.c</FilePath>
+            </File>
+            <File>
+              <FileName>keyEvent.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\user\EVENT\keyEvent.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

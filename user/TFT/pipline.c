@@ -10,22 +10,8 @@ void graphInit()
     cursor = getHead();
     eventInit();
     backgroundUI();
-    flotingUI(WIDTH / 2, HEIGHT / 4, 100, 20, MacaronORANGE, BLACK, 254);
-    // your init object
-    // recUI(120, 160, 100, 100, BLUE, 2);
-    // recUI(130, 160, 100, 100, PURPLE, 2);
-    // recUI(140, 160, 100, 100, GREEN, 2);
-    // recUI(150, 160, 100, 100, YELLOW, 2);
-    // recUI(160, 160, 100, 100, ORANGE, 2);
-    UIobject *drawer = drawerUI(WIDTH-1, HEIGHT / 2, 50, HEIGHT * 3 / 4, MacaronGREEN, BLACK, 4);
-    // drawerUI(100, 100, 100, 100, RED, GRAY, 4);
-    buttonUI(20, -30, 40, 20, MacaronBLUE, BLUE, 5, drawer);
-    buttonUI(20, 0, 40, 20, MacaronBLUE, BLUE, 5, drawer);
-    buttonUI(20, 30, 40, 20, MacaronBLUE, BLUE, 5, drawer);
-    messageUI(WIDTH / 2, HEIGHT * 3 / 4, WIDTH * 3 / 4, HEIGHT / 4, MacaronWHITE, BLACK, 6);
-
-    extern OscData *thisOsc;
-    waveUI(MacaronYELLOW, MacaronPINK, 1, thisOsc);
+    extern void userInterface();
+    userInterface();
     debugUI();
 }
 
@@ -46,8 +32,8 @@ void processEvent()
     {
         Event event = dequeueEvent();
         // write your event process function
-				UIobject *beforeCursor = NULL;
-        if (eventCodeMask(event) == OnClick)
+        UIobject *beforeCursor = NULL;
+        if (eventCodeMask(event) == Touch && stateMask(event) == OnClick)
         {
             ifLastEventTouch = 1;
             int cursorX = cursorXmask(event);
@@ -73,12 +59,28 @@ void processEvent()
                     beforeCursor = beforepointer;
                 }
             }
+            // if cursor has same priority with next, swap them until they have different priority
+            // this make cursor the last object (among other same priority objects) that will be shaded last
+            while (cursor->next != NULL)
+            {
+                if (cursor->priority != cursor->next->priority)
+                    break;
+                // 交换cursor和next
+                UIobject *temp = cursor->next;
+                cursor->next = temp->next;
+                temp->next = cursor;
+                beforeCursor->next = temp;
+                beforeCursor = beforeCursor->next;
+            }
         }
         if (eventCodeMask(event) >= KEY1) // key event
         {
             ifLastEventTouch = 0;
-            if (eventCodeMask(event) == KEY1)
+            Event keyEvent = eventCodeMask(event);
+            if (keyEvent == KEY1)
             {
+                if(stateMask(event) != OnClick)
+                    return;
                 UIobject *pointer = getHead();
                 UIobject *beforeWithEvent = NULL;
                 while (pointer->next != NULL)
@@ -106,55 +108,38 @@ void processEvent()
                 }
                 else
                     cursor = beforeWithEvent;
+                return;
             }
-            else if (eventCodeMask(event) == KEY2)
+            else if (keyEvent == KEY3)
             {
-                // your key2 event process function
-                if (cursor->eventListener != NULL)
+                if(stateMask(event) != OnClick)
+                    return;
+                while (cursor->next != NULL)
                 {
-                    cursor->eventListener(cursor, event);
-                }
-            }
-            else if (eventCodeMask(event) == KEY3)
-            {
-                // your key3 event process function
-                while (cursor->next != NULL){
                     cursor = cursor->next;
-                    if (KeyableObject(cursor)) break;
+                    if (KeyableObject(cursor))
+                        break;
                 }
-                if (! KeyableObject(cursor)){
+                if (!KeyableObject(cursor))
+                {
                     cursor = getHead();
-                    while(cursor->next != NULL){
+                    while (cursor->next != NULL)
+                    {
                         cursor = cursor->next;
-                        if (KeyableObject(cursor)) break;
+                        if (KeyableObject(cursor))
+                            break;
                     }
                 }
+                return;
             }
-            else if (eventCodeMask(event) == KEY4)
+            else if (keyEvent == KEY4)
             {
                 // your key4 event process function
             }
         }
-        // if event is not key event, run cursor's event listener as usual
-        else{
-            // if cursor has same priority with next, swap them until they have different priority
-            // this make cursor the last object (among other same priority objects) that will be shaded last
-            while (cursor->next != NULL)
-            {
-                if (cursor->priority != cursor->next->priority)
-                    break;
-                // 交换cursor和next
-                UIobject *temp = cursor->next;
-                cursor->next = temp->next;
-                temp->next = cursor;
-                beforeCursor->next = temp;
-                beforeCursor = beforeCursor->next;
-            }
-
-            if (cursor->eventListener != NULL)
-            {
-                cursor->eventListener(cursor, event);
-            }
+        if (cursor->eventListener != NULL)
+        {
+            cursor->eventListener(cursor, event);
         }
     }
 }

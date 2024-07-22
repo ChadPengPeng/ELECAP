@@ -7,10 +7,7 @@
 #include "touchEvent.h"
 #include "shadeCursor.h"
 #include "UIsample.h"
-#include "UIwave.h"
-#include "UIbutton.h"
-#include "UImessage.h"
-#include "UIfloatingWindow.h"
+
 
 // #define demicalDigit 8
 

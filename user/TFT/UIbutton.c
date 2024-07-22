@@ -7,6 +7,8 @@ void buttonOnUpdate(UIobject *this, int deltaT)
     int div = getDiv(500, deltaT);
     if (this->param[2] != BLACK)
         this->param[2] = approachColorDiv(this->param[2], BLACK, div);
+    else
+        this->update = NULL;
 }
 
 void buttonOnParentUpdate(UIobject *this, int deltaT, UIobject *parent)
@@ -19,12 +21,15 @@ void buttonOnClick(UIobject *this, Event event)
 {
     int div = getDiv(500, 10);
     this->param[2] = approachColorDiv(this->param[2], this->param[6], div);
-    if (eventCodeMask(event) == OnClick || eventCodeMask(event) >= KEY1)
+    if (stateMask(event) == OnClick)
     {
         // todo:your button
         extern void floatingMessage(char *message);
 
         floatingMessage("Button Clicked!");
+    }
+    if(stateMask(event) == HoldEnd){
+        this->update = buttonOnUpdate;
     }
 }
 void buttonShader(UIobject *this)
@@ -59,7 +64,7 @@ UIobject *buttonUI(int centerx, int centery, int width, int height, u16 color, u
     // result->param[5] = buttonCallback;
     result->param[6] = backgroudColor;
     result->eventListener = buttonOnClick;
-    result->update = buttonOnUpdate;
+    result->update = NULL;
     result->childUpdate = buttonOnParentUpdate;
     result->shader = buttonShader;
     result->priority = priority;
@@ -100,7 +105,7 @@ void onFoldingUpdate(UIobject *this, int deltaT)
 void onCursor(UIobject *this, Event event)
 {
 
-    if (eventCodeMask(event) == OnClick || eventCodeMask(event) >= KEY1)
+    if (stateMask(event) == OnClick)
     {
         this->param[3] = !this->param[3];
         this->update = onFoldingUpdate;

@@ -58,7 +58,7 @@ void messageShader(UIobject *this)
 void messageOnCursor(UIobject *this, Event event)
 {
 
-    if (eventCodeMask(event) == OnClick || eventCodeMask(event) >= KEY1)
+    if (stateMask(event) == OnClick)
     {
         this->param[3] = !this->param[3];
         this->update = messageOnFoldingUpdate;

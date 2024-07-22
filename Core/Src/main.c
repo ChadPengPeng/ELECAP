@@ -44,6 +44,7 @@
 #include "ITHandler.h"
 #include "osc.h"
 #include "waveG.h"
+#include "keyEvent.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -185,6 +186,7 @@ int main(void)
       tp_dev.sta = Key_Up;
     } 
 		addTouchEvent((360 - tp_dev.Y * 2 /43),256 - tp_dev.X / 29,sta);
+		keyEvent();
     // debug
 		uint16_t adcNumberCh1[wave_length];
 		//uint16_t adcNumberCh2[wave_length];
