@@ -9,7 +9,7 @@ void eventInit()
 void addEvent(Event event)
 {
     eventBuffer.eventList[eventBuffer.head++] = event;
-}  
+}
 
 Event dequeueEvent()
 {

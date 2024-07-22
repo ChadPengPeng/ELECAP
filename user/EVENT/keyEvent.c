@@ -6,7 +6,7 @@ void keyEvent()
     static uint8_t lastClick[keyNum] = {0};
     for (Event e = KEY1; e <= KEY4; e++)
     {
-        lastClick[e] = (HAL_GPIO_ReadPin(GPIOE, (uint16_t)1 << (e - KEY1)) == RESET) | lastClick[e]<<1;
+        lastClick[e] = (HAL_GPIO_ReadPin(GPIOE, (uint16_t)1 << (e - KEY1)) == RESET) | lastClick[e] << 1;
         if (state[e] == OnClick)
             state[e] = Hold;
         if (state[e] == HoldEnd)
@@ -24,6 +24,5 @@ void keyEvent()
         {
             addEvent(getEvent(e, state[e]));
         }
-        
     }
 }

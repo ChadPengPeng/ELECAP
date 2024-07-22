@@ -6,4 +6,4 @@
 
 extern UIobject *messageUI(int centerx, int centery, int width, int height, u16 color, u16 backgroudColor, int priority);
 
-#endif // __UIMESSAGE__ 
+#endif // __UIMESSAGE__

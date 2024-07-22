@@ -80,8 +80,6 @@ void debugUI()
     priorityInsert(result);
 }
 
-
-
 void backgroundShader(UIobject *this)
 {
     memset(frameCache, 0x0000, sizeof(frameCache));

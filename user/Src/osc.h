@@ -7,14 +7,13 @@
 #include "tim.h"
 #include "interface.h" //otherwise define WIDTH your TFT screen width
 
-
 extern volatile int busy;
 
 typedef enum
 {
     Amplify0x5 = 20,   // yScale = 20
     Amplify1x = 40,    // yScale = 40
-    Amplify2x5 = 100,   // yscale = 100
+    Amplify2x5 = 100,  // yscale = 100
     Amplify5x = 200,   // yScale = 200
     Amplify10x = 400,  // yScale = 400
     Amplify20x = 800,  // yScale = 800

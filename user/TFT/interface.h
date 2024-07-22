@@ -143,7 +143,6 @@ enum FOLDSTATE
 #define WriteColor(color) LCD_WriteRAM(color)
 #define ReadColor(x, y) LCD_ReadPoint(x, y)
 
-
 #define getDiv(approachTime, deltaTime) ((approachTime) / (deltaTime * 3))
 #define getR(color) ((color) >> 11)
 #define getG(color) (((color) & 0b0000011111100000) >> 5)

@@ -66,7 +66,6 @@ void messageOnCursor(UIobject *this, Event event)
     }
 }
 
-
 /*
 param:
     0:width

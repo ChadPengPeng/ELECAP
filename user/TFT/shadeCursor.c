@@ -9,7 +9,8 @@ void shadeCursor()
     int x0 = touchingParam.cursorNowX;
     int y0 = touchingParam.cursorNowY;
     int holdLong = absM(touchingParam.cursorNowX - touchingParam.clickX) + absM(touchingParam.cursorNowY - touchingParam.clickY);
-    if (maxHoldLong<holdLong) maxHoldLong=holdLong;
+    if (maxHoldLong < holdLong)
+        maxHoldLong = holdLong;
     int r = touchingParam.holding * 2;
     if (r > holdingR)
         r = holdingR;

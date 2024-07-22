@@ -1,7 +1,6 @@
 #ifndef __WAVEG__
 #define __WAVEG__
 
-
 #include "mathDef.h"
 #include "volDef.h"
 #include "tim.h"
@@ -12,14 +11,16 @@
 
 extern uint16_t dacWave[];
 
-typedef enum {
+typedef enum
+{
     SINE,
     SQUARE,
     TRIANGLE,
     SAWTOOTH
 } WaveType;
 
-typedef struct {
+typedef struct
+{
     float freq;
     int dacFreq;
     float amp;
@@ -29,8 +30,6 @@ typedef struct {
 } WaveG;
 
 extern WaveG waveG;
-
-
 
 extern void initWaveG();
 extern void generageWave(void);

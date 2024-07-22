@@ -8,7 +8,6 @@
 #include "shadeCursor.h"
 #include "UIsample.h"
 
-
 // #define demicalDigit 8
 
 extern void graphInit();

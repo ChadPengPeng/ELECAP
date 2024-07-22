@@ -14,11 +14,12 @@ UIobject *getHead()
 
 UIobject *getUIobject()
 {
-	UIobject *result;
-    //warning: if malloc return NULL, make heap size bigger
-    do{
+    UIobject *result;
+    // warning: if malloc return NULL, make heap size bigger
+    do
+    {
         result = (UIobject *)malloc(sizeof(UIobject));
-    }while(result == NULL);
+    } while (result == NULL);
     result->this = result;
     result->next = NULL;
     result->child = NULL;
@@ -61,10 +62,13 @@ void delNext(UIobject *node)
     free(node->next);
 }
 
-void childInsert(UIobject *father, UIobject *child){
-    if(father->child != NULL){
+void childInsert(UIobject *father, UIobject *child)
+{
+    if (father->child != NULL)
+    {
         UIobject *childPointer = father->child;
-        while(childPointer->childNext != NULL){
+        while (childPointer->childNext != NULL)
+        {
             childPointer = childPointer->childNext;
         }
         childPointer->childNext = child;

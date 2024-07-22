@@ -79,7 +79,7 @@ void processEvent()
             Event keyEvent = eventCodeMask(event);
             if (keyEvent == KEY1)
             {
-                if(stateMask(event) != OnClick)
+                if (stateMask(event) != OnClick)
                     return;
                 UIobject *pointer = getHead();
                 UIobject *beforeWithEvent = NULL;
@@ -112,7 +112,7 @@ void processEvent()
             }
             else if (keyEvent == KEY3)
             {
-                if(stateMask(event) != OnClick)
+                if (stateMask(event) != OnClick)
                     return;
                 while (cursor->next != NULL)
                 {

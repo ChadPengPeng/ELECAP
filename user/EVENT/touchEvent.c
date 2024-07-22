@@ -1,6 +1,5 @@
 #include "touchEvent.h"
 
-
 touchParam touchingParam = {0};
 void addTouchEvent(int x, int y, int sta)
 {

@@ -17,17 +17,16 @@ typedef struct UIobject_struct
     int y;
     int priority;
     u16 color;
-    //u16 color_weight;
+    // u16 color_weight;
     int box[2][2];
     int transformRec[2][2];
     uint16_t param[8];
     void (*eventListener)(struct UIobject_struct *this, Event event);
     void (*update)(struct UIobject_struct *this, int deltaT);
-    void (*childUpdate) (struct UIobject_struct *this, int deltaT, struct UIobject_struct *father);
+    void (*childUpdate)(struct UIobject_struct *this, int deltaT, struct UIobject_struct *father);
     void (*shader)(struct UIobject_struct *this);
     void *selfStruct;
-    
-    
+
 } UIobject;
 
 typedef void (*selfUpdater)(UIobject *this, int deltaT);

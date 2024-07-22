@@ -2,9 +2,9 @@
 #define __EVENT__
 
 typedef unsigned int Event;
-#define eventCodeMask(event) ((event)&0b1111)
-#define stateMask(event) ((event>>4)&0b11)
-#define getEvent(eventCode, state) (state<<4 | eventCode )
+#define eventCodeMask(event) ((event) & 0b1111)
+#define stateMask(event) ((event >> 4) & 0b11)
+#define getEvent(eventCode, state) (state << 4 | eventCode)
 #define keyNum 4
 typedef enum EventCode_enum
 {
@@ -23,7 +23,6 @@ typedef enum State_enum
     Hold = 2,
     HoldEnd = 3
 } State;
-
 
 typedef struct EventBuffer_struct
 {

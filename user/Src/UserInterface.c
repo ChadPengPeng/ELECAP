@@ -5,7 +5,7 @@ char message[128];
 void addFreqButtonHandler()
 {
     setXscale(thisOsc, thisOsc->xScale * 10);
-    
+
     sprintf(message, "Frequency: %d Hz", thisOsc->xScale);
     floatingMessage(message);
 }
@@ -33,6 +33,5 @@ void userInterface()
     buttonUI(20, 30, 40, 20, MacaronBLUE, BLUE, 5, drawer, NULL);
     messageUI(WIDTH / 2, HEIGHT * 3 / 4, WIDTH * 3 / 4, HEIGHT / 4, MacaronWHITE, BLACK, 6);
 
-    
     waveUI(MacaronYELLOW, MacaronPINK, 1, thisOsc);
 }

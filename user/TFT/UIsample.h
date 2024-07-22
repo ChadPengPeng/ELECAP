@@ -6,8 +6,6 @@
 #include "stdio.h"
 #include "touchEvent.h"
 
-
-
 extern void recUI(u16 centerx, u16 centery, u16 width, u16 height, u16 color, int priority);
 extern void debugUI();
 extern void backgroundUI();

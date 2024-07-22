@@ -202,7 +202,7 @@ void cacheCenterString(int x, int y, int width, int height, u8 size, char *p, u1
     int length = 0;
     int x0 = x;
     int y0 = y;
-		char *p0 = p;
+    char *p0 = p;
     int right = x + width;
     int bottom = y + height;
     while ((*p <= '~') && (*p >= ' ')) // 判断是不是非法字符!
@@ -227,7 +227,7 @@ void cacheCenterString(int x, int y, int width, int height, u8 size, char *p, u1
 
     x = x0;
     y = y0;
-		p = p0;
+    p = p0;
     if (row == 1)
         while ((*p <= '~') && (*p >= ' ')) // 判断是不是非法字符!
         {

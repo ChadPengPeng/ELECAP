@@ -10,7 +10,7 @@
 
 typedef OscData UIwaveStruct;
 
-extern int* waveInt;
+extern int *waveInt;
 extern void waveUI(u16 colorCh1, u16 colorCh2, int priority, UIwaveStruct *selfStruct);
 
 // typedef struct UIwave_struct
@@ -21,7 +21,5 @@ extern void waveUI(u16 colorCh1, u16 colorCh2, int priority, UIwaveStruct *selfS
 //     int yScale;         //1v含像素数
 //     int wave[WIDTH];
 // } UIwaveStruct;
-
-
 
 #endif // !__UIWAVE__
