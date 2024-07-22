@@ -11,5 +11,6 @@
 #include "UIbutton.h"
 #include "UImessage.h"
 #include "UIfloatingWindow.h"
+#include "osc.h"
 
 #endif // __USERINTERFACE__

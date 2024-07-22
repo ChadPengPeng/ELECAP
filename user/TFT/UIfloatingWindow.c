@@ -4,20 +4,22 @@
 #define WaitingTick 1000
 static int lastTick = 0;
 
-//update function
+// update function
 void onWaitingUpdate(UIobject *this, int deltaT);
 void floatingOnFoldingUpdate(UIobject *this, int deltaT);
 
-void resetFloatingWindowCounter(){
+void resetFloatingWindowCounter()
+{
     lastTick = HAL_GetTick();
 }
-void onWaitingUpdate(UIobject *this, int deltaT){
-    if((int)(HAL_GetTick() - lastTick) > WaitingTick){
+void onWaitingUpdate(UIobject *this, int deltaT)
+{
+    if ((int)(HAL_GetTick() - lastTick) > WaitingTick)
+    {
         this->update = floatingOnFoldingUpdate;
         this->param[3] = FOLD;
     }
 }
-
 
 void floatingOnFoldingUpdate(UIobject *this, int deltaT)
 {
@@ -35,8 +37,8 @@ void floatingOnFoldingUpdate(UIobject *this, int deltaT)
             this->box[1][1] = 0;
             return;
         }
-        this->param[0] = approachDiv(this->param[0], 0, div) ;
-        this->param[1] = approachDiv(this->param[1], 0, div) ;
+        this->param[0] = approachDiv(this->param[0], 0, div);
+        this->param[1] = approachDiv(this->param[1], 0, div);
         this->color = approachColorDiv(this->color, BLACK, div);
     }
     if (this->param[3] == UNFOLD)
@@ -52,18 +54,16 @@ void floatingOnFoldingUpdate(UIobject *this, int deltaT)
             this->color = this->param[6];
             return;
         }
-        this->param[0] = approachDiv(this->param[0], this->param[4], div) ;
-        this->param[1] = approachDiv(this->param[1], this->param[5], div) ;
+        this->param[0] = approachDiv(this->param[0], this->param[4], div);
+        this->param[1] = approachDiv(this->param[1], this->param[5], div);
         this->color = approachColorDiv(this->color, this->param[6], div);
     }
 }
 
-
-
 void floatingShader(UIobject *this)
 {
-    cacheRoundedRecBackground(this->x, this->y, this->param[0], this->param[1], this->param[1]/2, this->color, this->param[2]);
-    cacheOneCenter(this->x, this->y, 12, (char*)(this->selfStruct), this->color);
+    cacheRoundedRecBackground(this->x, this->y, this->param[0], this->param[1], 12, this->color, this->param[2]);
+    cacheCenterString(this->x, this->y, this->param[4] - 24, this->param[5], 12, (char *)(this->selfStruct), this->color);
 }
 /*
 param:
@@ -102,7 +102,7 @@ UIobject *flotingUI(int centerx, int centery, int width, int height, u16 color, 
 
 void floatingMessage(char *message)
 {
-    //make window have the amimation effect of unfolding
+    // make window have the amimation effect of unfolding
     thisFloatingWindow->param[0] = 0;
     thisFloatingWindow->param[1] = 0;
     thisFloatingWindow->color = BLACK;
@@ -115,5 +115,5 @@ void updateMessage(char *message)
     thisFloatingWindow->selfStruct = message;
     thisFloatingWindow->update = floatingOnFoldingUpdate;
     thisFloatingWindow->param[3] = UNFOLD;
-    thisFloatingWindow->param[5] = 12+12*getRow(thisFloatingWindow->x, thisFloatingWindow->y, thisFloatingWindow->param[4] - thisFloatingWindow->param[5], 12, message);
+    thisFloatingWindow->param[5] = 24 + 12 * getRow(thisFloatingWindow->x, thisFloatingWindow->y, thisFloatingWindow->param[4] - 24, 12, message);
 }

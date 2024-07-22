@@ -13,13 +13,14 @@ u16 approachColor(u16 color, u16 target, u16 weight)
     int tr = getR(target);
     int tg = getG(target);
     int tb = getB(target);
-    r = approach((float)r, (float)tr, (float)(weight/256.0));
-    g = approach((float)g, (float)tg, (float)(weight/256.0));
-    b = approach((float)b, (float)tb, (float)(weight/256.0));
+    r = approach((float)r, (float)tr, (float)(weight / 256.0));
+    g = approach((float)g, (float)tg, (float)(weight / 256.0));
+    b = approach((float)b, (float)tb, (float)(weight / 256.0));
     return Migrate(r, g, b);
 }
 
-u16 approachColorDiv(u16 color, u16 target, int div){
+u16 approachColorDiv(u16 color, u16 target, int div)
+{
     int r = getR(color);
     int g = getG(color);
     int b = getB(color);
@@ -201,17 +202,18 @@ void cacheCenterString(int x, int y, int width, int height, u8 size, char *p, u1
     int length = 0;
     int x0 = x;
     int y0 = y;
-    width += x;
-    height += y;
+		char *p0 = p;
+    int right = x + width;
+    int bottom = y + height;
     while ((*p <= '~') && (*p >= ' ')) // 判断是不是非法字符!
     {
-        if (x >= width)
+        if (x >= right)
         {
             x = x0;
             y += size;
             row++;
         }
-        if (y >= height)
+        if (y >= bottom)
             break; // 退出
         if ((x + size / 2) > WIDTH)
         {
@@ -225,9 +227,12 @@ void cacheCenterString(int x, int y, int width, int height, u8 size, char *p, u1
 
     x = x0;
     y = y0;
+		p = p0;
     if (row == 1)
         while ((*p <= '~') && (*p >= ' ')) // 判断是不是非法字符!
         {
+            if ((x - length * size / 4 + size / 2) > WIDTH)
+                return;
             cacheChar(x - length * size / 4, y - row * size / 2, *p, size, color);
             x += size / 2;
             p++;
@@ -235,12 +240,12 @@ void cacheCenterString(int x, int y, int width, int height, u8 size, char *p, u1
     else
         while ((*p <= '~') && (*p >= ' ')) // 判断是不是非法字符!
         {
-            if (x >= width)
+            if (x >= right)
             {
                 x = x0;
                 y += size;
             }
-            if (y >= height)
+            if (y >= bottom)
                 break; // 退出
             if ((x + size / 2) > WIDTH)
             {
@@ -253,10 +258,11 @@ void cacheCenterString(int x, int y, int width, int height, u8 size, char *p, u1
         }
 }
 
-int getRow(int x, int y, int width, int size, char *p){
+int getRow(int x, int y, int width, int size, char *p)
+{
     int row = 1;
     int length = 0;
-	  int x0 = x;
+    int x0 = x;
     width += x;
     while ((*p <= '~') && (*p >= ' ')) // 判断是不是非法字符!
     {
@@ -407,7 +413,7 @@ void cacheVLine(int x0, int x1, int y, u16 color)
 
 void cacheRec(int x1, int y1, int x2, int y2, u16 color)
 {
-    
+
     cacheLine(x1, y1, x2, y1, color);
     cacheLine(x2, y1, x2, y2, color);
     cacheLine(x2, y2, x1, y2, color);

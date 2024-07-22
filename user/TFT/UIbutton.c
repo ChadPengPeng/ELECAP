@@ -23,15 +23,21 @@ void buttonOnClick(UIobject *this, Event event)
     this->param[2] = approachColorDiv(this->param[2], this->param[6], div);
     if (stateMask(event) == OnClick)
     {
-        // todo:your button
-        extern void floatingMessage(char *message);
-
-        floatingMessage("Button Clicked!");
+        if (this->selfStruct != NULL)
+            ((void (*)(void))this->selfStruct)();
     }
-    if(stateMask(event) == HoldEnd){
+    if (stateMask(event) == HoldEnd)
+    {
         this->update = buttonOnUpdate;
     }
 }
+
+void warningButtonselfStruct()
+{
+    extern void floatingMessage(char *message);
+    floatingMessage("Button Clicked!");
+}
+
 void buttonShader(UIobject *this)
 {
     cacheCenterRec(this->x, this->y, this->param[0], this->param[1], this->color);
@@ -48,7 +54,7 @@ param:
     6:initBackgroudColor
 selfStruct:nextButton
 */
-UIobject *buttonUI(int centerx, int centery, int width, int height, u16 color, u16 backgroudColor, int priority, UIobject *father)
+UIobject *buttonUI(int centerx, int centery, int width, int height, u16 color, u16 backgroudColor, int priority, UIobject *father, void *functionHandle)
 {
     UIobject *result = getUIobject();
     result->x = centerx + father->x;
@@ -68,6 +74,11 @@ UIobject *buttonUI(int centerx, int centery, int width, int height, u16 color, u
     result->childUpdate = buttonOnParentUpdate;
     result->shader = buttonShader;
     result->priority = priority;
+    // to save space in struct
+    if (functionHandle != NULL)
+        result->selfStruct = functionHandle;
+    else
+        result->selfStruct = warningButtonselfStruct;
     priorityInsert(result);
     childInsert(father, result);
     return result;
