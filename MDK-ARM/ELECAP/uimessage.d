@@ -37,6 +37,4 @@ elecap/uimessage.o: ..\user\TFT\UImessage.c ..\user\TFT\UImessage.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h \
   ..\user\device\bsp_delay.h ..\user\TOUCH\fontInclude.h \
-  ..\user\Src\mathDef.h ..\user\TFT\UIobject.h ..\user\EVENT\event.h \
-  ..\user\Src\osc.h ..\user\Src\volDef.h ..\Core\Inc\adc.h \
-  ..\Core\Inc\main.h ..\Core\Inc\tim.h
+  ..\user\Src\mathDef.h ..\user\TFT\UIobject.h ..\user\EVENT\event.h

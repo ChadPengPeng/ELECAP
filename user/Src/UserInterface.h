@@ -12,5 +12,6 @@
 #include "UImessage.h"
 #include "UIfloatingWindow.h"
 #include "osc.h"
+#include "pipline.h"
 
 #endif // __USERINTERFACE__

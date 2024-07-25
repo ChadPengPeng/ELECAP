@@ -10,6 +10,9 @@
 
 // #define demicalDigit 8
 
+extern int ifKeyBindOnObject;
+extern void getKeyBind();
+extern void releaseKeyBind();
 extern void graphInit();
 extern void nextGraphic();
 

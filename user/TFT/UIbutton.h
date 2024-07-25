@@ -3,8 +3,10 @@
 
 #include "UIobject.h"
 #include "interface.h"
-
-extern UIobject *buttonUI(int centerx, int centery, int width, int height, u16 color, u16 backgroudColor, int priority, UIobject *father, void *functionHandle);
-extern UIobject *drawerUI(int centerx, int centery, int width, int height, u16 color, u16 backgroudColor, int priority);
+#include "UIfloatingWindow.h"
+extern UIobject *buttonUI(short centerx, short centery, short width, short height, u16 color, u16 backgroudColor, int priority);
+extern UIobject *sliderUI(short centerx, short centery, short width, short height, int priority);
+extern void setSliderY(UIobject *this, short y);
+extern UIobject *drawerUI(short centerx, short centery, short width, short height, u16 color, u16 backgroudColor, int priority);
 
 #endif // !__UIBUTTON__

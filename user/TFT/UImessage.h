@@ -4,6 +4,6 @@
 #include "interface.h"
 #include "UIobject.h"
 
-extern UIobject *messageUI(int centerx, int centery, int width, int height, u16 color, u16 backgroudColor, int priority);
+extern UIobject *messageUI(short centerx, short centery, short width, short height, u16 color, u16 backgroudColor, int priority);
 
 #endif // __UIMESSAGE__

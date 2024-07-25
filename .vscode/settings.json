@@ -40,7 +40,8 @@
         "stdio.h": "c",
         "uifloatingwindow.h": "c",
         "voldef.h": "c",
-        "keyevent.h": "c"
+        "keyevent.h": "c",
+        "string.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

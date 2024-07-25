@@ -14,25 +14,26 @@ UIobject *getHead()
 
 UIobject *getUIobject()
 {
-    UIobject *result;
+    UIobject *this;
     // warning: if malloc return NULL, make heap size bigger
     do
     {
-        result = (UIobject *)malloc(sizeof(UIobject));
-    } while (result == NULL);
-    result->this = result;
-    result->next = NULL;
-    result->child = NULL;
-    result->childNext = NULL;
-    result->x = result->y = 0;
-    result->box[0][0] = result->box[0][1] = result->box[1][0] = result->box[1][1] = 0;
-    result->eventListener = NULL;
-    result->update = NULL;
-    result->childUpdate = NULL;
-    result->shader = NULL;
-    result->selfStruct = NULL;
-    // result->priority = 0;
-    return result;
+        this = (UIobject *)malloc(sizeof(UIobject));
+    } while (this == NULL);
+    this->this = this;
+    this->next = NULL;
+    this->child = NULL;
+    this->childNext = NULL;
+    this->x = this->y = 0;
+    this->box[0][0] = this->box[0][1] = this->box[1][0] = this->box[1][1] = 0;
+    this->eventListener = NULL;
+    this->update = NULL;
+    this->childUpdate = NULL;
+    this->shader = NULL;
+    this->selfStruct = NULL;
+    this->color = RED;
+    // this->priority = 0;
+    return this;
 }
 
 void insert(UIobject *link, UIobject *node)
@@ -62,8 +63,36 @@ void delNext(UIobject *node)
     free(node->next);
 }
 
+short getRelativeAxisX(UIobject *child){
+    int x = 0;
+    while(child->father!= NULL){
+        child = child->father;
+        x += child->relativeX;
+    }
+    return x;
+}
+
+short getRelativeAxisY(UIobject *child){
+    int y = 0;
+    while(child->father!= NULL){
+        child = child->father;
+        y += child->relativeY;
+    }
+    return y;
+}
+
+void onFatherUpdate(UIobject *this, int deltaT)
+{
+    this->x = this->father->x + this->relativeX;
+    this->y = this->father->y + this->relativeY;
+}
+
 void childInsert(UIobject *father, UIobject *child)
 {
+    child->father = father;
+    onFatherUpdate(child, 0);
+    if(child->childUpdate == NULL)
+        child->childUpdate = onFatherUpdate;
     if (father->child != NULL)
     {
         UIobject *childPointer = father->child;

@@ -2,8 +2,8 @@
 // example of a cursor following rectangle
 void grabCursor(UIobject *this, Event event)
 {
-    int cursorX = cursorXmask(event);
-    int cursorY = cursorYmask(event);
+    short cursorX = cursorXmask(event);
+    short cursorY = cursorYmask(event);
     this->x = cursorX / 2 + this->x / 2;
     this->y = cursorY / 2 + this->y / 2;
     if (this->x + this->box[0][0] < 0)
@@ -21,8 +21,8 @@ void recShader(UIobject *this)
     u16 x, y, dx, dy, color;
     x = this->x;
     y = this->y;
-    dx = this->param[0];
-    dy = this->param[1];
+    dx = this->width;
+    dy = this->height;
     color = this->color;
     cacheLine(x - dx, y + dy, x + dx - 1, y + dy, color);
     cacheLine(x + dx, y + dy, x + dx, y - dy + 1, color);
@@ -30,20 +30,20 @@ void recShader(UIobject *this)
     cacheLine(x - dx, y - dy, x - dx, y + dy - 1, color);
 }
 
-void recUI(u16 centerx, u16 centery, u16 width, u16 height, u16 color, int priority)
+void recUI(short centerx, short centery, short width, short height, u16 color, int priority)
 {
-    UIobject *result = getUIobject();
-    result->x = centerx;
-    result->y = centery;
-    result->box[0][1] = result->param[0] = width / 2;
-    result->box[0][0] = -result->param[0];
-    result->box[1][1] = result->param[1] = height / 2;
-    result->box[1][0] = -result->param[1];
-    result->color = color;
-    result->eventListener = grabCursor;
-    result->shader = recShader;
-    result->priority = priority;
-    priorityInsert(result);
+    UIobject *this = getUIobject();
+    this->x = centerx;
+    this->y = centery;
+    this->box[0][1] = this->width = width / 2;
+    this->box[0][0] = -this->width;
+    this->box[1][1] = this->height = height / 2;
+    this->box[1][0] = -this->height;
+    this->color = color;
+    this->eventListener = grabCursor;
+    this->shader = recShader;
+    this->priority = priority;
+    priorityInsert(this);
 }
 
 #include "touch.h"
@@ -62,8 +62,8 @@ void debugShader()
         node++;
     }
     sprintf(fps, "fps:%4.1f", fpsN);
-    sprintf(x, "x:%.3d", 360 - tp_dev.Y / 23);
-    sprintf(y, "y:%.3d", 256 - tp_dev.X / 30);
+    sprintf(x, "x:%.3d", 360 - tp_dev.x[0]);
+    sprintf(y, "y:%.3d", 256 - tp_dev.y[0]);
     extern UIobject *cursor;
     sprintf(debug, "debug:0x%8x", (uint32_t)cursor);
     cacheString(0, 0, 100, 100, 12, fps, 0xaf7d);
@@ -74,15 +74,15 @@ void debugShader()
 
 void debugUI()
 {
-    UIobject *result = getUIobject();
-    result->priority = 255;
-    result->shader = debugShader;
-    priorityInsert(result);
+    UIobject *this = getUIobject();
+    this->priority = 255;
+    this->shader = debugShader;
+    priorityInsert(this);
 }
 
 void backgroundShader(UIobject *this)
 {
-    memset(frameCache, 0x0000, sizeof(frameCache));
+    memset(frameCache, 0x0000, WIDTH*HEIGHT*sizeof(u16));
 }
 void backgroundUI()
 {

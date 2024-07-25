@@ -33,7 +33,7 @@ u16 approachColorDiv(u16 color, u16 target, int div)
     return Migrate(r, g, b);
 }
 
-void drawTransparentPoint(int x, int y, u16 color, u16 weight)
+void drawTransparentPoint(short x, short y, u16 color, u16 weight)
 {
     if (x < 0 || x >= WIDTH)
         return;
@@ -42,7 +42,7 @@ void drawTransparentPoint(int x, int y, u16 color, u16 weight)
     cachePoint(x, y, fadeColor(color, weight) + fadeColor(getPoint(x, y), 256 - weight));
 }
 
-void cacheLine(int x1, int y1, int x2, int y2, u16 color)
+void cacheLine(short x1, short y1, short x2, short y2, u16 color)
 {
     u8 outPoints = 0;
     if (x1 > WIDTH - 1)
@@ -90,15 +90,15 @@ void cacheLine(int x1, int y1, int x2, int y2, u16 color)
     if (outPoints == 0b11)
         return;
 
-    int xDirect, yDirect;
-    int xDis, yDis;
+    short xDirect, yDirect;
+    short xDis, yDis;
 
     xDirect = sign(x2 - x1);
     yDirect = sign(y2 - y1);
     xDis = absM(x2 - x1);
     yDis = absM(y2 - y1);
 
-    int xCursor, yCursor;
+    short xCursor, yCursor;
     xCursor = 0;
     yCursor = 0;
     if (xDis >= yDis)
@@ -133,8 +133,12 @@ void cacheLine(int x1, int y1, int x2, int y2, u16 color)
     }
 }
 
-void cacheChar(int x, int y, u8 num, u8 size, u16 color)
+void cacheChar(short x, short y, u8 num, u8 size, u16 color)
 {
+    if (x < 0 || x + (short)size / 2 >= WIDTH)
+        return;
+    if (y < 0 || y + (short)size >= HEIGHT)
+        return;
     u8 temp, t1, t;
     u16 y0 = y;
     u8 csize = (size / 8 + ((size % 8) ? 1 : 0)) * (size / 2); // 得到字体一个字符对应点阵集所占的字节数
@@ -171,43 +175,39 @@ void cacheChar(int x, int y, u8 num, u8 size, u16 color)
     }
 }
 
-void cacheString(int x, int y, int width, int height, u8 size, char *p, u16 color)
+void cacheString(short x, short y, short width, short height, u8 size, char *p, u16 color)
 {
     u8 x0 = x;
     width += x;
     height += y;
-    while ((*p <= '~') && (*p >= ' ')) // 判断是不是非法字符!
+    while ((*p <= '~') && (*p >= ' ') || (*p == '\n')) // 判断是不是非法字符!
     {
-        if (x >= width)
+        if (x >= width || *p == '\n')
         {
             x = x0;
             y += size;
         }
         if (y >= height)
             break; // 退出
-        if ((x + size / 2) > WIDTH)
-        {
-            x = 0;
-            y += size;
-        }
-        cacheChar(x, y, *p, size, color);
+        if ((*p <= '~') && (*p >= ' '))
+            cacheChar(x, y, *p, size, color);
         x += size / 2;
         p++;
     }
 }
 
-void cacheCenterString(int x, int y, int width, int height, u8 size, char *p, u16 color)
+void cacheCenterString(short x, short y, short width, short height, u8 size, char *p, u16 color)
 {
     int row = 1;
     int length = 0;
-    int x0 = x;
-    int y0 = y;
+    short x0 = x;
+    short y0 = y;
     char *p0 = p;
-    int right = x + width;
-    int bottom = y + height;
-    while ((*p <= '~') && (*p >= ' ')) // 判断是不是非法字符!
+    short right = x + width;
+    short bottom = y + height;
+    while ((*p <= '~') && (*p >= ' ') || (*p == '\n')) // 判断是不是非法字符!
     {
-        if (x >= right)
+        if (x >= right || *p == '\n')
         {
             x = x0;
             y += size;
@@ -215,11 +215,6 @@ void cacheCenterString(int x, int y, int width, int height, u8 size, char *p, u1
         }
         if (y >= bottom)
             break; // 退出
-        if ((x + size / 2) > WIDTH)
-        {
-            x = 0;
-            y += size;
-        }
         x += size / 2;
         length++;
         p++;
@@ -238,31 +233,27 @@ void cacheCenterString(int x, int y, int width, int height, u8 size, char *p, u1
             p++;
         }
     else
-        while ((*p <= '~') && (*p >= ' ')) // 判断是不是非法字符!
+        while ((*p <= '~') && (*p >= ' ') || (*p == '\n')) // 判断是不是非法字符!
         {
-            if (x >= right)
+            if (x >= right || *p == '\n')
             {
                 x = x0;
                 y += size;
             }
             if (y >= bottom)
                 break; // 退出
-            if ((x + size / 2) > WIDTH)
-            {
-                x = 0;
-                y += size;
-            }
-            cacheChar(x - width / 2, y - row * size / 2, *p, size, color);
+            if ((*p <= '~') && (*p >= ' '))
+                cacheChar(x - width / 2, y - row * size / 2, *p, size, color);
             x += size / 2;
             p++;
         }
 }
 
-int getRow(int x, int y, int width, int size, char *p)
+int getRow(short x, short y, short width, short size, char *p)
 {
     int row = 1;
     int length = 0;
-    int x0 = x;
+    short x0 = x;
     width += x;
     while ((*p <= '~') && (*p >= ' ')) // 判断是不是非法字符!
     {
@@ -274,11 +265,6 @@ int getRow(int x, int y, int width, int size, char *p)
         }
         if (y >= HEIGHT)
             break; // 退出
-        if ((x + size / 2) > WIDTH)
-        {
-            x = 0;
-            y += size;
-        }
         x += size / 2;
         length++;
         p++;
@@ -286,7 +272,7 @@ int getRow(int x, int y, int width, int size, char *p)
     return row;
 }
 
-void cacheOneCenter(int x, int y, u8 size, char *p, u16 color)
+void cacheOneCenter(short x, short y, u8 size, char *p, u16 color)
 {
     char *p0 = p;
     int length = 0;
@@ -297,21 +283,17 @@ void cacheOneCenter(int x, int y, u8 size, char *p, u16 color)
     }
     while ((*p <= '~') && (*p >= ' '))
     {
-        // protect
-        if ((x - length * size / 4 + size / 2) > WIDTH)
-            return;
-
         cacheChar(x - length * size / 4, y - size / 2, *p, size, color);
         x += size / 2;
         p++;
     }
 }
 
-void cacheCircle(int x0, int y0, int r, u16 color)
+void cacheCircle(short x0, short y0, short r, u16 color)
 {
-    int x = 0;
-    int y = r;
-    int d = 3 - 2 * r;
+    short x = 0;
+    short y = r;
+    short d = 3 - 2 * r;
 
     while (x <= y)
     {
@@ -349,25 +331,25 @@ void cacheCircle(int x0, int y0, int r, u16 color)
     }
 }
 
-void cacheRoundedRec(int x, int y, int width, int height, int r, u16 color)
+void cacheRoundedRec(short x, short y, short width, short height, int r, u16 color)
 {
-    int dx = width / 2;
-    int dy = height / 2;
+    short dx = width / 2;
+    short dy = height / 2;
     cacheLine(x - dx + r, y + dy, x + dx - r, y + dy, color); // down
     cacheLine(x + dx, y + dy - r, x + dx, y - dy + r, color); // right
     cacheLine(x + dx - r, y - dy, x - dx + r, y - dy, color); // up
     cacheLine(x - dx, y - dy + r, x - dx, y + dy - r, color); // left
 
-    int x0 = x;
-    int y0 = y;
+    short x0 = x;
+    short y0 = y;
     x = 0;
     y = r;
-    int d = 3 - 2 * r;
+    short d = 3 - 2 * r;
 
-    int xnr = x0 - dx + r;
-    int xpr = x0 + dx - r;
-    int ynr = y0 - dy + r;
-    int ypr = y0 + dy - r;
+    short xnr = x0 - dx + r;
+    short xpr = x0 + dx - r;
+    short ynr = y0 - dy + r;
+    short ypr = y0 + dy - r;
 
     while (x <= y)
     {
@@ -394,9 +376,9 @@ void cacheRoundedRec(int x, int y, int width, int height, int r, u16 color)
     }
 }
 
-void cacheVLine(int x0, int x1, int y, u16 color)
+void cacheVLine(short x0, short x1, short y, u16 color)
 {
-    u16 *thisLine = frameCache[y];
+    u16 *thisLine = frameCache + y * WIDTH;
     if (y >= HEIGHT)
         return;
     if (y < 0)
@@ -411,7 +393,7 @@ void cacheVLine(int x0, int x1, int y, u16 color)
     }
 }
 
-void cacheRec(int x1, int y1, int x2, int y2, u16 color)
+void cacheRec(short x1, short y1, short x2, short y2, u16 color)
 {
 
     cacheLine(x1, y1, x2, y1, color);
@@ -420,40 +402,44 @@ void cacheRec(int x1, int y1, int x2, int y2, u16 color)
     cacheLine(x1, y2, x1, y1, color);
 }
 
-void cacheCenterRec(int centerX, int centerY, int halfWidth, int halfHeight, u16 color)
+void cacheCenterRec(short centerX, short centerY, short width, short height, u16 color)
 {
+    int halfWidth = width / 2;
+    int halfHeight = height / 2;
     cacheLine(centerX - halfWidth, centerY - halfHeight, centerX - halfWidth, centerY + halfHeight - 1, color);
     cacheLine(centerX - halfWidth, centerY + halfHeight, centerX + halfWidth - 1, centerY + halfHeight, color);
     cacheLine(centerX + halfWidth, centerY + halfHeight, centerX + halfWidth, centerY - halfHeight + 1, color);
     cacheLine(centerX + halfWidth, centerY - halfHeight, centerX - halfWidth + 1, centerY - halfHeight, color);
 }
 
-void cacheCenterBlock(int centerX, int centerY, int halfWidth, int halfHeight, u16 color)
+void cacheCenterBlock(short centerX, short centerY, short width, short height, u16 color)
 {
+    short halfWidth = width / 2;
+    short halfHeight = height / 2;
     for (int j = centerY - halfHeight; j <= centerY + halfHeight; j++)
     {
         cacheVLine(centerX - halfWidth, centerX + halfWidth, j, color);
     }
 }
 
-void cacheRoundedRight(int x, int y, int width, int height, int r, u16 color)
+void cacheRoundedRight(short x, short y, short width, short height, short r, u16 color)
 {
-    int dx = width / 2;
-    int dy = height / 2;
+    short dx = width / 2;
+    short dy = height / 2;
     cacheLine(x - dx + r, y + dy, WIDTH - 1, y + dy, color);  // down
     cacheLine(WIDTH - 1, y - dy, x - dx + r, y - dy, color);  // up
     cacheLine(x - dx, y - dy + r, x - dx, y + dy - r, color); // left
 
-    int x0 = x;
-    int y0 = y;
+    short x0 = x;
+    short y0 = y;
     x = 0;
     y = r;
-    int d = 3 - 2 * r;
+    short d = 3 - 2 * r;
 
-    int xnr = x0 - dx + r;
-    int xpr = x0 + dx - r;
-    int ynr = y0 - dy + r;
-    int ypr = y0 + dy - r;
+    short xnr = x0 - dx + r;
+    short xpr = x0 + dx - r;
+    short ynr = y0 - dy + r;
+    short ypr = y0 + dy - r;
 
     while (x <= y)
     {
@@ -475,10 +461,10 @@ void cacheRoundedRight(int x, int y, int width, int height, int r, u16 color)
     }
 }
 
-void cacheRoundedBackgroundRight(int x, int y, int width, int height, int r, u16 color, u16 backgroundColor)
+void cacheRoundedBackgroundRight(short x, short y, short width, short height, short r, u16 color, u16 backgroundColor)
 {
-    int dx = width / 2;
-    int dy = height / 2;
+    short dx = width / 2;
+    short dy = height / 2;
     cacheLine(x - dx + r, y + dy, WIDTH - 1, y + dy, color);  // down
     cacheLine(WIDTH - 1, y - dy, x - dx + r, y - dy, color);  // up
     cacheLine(x - dx, y - dy + r, x - dx, y + dy - r, color); // left
@@ -487,16 +473,16 @@ void cacheRoundedBackgroundRight(int x, int y, int width, int height, int r, u16
         cacheVLine(x - dx + 1 + r, WIDTH - 1, j, backgroundColor);
     }
 
-    int x0 = x;
-    int y0 = y;
+    short x0 = x;
+    short y0 = y;
     x = 0;
     y = r;
-    int d = 3 - 2 * r;
+    short d = 3 - 2 * r;
 
-    int xnr = x0 - dx + r;
-    int xpr = x0 + dx - r;
-    int ynr = y0 - dy + r;
-    int ypr = y0 + dy - r;
+    short xnr = x0 - dx + r;
+    short xpr = x0 + dx - r;
+    short ynr = y0 - dy + r;
+    short ypr = y0 + dy - r;
 
     while (x <= y)
     {
@@ -520,10 +506,10 @@ void cacheRoundedBackgroundRight(int x, int y, int width, int height, int r, u16
     }
 }
 
-void cacheRoundedRecBackground(int x, int y, int width, int height, int r, u16 color, u16 backgroundColor)
+void cacheRoundedRecBackground(short x, short y, short width, short height, short r, u16 color, u16 backgroundColor)
 {
-    int dx = width / 2;
-    int dy = height / 2;
+    short dx = width / 2;
+    short dy = height / 2;
     cacheLine(x - dx + r, y + dy, x + dx - r, y + dy, color); // down
     cacheLine(x + dx, y + dy - r, x + dx, y - dy + r, color); // right
     cacheLine(x + dx - r, y - dy, x - dx + r, y - dy, color); // up
@@ -533,16 +519,16 @@ void cacheRoundedRecBackground(int x, int y, int width, int height, int r, u16 c
         cacheVLine(x - dx + 1 + r, x + dx - r - 1, j, backgroundColor);
     }
 
-    int x0 = x;
-    int y0 = y;
+    short x0 = x;
+    short y0 = y;
     x = 0;
     y = r;
-    int d = 3 - 2 * r;
+    short d = 3 - 2 * r;
 
-    int xnr = x0 - dx + r;
-    int xpr = x0 + dx - r;
-    int ynr = y0 - dy + r;
-    int ypr = y0 + dy - r;
+    short xnr = x0 - dx + r;
+    short xpr = x0 + dx - r;
+    short ynr = y0 - dy + r;
+    short ypr = y0 + dy - r;
 
     while (x <= y)
     {

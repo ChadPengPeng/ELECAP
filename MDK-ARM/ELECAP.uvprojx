@@ -286,13 +286,13 @@
               </OCR_RVCT5>
               <OCR_RVCT6>
                 <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
+                <StartAddress>0x30000000</StartAddress>
+                <Size>0x48000</Size>
               </OCR_RVCT6>
               <OCR_RVCT7>
                 <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
+                <StartAddress>0x38000000</StartAddress>
+                <Size>0x10000</Size>
               </OCR_RVCT7>
               <OCR_RVCT8>
                 <Type>0</Type>
@@ -383,17 +383,15 @@
       <Groups>
         <Group>
           <GroupName>Application/MDK-ARM</GroupName>
+        </Group>
+        <Group>
+          <GroupName>Application/User/Core</GroupName>
           <Files>
             <File>
               <FileName>startup_stm32h750xx.s</FileName>
               <FileType>2</FileType>
               <FilePath>startup_stm32h750xx.s</FilePath>
             </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Application/User/Core</GroupName>
-          <Files>
             <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
@@ -1330,6 +1328,11 @@
               <FileName>keyEvent.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\user\EVENT\keyEvent.c</FilePath>
+            </File>
+            <File>
+              <FileName>mathDef.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\user\Src\mathDef.c</FilePath>
             </File>
           </Files>
         </Group>

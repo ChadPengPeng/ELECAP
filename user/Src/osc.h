@@ -23,8 +23,8 @@ typedef enum
 
 typedef enum
 {
-    AC,
-    DC
+    DC,
+    AC
 } InputMode;
 
 typedef enum

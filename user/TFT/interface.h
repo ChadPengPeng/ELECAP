@@ -113,7 +113,7 @@
 #define LGRAYBLUE 0XA651
 #define LBBLUE 0X2B12
 
-#define WIDTH 320
+#define WIDTH 400
 #define HEIGHT 240
 
 // RGB565颜色格式定义
@@ -151,26 +151,27 @@ enum FOLDSTATE
 #define to565(color) (((Color & 0X00FCFCFC) >> 2) | ((Color & 0X0000FC00) >> 4) | ((Color & 0X00FC0000) >> 6))
 #define inScreen(x, y) (((x) >= 0) && ((x) < WIDTH) && ((y) >= 0) && ((y) < HEIGHT))
 
-extern u16 frameCache[HEIGHT][WIDTH];
-#define cachePoint(x, y, color) frameCache[y][x] = (color)
-#define getPoint(x, y) (frameCache[y][x])
+extern u16 *frameCache;
+//#define cachePoint(x, y, color) frameCache[y+x] = (color)
+#define cachePoint(x, y, color) frameCache[constrain(y,0,HEIGHT-1)*WIDTH+constrain(x,0,WIDTH-1)] = (color)
+#define getPoint(x, y) (frameCache[y*WIDTH+x])
 
 extern u16 fadeColor(u16 color, u16 weight);
 extern u16 approachColor(u16 color, u16 target, u16 weight);
 extern u16 approachColorDiv(u16 color, u16 target, int div);
-extern void drawTransparentPoint(int x, int y, u16 color, u16 weight);
-extern void cacheLine(int x1, int y1, int x2, int y2, u16 color);
-extern void cacheString(int x, int y, int width, int height, u8 size, char *p, u16 color);
-extern void cacheCenterString(int x, int y, int width, int height, u8 size, char *p, u16 color);
-extern int getRow(int x, int y, int width, int size, char *p);
-extern void cacheOneCenter(int x, int y, u8 size, char *p, u16 color);
-extern void cacheCircle(int x0, int y0, int r, u16 color);
-extern void cacheRoundedRec(int x, int y, int width, int height, int r, u16 color);
-extern void cacheVLine(int x0, int x1, int y, u16 color);
-extern void cacheRec(int x1, int y1, int x2, int y2, u16 color);
-extern void cacheCenterRec(int centerX, int centerY, int halfWidth, int halfHeight, u16 color);
-extern void cacheCenterBlock(int centerX, int centerY, int halfWidth, int halfHeight, u16 color);
-extern void cacheRoundedRight(int x, int y, int width, int height, int r, u16 color);
-extern void cacheRoundedBackgroundRight(int x, int y, int width, int height, int r, u16 color, u16 backgroundColor);
-extern void cacheRoundedRecBackground(int x, int y, int width, int height, int r, u16 color, u16 backgroundColor);
+extern void drawTransparentPoint(short x, short y, u16 color, u16 weight);
+extern void cacheLine(short x1, short y1, short x2, short y2, u16 color);
+extern void cacheString(short x, short y, short width, short height, u8 size, char *p, u16 color);
+extern void cacheCenterString(short x, short y, short width, short height, u8 size, char *p, u16 color);
+extern int getRow(short x, short y, short width, short size, char *p);
+extern void cacheOneCenter(short x, short y, u8 size, char *p, u16 color);
+extern void cacheCircle(short x0, short y0, short r, u16 color);
+extern void cacheRoundedRec(short x, short y, short width, short height, int r, u16 color);
+extern void cacheVLine(short x0, short x1, short y, u16 color);
+extern void cacheRec(short x1, short y1, short x2, short y2, u16 color);
+extern void cacheCenterRec(short centerX, short centerY, short width, short height, u16 color);
+extern void cacheCenterBlock(short centerX, short centerY, short width, short height, u16 color);
+extern void cacheRoundedRight(short x, short y, short width, short height, short r, u16 color);
+extern void cacheRoundedBackgroundRight(short x, short y, short width, short height, short r, u16 color, u16 backgroundColor);
+extern void cacheRoundedRecBackground(short x, short y, short width, short height, short r, u16 color, u16 backgroundColor);
 #endif // !__INTERFACE__

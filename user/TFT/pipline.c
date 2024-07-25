@@ -1,10 +1,11 @@
 #include "pipline.h"
 // core logic to get each frame
 
-u16 frameCache[HEIGHT][WIDTH] = {0};
+u16 *frameCache;
 UIobject *cursor;
 void graphInit()
 {
+    frameCache = (u16 *)malloc(WIDTH * HEIGHT * sizeof(u16));
     SCREEN_Init();
     headInit();
     cursor = getHead();
@@ -25,7 +26,17 @@ int getTimeInterval()
 }
 
 int ifLastEventTouch = 0;
-#define KeyableObject(obj) (obj->eventListener != NULL && inScreen(obj->x, obj->y))
+#define KeyableObject(obj) (obj->eventListener != NULL && inScreen(obj->x, obj->y) && obj->shader != NULL)
+
+int ifKeyBindOnObject = 0;
+void getKeyBind()
+{
+    ifKeyBindOnObject = 1;
+}
+void releaseKeyBind()
+{
+    ifKeyBindOnObject = 0;
+}
 void processEvent()
 {
     while (haveEvent())
@@ -76,6 +87,15 @@ void processEvent()
         if (eventCodeMask(event) >= KEY1) // key event
         {
             ifLastEventTouch = 0;
+            // if key bind on object, process it and return
+            if (ifKeyBindOnObject == 1)
+            {
+                if (cursor->eventListener != NULL)
+                {
+                    cursor->eventListener(cursor, event);
+                    return;
+                }
+            }
             Event keyEvent = eventCodeMask(event);
             if (keyEvent == KEY1)
             {
@@ -108,6 +128,7 @@ void processEvent()
                 }
                 else
                     cursor = beforeWithEvent;
+                cursor->eventListener(cursor, Select);
                 return;
             }
             else if (keyEvent == KEY3)
@@ -130,17 +151,46 @@ void processEvent()
                             break;
                     }
                 }
+                cursor->eventListener(cursor, Select);
                 return;
             }
             else if (keyEvent == KEY4)
             {
                 // your key4 event process function
             }
+
+            // //drag cursor object to screen if it is not in screen
+            // if (cursor->father != NULL && (keyEvent == KEY1 || keyEvent == KEY3)){
+            //     if (cursor->y + cursor->box[1][0] < 0)
+            //     {
+            //         cursor->father->aimY = -cursor->relativeY - cursor->box[1][0];
+            //     }
+            //     else if (cursor->y + cursor->box[1][1] > HEIGHT)
+            //     {
+            //         cursor->father->aimY = HEIGHT - cursor->relativeY - cursor->box[1][1];
+            //     }
+            // }
         }
         if (cursor->eventListener != NULL)
         {
             cursor->eventListener(cursor, event);
         }
+    }
+}
+
+void updateChild(UIobject *father, int deltaT)
+{
+    if (father->child != NULL)
+    {
+        UIobject *child = father->child;
+        do
+        {
+            if (child->childUpdate != NULL)
+                child->childUpdate(child, deltaT);
+            if (child->child != NULL)
+                updateChild(child, deltaT);
+            child = child->childNext;
+        } while (child != NULL);
     }
 }
 
@@ -153,17 +203,13 @@ void updataUI(int deltaT)
         if (pointer->update != NULL)
         {
             pointer->update(pointer, deltaT);
+            if (pointer->father != NULL)
+            {
+                pointer->childUpdate(pointer, deltaT);
+            }
             // make sure child objects are updated too
             // expecially when child position is relative to parent
-            if (pointer->child != NULL)
-            {
-                UIobject *child = pointer->child;
-                do
-                {
-                    child->childUpdate(child, deltaT, pointer);
-                    child = child->childNext;
-                } while (child != NULL);
-            }
+            updateChild(pointer, deltaT);
         }
     }
 }
@@ -185,7 +231,7 @@ void shadeUI()
     }
     // when key is pressed, cursor object box will be shaded
     if (ifLastEventTouch == 0)
-        cacheRec(cursor->x + cursor->box[0][0], cursor->y + cursor->box[1][0], cursor->x + cursor->box[0][1], cursor->y + cursor->box[1][1], PINK);
+        cacheRec(cursor->x + cursor->box[0][0], cursor->y + cursor->box[1][0], cursor->x + cursor->box[0][1], cursor->y + cursor->box[1][1], ifKeyBindOnObject ? LIGHTBLUE : PINK);
     // shade touching cursor
     else
         shadeCursor();
@@ -193,18 +239,25 @@ void shadeUI()
 
 void graph()
 {
-    SetWindow(0, 0, WIDTH, HEIGHT);
-    // for (int i = 0; i < HEIGHT; i++)
-    // {
-    //     for (int j = 0; j < WIDTH; j++)
-    //     {
-    //         WriteColor(frameCache[i][j]);
-    //     }
-    // }
-    for (int i = 0; i < GRAPHICSIZE; i++)
+    SetWindow(0, 0, WIDTH*2, HEIGHT*2);
+    for (int i = 0; i < HEIGHT; i++)
     {
-        WriteColor(((u16 *)frameCache)[i]);
+        int offset = i * WIDTH;
+        for (int j = 0; j < WIDTH; j++)
+        {
+            WriteColor(frameCache[offset + j]);
+            WriteColor(frameCache[offset + j]);
+        }
+        for (int j = 0; j < WIDTH; j++)
+        {
+            WriteColor(frameCache[offset + j]);
+            WriteColor(frameCache[offset + j]);
+        }
     }
+    // for (int i = 0; i < GRAPHICSIZE; i++)
+    // {
+    //     WriteColor(frameCache[i]);
+    // }
 }
 int deltaT = 1;
 void nextGraphic()

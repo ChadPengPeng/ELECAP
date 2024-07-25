@@ -9,11 +9,12 @@ typedef unsigned int Event;
 typedef enum EventCode_enum
 {
     NoneEvent = 0,
-    Touch = 1,
-    KEY1 = 2,
-    KEY2 = 3,
-    KEY3 = 4,
-    KEY4 = 5 // x<<12+y<<4+eventcode as touch event
+    Touch,
+    Select,
+    KEY1,
+    KEY2,
+    KEY3,
+    KEY4
 } EventCode;
 
 typedef enum State_enum
@@ -21,7 +22,7 @@ typedef enum State_enum
     NoneState = 0,
     OnClick = 1,
     Hold = 2,
-    HoldEnd = 3
+    HoldEnd = 3,
 } State;
 
 typedef struct EventBuffer_struct

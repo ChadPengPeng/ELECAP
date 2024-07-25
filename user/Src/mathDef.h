@@ -9,5 +9,8 @@
 #define approach(a, b, rate) ((a) + ((b) - (a)) * rate)
 #define approachDiv(a, b, _div) (((b) - (a)) / (_div) != 0 ? (a) + ((b) - (a)) / (_div) : absM((b) - (a)) > 2 ? (a) + sign((b) - (a)) \
                                                                                                               : (b))
-
+extern int getMagnitude(int num);
+extern int getHighDigit(int num);
+extern int highDigitPlusOne(int num1);
+extern int highDigitMinusOne(int num1);
 #endif // __MATHDEF__

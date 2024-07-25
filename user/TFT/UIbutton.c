@@ -11,20 +11,13 @@ void buttonOnUpdate(UIobject *this, int deltaT)
         this->update = NULL;
 }
 
-void buttonOnParentUpdate(UIobject *this, int deltaT, UIobject *parent)
-{
-    this->x = parent->x + (short)this->param[3];
-    this->y = parent->y + (short)this->param[4];
-}
-
 void buttonOnClick(UIobject *this, Event event)
 {
     int div = getDiv(500, 10);
     this->param[2] = approachColorDiv(this->param[2], this->param[6], div);
     if (stateMask(event) == OnClick)
     {
-        if (this->selfStruct != NULL)
-            ((void (*)(void))this->selfStruct)();
+        floatingMessage("Button Clicked!");
     }
     if (stateMask(event) == HoldEnd)
     {
@@ -32,56 +25,115 @@ void buttonOnClick(UIobject *this, Event event)
     }
 }
 
-void warningButtonselfStruct()
-{
-    extern void floatingMessage(char *message);
-    floatingMessage("Button Clicked!");
-}
-
 void buttonShader(UIobject *this)
 {
-    cacheCenterRec(this->x, this->y, this->param[0], this->param[1], this->color);
-    cacheCenterBlock(this->x, this->y, this->param[0] - 1, this->param[1] - 1, this->param[2]);
+    cacheCenterRec(this->x, this->y, this->width, this->height, this->color);
+    cacheCenterBlock(this->x, this->y, this->width - 2, this->height - 2, this->param[2]);
 }
 /*
 param:
-    0:halfWidth
-    1:halfHeight
     2:backgroudColor
-    3:relativeX
-    4:relativeY
     5:callbackHandle
     6:initBackgroudColor
 selfStruct:nextButton
 */
-UIobject *buttonUI(int centerx, int centery, int width, int height, u16 color, u16 backgroudColor, int priority, UIobject *father, void *functionHandle)
+UIobject *buttonUI(short centerx, short centery, short width, short height, u16 color, u16 backgroudColor, int priority)
 {
-    UIobject *result = getUIobject();
-    result->x = centerx + father->x;
-    result->y = centery + father->y;
-    result->box[0][1] = result->param[0] = width / 2;
-    result->box[0][0] = -result->param[0];
-    result->box[1][1] = result->param[1] = height / 2;
-    result->box[1][0] = -result->param[1];
-    result->color = color;
-    result->param[2] = BLACK;
-    result->param[3] = centerx;
-    result->param[4] = centery;
-    // result->param[5] = buttonCallback;
-    result->param[6] = backgroudColor;
-    result->eventListener = buttonOnClick;
-    result->update = NULL;
-    result->childUpdate = buttonOnParentUpdate;
-    result->shader = buttonShader;
-    result->priority = priority;
-    // to save space in struct
-    if (functionHandle != NULL)
-        result->selfStruct = functionHandle;
+    UIobject *this = getUIobject();
+    this->x = centerx;
+    this->y = centery;
+    this->relativeX = centerx;
+    this->relativeY = centery;
+    this->box[0][0] = -width / 2;
+    this->box[0][1] = width / 2;
+    this->box[1][0] = -height / 2;
+    this->box[1][1] = height / 2;
+    this->width = width;
+    this->height = height;
+    this->color = color;
+    this->param[2] = BLACK;
+    // this->param[5] = buttonCallback;
+    this->param[6] = backgroudColor;
+    this->eventListener = buttonOnClick;
+    this->update = NULL;
+    this->shader = buttonShader;
+    this->priority = priority;
+    priorityInsert(this);
+    return this;
+}
+
+/*
+    slider!!!
+*/
+#include "touchEvent.h"
+
+void sliderUpdate(UIobject *this, int deltaT)
+{
+    int div = getDiv(500, deltaT);
+    if (this->relativeY == this->aimY)
+        this->update = NULL;
     else
-        result->selfStruct = warningButtonselfStruct;
-    priorityInsert(result);
-    childInsert(father, result);
-    return result;
+        this->relativeY = approachDiv(this->relativeY, this->aimY, div);
+}
+
+void sliderEvent(UIobject *this, Event event)
+{
+    static short lastY = 0;
+    int div = getDiv(500, 10);
+
+    if (eventCodeMask(event) == Touch)
+    {
+        short cursorX = cursorXmask(event);
+        short cursorY = cursorYmask(event);
+        if (stateMask(event) == OnClick)
+        {
+            lastY = this->relativeY;
+        }
+        this->aimY = lastY + cursorY - touchingParam.clickY;
+        if (this->child != NULL){
+            UIobject *child = this->child;
+            short childYMax = child->relativeY + child->box[1][1];
+            short childYMin = child->relativeY + child->box[1][0];
+            while(child->childNext!= NULL){
+                child = child->childNext;
+
+                if (child->relativeY + child->box[1][1] > childYMax)
+                    childYMax = child->relativeY + child->box[1][1];
+                if (child->relativeY + child->box[1][0] < childYMin)
+                    childYMin = child->relativeY + child->box[1][0];
+            }
+            this->aimY = constrain(this->aimY, - childYMax, - childYMin);
+        }
+        this->update = sliderUpdate;
+    }
+}
+
+/*
+param:
+*/
+UIobject *sliderUI(short centerx, short centery, short width, short height, int priority)
+{
+    UIobject *this = getUIobject();
+    this->x = centerx;
+    this->y = centery;
+    this->relativeX = centerx;
+    this->relativeY = centery;
+    this->box[0][0] = -width / 2;
+    this->box[0][1] = width / 2;
+    this->box[1][0] = -height / 2;
+    this->box[1][1] = height / 2;
+    this->aimX = centerx;
+    this->aimY = centerx;
+    this->eventListener = sliderEvent;
+    this->priority = priority;
+    priorityInsert(this);
+    return this;
+}
+
+void setSliderY(UIobject *this, short y)
+{
+    this->aimY = y;
+    this->update = sliderUpdate;
 }
 
 /*
@@ -95,21 +147,21 @@ void onFoldingUpdate(UIobject *this, int deltaT)
     int div = getDiv(500, deltaT);
     if (this->param[3] == FOLD)
     {
-        if (this->x == this->param[4])
+        if (this->x == this->aimX)
         {
             this->update = NULL;
             return;
         }
-        this->x = approachDiv(this->x, this->param[4], div);
+        this->x = approachDiv(this->x, this->aimX, div);
     }
     if (this->param[3] == UNFOLD)
     {
-        if (this->x == this->param[4] - FoldPixel)
+        if (this->x == this->aimX - FoldPixel)
         {
             this->update = NULL;
             return;
         }
-        this->x = approachDiv(this->x, this->param[4] - FoldPixel, div);
+        this->x = approachDiv(this->x, this->aimX - FoldPixel, div);
     }
 }
 
@@ -125,38 +177,34 @@ void onCursor(UIobject *this, Event event)
 
 void drawerShader(UIobject *this)
 {
-    cacheRoundedBackgroundRight(this->x, this->y, this->param[0], this->param[1], 15, this->color, this->param[2]);
+    cacheRoundedBackgroundRight(this->x, this->y, this->width, this->height, 15, this->color, this->param[2]);
 }
 /*
 param:
-    0:width
-    1:heigt9
     2:backgroudColor
     3:ifUnfold
-    4:initX
-    5:initY
     6:initBackgroudColor
 */
-UIobject *drawerUI(int centerx, int centery, int width, int height, u16 color, u16 backgroudColor, int priority)
+UIobject *drawerUI(short centerx, short centery, short width, short height, u16 color, u16 backgroudColor, int priority)
 {
-    UIobject *result = getUIobject();
-    result->x = centerx;
-    result->y = centery;
-    result->box[0][0] = -width / 2;
-    result->box[0][1] = width / 2;
-    result->box[1][0] = -height / 2;
-    result->box[1][1] = height / 2;
-    result->param[0] = width;
-    result->param[1] = height;
-    result->color = color;
-    result->param[2] = backgroudColor;
-    result->param[3] = FOLD;
-    result->param[4] = centerx;
-    result->param[5] = centery;
-    result->param[6] = backgroudColor;
-    result->eventListener = onCursor;
-    result->shader = drawerShader;
-    result->priority = priority;
-    priorityInsert(result);
-    return result;
+    UIobject *this = getUIobject();
+    this->x = centerx;
+    this->y = centery;
+    this->box[0][0] = -width / 2;
+    this->box[0][1] = width / 2;
+    this->box[1][0] = -height / 2;
+    this->box[1][1] = height / 2;
+    this->width = width;
+    this->height = height;
+    this->color = color;
+    this->param[2] = backgroudColor;
+    this->param[3] = FOLD;
+    this->aimX = centerx;
+    this->aimY = centery;
+    this->param[6] = backgroudColor;
+    this->eventListener = onCursor;
+    this->shader = drawerShader;
+    this->priority = priority;
+    priorityInsert(this);
+    return this;
 }

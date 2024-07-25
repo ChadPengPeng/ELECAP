@@ -95,7 +95,7 @@ void drawMesh()
     {
         if ((j - HEIGHT / 2) % numPixel != 0)
         {
-            u16 *thisLine = frameCache[j];
+            u16 *thisLine = frameCache + j * WIDTH;
             for (int i = boundary + meshPixel; i < WIDTH - boundary; i += meshPixel)
             {
                 // cachePoint(i, j, GRAY);
@@ -105,7 +105,7 @@ void drawMesh()
     }
     for (int j = boundary + meshPixel; j < HEIGHT - boundary; j += meshPixel)
     {
-        u16 *thisLine = frameCache[j];
+        u16 *thisLine = frameCache + j * WIDTH;
         for (int i = boundary + dotLineInterval; i < WIDTH - boundary; i += dotLineInterval)
         {
             thisLine[i] = GRAY;
@@ -225,22 +225,22 @@ param:
 */
 void waveUI(u16 colorCh1, u16 colorCh2, int priority, UIwaveStruct *selfStruct)
 {
-    UIobject *result = getUIobject();
-    result->x = WIDTH / 2;
-    result->y = HEIGHT / 2;
-    result->box[0][0] = -WIDTH / 2 + boundary;
-    result->box[0][1] = WIDTH / 2 - boundary;
-    result->box[1][0] = -HEIGHT / 2 + boundary;
-    result->box[1][1] = HEIGHT / 2 - boundary;
-    result->param[0] = colorCh1;
-    result->param[1] = colorCh2;
-    result->eventListener = UIwaveEventlistener;
-    result->shader = waveShader;
-    result->priority = priority;
+    UIobject *this = getUIobject();
+    this->x = WIDTH / 2;
+    this->y = HEIGHT / 2;
+    this->box[0][0] = -WIDTH / 2 + boundary;
+    this->box[0][1] = WIDTH / 2 - boundary;
+    this->box[1][0] = -HEIGHT / 2 + boundary;
+    this->box[1][1] = HEIGHT / 2 - boundary;
+    this->param[0] = colorCh1;
+    this->param[1] = colorCh2;
+    this->eventListener = UIwaveEventlistener;
+    this->shader = waveShader;
+    this->priority = priority;
     // UIwaveStruct *selfStruct = (UIwaveStruct *)malloc(sizeof(UIwaveStruct));
-    result->selfStruct = selfStruct;
+    this->selfStruct = selfStruct;
 
     // selfStruct->xScale = 120000;
     // selfStruct->yScale = 40;
-    priorityInsert(result);
+    priorityInsert(this);
 }

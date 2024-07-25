@@ -128,13 +128,49 @@ void setXscale(OscData *data, int xscale)
     // set timer6 auto reload register
     TIM6->ARR = TimerCounter - 1;
     // because TimerCounter is not float, so we need to use integer division to get the proper value of xScale
-    data->xScale = adcTIMfreq / TimerCounter;
+    //data->xScale = adcTIMfreq / TimerCounter;
+    data->xScale = xscale;
 }
 
 void setYscale(OscData *data, int yscale)
 {
     data->yScale = yscale;
-    // todo
+    int index = 0;
+    switch (yscale)
+    {
+    case Amplify0x5:
+        index = 0;
+        break;
+    case Amplify1x:
+        index = 1;
+        break;
+    case Amplify2x5:
+        index = 2;
+        break;
+    case Amplify5x:
+        index = 3;
+        break;
+    case Amplify10x:
+        index = 4;
+        break;
+    case Amplify20x:
+        index = 5;
+        break;
+    case Amplify50x:
+        index = 6;
+        break;
+    case Amplify100x:
+        index = 7;
+        break;
+    default:
+        break;
+    }
+    
+    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1, index >> 2); // 1/20x PIN
+
+    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3, index >> 1 & 0x1); // CD4052 A1 PIN
+
+    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, index & 0x1); // CD4052 A0 PIN
 }
 
 void setTrigger(OscData *data, int trigger)
@@ -156,7 +192,18 @@ void bindOscWaveCh2(OscData *data, int *waveUIlist)
 void setInputMode(OscData *data, InputMode mode)
 {
     data->inputMode = mode;
-    // todo
+    switch (mode)
+    {
+    case AC:
+        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_SET);
+        break;
+    case DC:
+        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_RESET);
+        break;
+    default:
+        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_RESET);
+        break;
+    }
 }
 
 void setTriggerMode(OscData *data, TriggerMode mode)

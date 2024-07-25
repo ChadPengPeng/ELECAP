@@ -79,7 +79,7 @@ static void MPU_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 #define wave_length 500
-OscData* thisOsc;
+OscData *thisOsc;
 /* USER CODE END 0 */
 
 /**
@@ -106,7 +106,7 @@ int main(void)
 
   /* USER CODE BEGIN Init */
   // 读写权限保护
-  //MPU_Memory_Protection();
+  // MPU_Memory_Protection();
   //	MPU_Set_Protection(
   //			MPU_REGION_NUMBER1,
   //			0x60000000,
@@ -154,8 +154,9 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start(&htim15);
   HAL_TIM_Base_Start_IT(&htim13);
-	initWaveG();
-	thisOsc = initOscData(0,0,100000,Amplify1x,DC,Auto);
+  initWaveG();
+  thisOsc = initOscData(0, 0, 100000, Amplify1x, DC, Auto);
+
   HAL_Delay(20);
   // 显示屏flash芯片初始
   W25QXX_Init();
@@ -165,44 +166,39 @@ int main(void)
   tp_dev.init();
   // 图像界面初始
   graphInit();
-	
-//	extern DMA_HandleTypeDef hdma_adc1;
-//	hdma_adc1.XferM1CpltCallback = AdcCH1Finish;
-  
-	
-	
-  
+
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, 1);
+
+  //	extern DMA_HandleTypeDef hdma_adc1;
+  //	hdma_adc1.XferM1CpltCallback = AdcCH1Finish;
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
-    // 读显示屏坐标
-    int sta = Read_TP_2(&tp_dev.X, &tp_dev.Y);
-    if (sta)
-    {
-      tp_dev.sta = Key_Up;
-    } 
-		addTouchEvent((360 - tp_dev.Y * 2 /43),256 - tp_dev.X / 29,sta);
-		keyEvent();
+//    u16 x,y;
+//		int sta = Read_TP_2(&x,&y);
+//		addTouchEvent(x,y,sta);
+//		
+    keyEvent();
     // debug
-		uint16_t adcNumberCh1[wave_length];
-		//uint16_t adcNumberCh2[wave_length];
-		getWaveCH1(adcNumberCh1, wave_length);
-    //getWaveCH2(adcNumberCh2, wave_length);
-    while(ifBusy()) {
-			//dummy++;
-			HAL_Delay(1);
-		}
-		int waveIntCh1[WIDTH];
-    int waveIntCh2[WIDTH];
+    uint16_t adcNumberCh1[wave_length];
+    // uint16_t adcNumberCh2[wave_length];
+    // getWaveCH1(adcNumberCh1, wave_length);
+    // getWaveCH2(adcNumberCh2, wave_length);
+    //  while(ifBusy()) {
+    //  	//dummy++;
+    //  	HAL_Delay(1);
+    //  }
+    int waveIntCh1[WIDTH];
+    // int waveIntCh2[WIDTH];
     bindOscWaveCh1(thisOsc, waveIntCh1);
-    //bindOscWaveCh2(thisOsc, waveIntCh2);
+    // bindOscWaveCh2(thisOsc, waveIntCh2);
     processWave(thisOsc, adcNumberCh1, wave_length, waveIntCh1);
-    //processWave(thisOsc, adcNumberCh2, wave_length, waveIntCh2);
-    // 更新视图
+    // processWave(thisOsc, adcNumberCh2, wave_length, waveIntCh2);
+    //  更新视图
     nextGraphic();
     /* USER CODE END WHILE */
 
