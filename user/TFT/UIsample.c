@@ -52,7 +52,7 @@ float fpsN = 0;
 void debugShader()
 {
     // debug
-    char fps[16], x[16], y[16], debug[32];
+    char message[32];
     fpsN = (0.9f * fpsN + 100.0f / (float)deltaT);
     int node = 0;
     UIobject *head = getHead();
@@ -61,15 +61,21 @@ void debugShader()
         head = head->next;
         node++;
     }
-    sprintf(fps, "fps:%4.1f", fpsN);
-    sprintf(x, "x:%.3d", 360 - tp_dev.x[0]);
-    sprintf(y, "y:%.3d", 256 - tp_dev.y[0]);
+    sprintf(message, "fps:%4.1f", fpsN);
+    cacheString(0, 0, 100, 100, 12, message, 0xaf7d);
+    sprintf(message, "x:%.3d", tp_dev.x[0]);
+    cacheString(0, 16, 100, 100, 12, message, 0xaf7d);
+    sprintf(message, "y:%.3d", tp_dev.y[0]);
+    cacheString(0, 32, 100, 100, 12, message, 0xaf7d);
     extern UIobject *cursor;
-    sprintf(debug, "debug:0x%8x", (uint32_t)cursor);
-    cacheString(0, 0, 100, 100, 12, fps, 0xaf7d);
-    cacheString(0, 16, 100, 100, 12, x, 0xaf7d);
-    cacheString(0, 32, 100, 100, 12, y, 0xaf7d);
-    cacheString(0, 48, 100, 100, 12, debug, 0xaf7d);
+    sprintf(message, "cursor:0x%8x", (uint32_t)cursor);
+    cacheString(0, 48, 100, 100, 12, message, 0xaf7d);
+    sprintf(message, "event:%d", eventBuffer.head);
+    cacheString(0, 64, 100, 100, 12, message, 0xaf7d);
+    sprintf(message, "node:%d", node);
+    cacheString(0, 80, 100, 100, 12, message, 0xaf7d);
+    sprintf(message, "sta:%x", tp_dev.sta);
+    cacheString(0, 96, 100, 100, 12, message, 0xaf7d);
 }
 
 void debugUI()
@@ -82,7 +88,7 @@ void debugUI()
 
 void backgroundShader(UIobject *this)
 {
-    memset(frameCache, 0x0000, WIDTH*HEIGHT*sizeof(u16));
+    memset(frameCache, 0x0000, frameCacheSize);
 }
 void backgroundUI()
 {

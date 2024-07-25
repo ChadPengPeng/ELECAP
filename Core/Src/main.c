@@ -105,26 +105,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-  // 读写权限保护
-  // MPU_Memory_Protection();
-  //	MPU_Set_Protection(
-  //			MPU_REGION_NUMBER1,
-  //			0x60000000,
-  //			MPU_REGION_SIZE_64MB,
-  //			MPU_REGION_FULL_ACCESS,
-  //			MPU_INSTRUCTION_ACCESS_ENABLE,
-  //			MPU_ACCESS_NOT_SHAREABLE,
-  //			MPU_ACCESS_NOT_CACHEABLE,
-  //			MPU_ACCESS_BUFFERABLE);
-  //	MPU_Set_Protection(
-  //			MPU_REGION_NUMBER0,
-  //			0x24000000,
-  //			MPU_REGION_SIZE_512KB,
-  //			MPU_REGION_FULL_ACCESS,
-  //			MPU_INSTRUCTION_ACCESS_ENABLE,
-  //			MPU_ACCESS_NOT_SHAREABLE,
-  //			MPU_ACCESS_CACHEABLE,
-  //			MPU_ACCESS_BUFFERABLE);
+  
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -134,7 +115,7 @@ int main(void)
   PeriphCommonClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+	SysTick_clkconfig(240);
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -159,7 +140,7 @@ int main(void)
 
   HAL_Delay(20);
   // 显示屏flash芯片初始
-  W25QXX_Init();
+  //W25QXX_Init();
   // 显示屏初始化
   LCD_Init();
   // 触摸屏初始化
@@ -167,36 +148,44 @@ int main(void)
   // 图像界面初始
   graphInit();
 
-  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, 1);
-
   //	extern DMA_HandleTypeDef hdma_adc1;
   //	hdma_adc1.XferM1CpltCallback = AdcCH1Finish;
-
+	
+	uint16_t adcNumberCh1_a[wave_length];
+	uint16_t adcNumberCh1_b[wave_length];
+	uint16_t *adcArray, *outputArray;
+	adcArray = adcNumberCh1_a;
+	outputArray = adcNumberCh1_b;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//    u16 x,y;
-//		int sta = Read_TP_2(&x,&y);
-//		addTouchEvent(x,y,sta);
-//		
+    tp_dev.scan(0);
+		addTouchEvent(tp_dev.x[0]/2, tp_dev.y[0]/2, (tp_dev.x[0] < WIDTH));
     keyEvent();
     // debug
-    uint16_t adcNumberCh1[wave_length];
+    
+     while(ifBusy()) {
+     	//dummy++;
+     	HAL_Delay(1);
+     }
+		if(adcArray == adcNumberCh1_a) {
+			adcArray = adcNumberCh1_b;
+			outputArray = adcNumberCh1_a;
+		} else {
+			adcArray = adcNumberCh1_a;
+			outputArray = adcNumberCh1_b;
+		}
     // uint16_t adcNumberCh2[wave_length];
-    // getWaveCH1(adcNumberCh1, wave_length);
-    // getWaveCH2(adcNumberCh2, wave_length);
-    //  while(ifBusy()) {
-    //  	//dummy++;
-    //  	HAL_Delay(1);
-    //  }
+    getWaveCH1(adcArray, wave_length);
+    //getWaveCH2(adcNumberCh2, wave_length);
     int waveIntCh1[WIDTH];
     // int waveIntCh2[WIDTH];
     bindOscWaveCh1(thisOsc, waveIntCh1);
     // bindOscWaveCh2(thisOsc, waveIntCh2);
-    processWave(thisOsc, adcNumberCh1, wave_length, waveIntCh1);
+    processWave(thisOsc, outputArray, wave_length, waveIntCh1);
     // processWave(thisOsc, adcNumberCh2, wave_length, waveIntCh2);
     //  更新视图
     nextGraphic();

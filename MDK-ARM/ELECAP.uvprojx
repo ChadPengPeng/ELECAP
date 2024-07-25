@@ -286,13 +286,13 @@
               </OCR_RVCT5>
               <OCR_RVCT6>
                 <Type>0</Type>
-                <StartAddress>0x30000000</StartAddress>
-                <Size>0x48000</Size>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
               </OCR_RVCT6>
               <OCR_RVCT7>
                 <Type>0</Type>
-                <StartAddress>0x38000000</StartAddress>
-                <Size>0x10000</Size>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
               </OCR_RVCT7>
               <OCR_RVCT8>
                 <Type>0</Type>
@@ -371,7 +371,7 @@
             <TextAddressRange></TextAddressRange>
             <DataAddressRange></DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile></ScatterFile>
+            <ScatterFile>ELECAP\ELECAP.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc></Misc>
@@ -1215,6 +1215,11 @@
               <FilePath>..\user\device\dev_lcd.c</FilePath>
             </File>
             <File>
+              <FileName>ctiic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\user\TOUCH\ctiic.c</FilePath>
+            </File>
+            <File>
               <FileName>bsp_delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\user\device\bsp_delay.c</FilePath>
@@ -1223,11 +1228,6 @@
               <FileName>bsp_key.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\user\device\bsp_key.c</FilePath>
-            </File>
-            <File>
-              <FileName>ctiic.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\user\TOUCH\ctiic.c</FilePath>
             </File>
             <File>
               <FileName>ft5206.c</FileName>

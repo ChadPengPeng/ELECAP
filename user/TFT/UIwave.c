@@ -95,20 +95,17 @@ void drawMesh()
     {
         if ((j - HEIGHT / 2) % numPixel != 0)
         {
-            u16 *thisLine = frameCache + j * WIDTH;
             for (int i = boundary + meshPixel; i < WIDTH - boundary; i += meshPixel)
             {
-                // cachePoint(i, j, GRAY);
-                thisLine[i] = GRAY;
+                cachePoint(i, j, GRAY);
             }
         }
     }
     for (int j = boundary + meshPixel; j < HEIGHT - boundary; j += meshPixel)
     {
-        u16 *thisLine = frameCache + j * WIDTH;
         for (int i = boundary + dotLineInterval; i < WIDTH - boundary; i += dotLineInterval)
         {
-            thisLine[i] = GRAY;
+            cachePoint(i, j, GRAY);
         }
     }
     // num line
@@ -184,12 +181,12 @@ void drawLabel(UIobject *this)
 {
     char pData[16];
     UIwaveStruct *selfStruct = (UIwaveStruct *)this->selfStruct;
-    for (int i = boundary + (WIDTH / 2 - boundary) % numPixel; i < WIDTH - boundary; i += numPixel)
+    for (int i = boundary + (WIDTH / 2 - boundary) % numPixel; i <= WIDTH - boundary; i += numPixel)
     {
         writeTime(i - WIDTH / 2, selfStruct->xScale, pData);
         cacheOneCenter(i, HEIGHT / 2 + 12, 12, pData, WHITE);
     }
-    for (int i = boundary + (HEIGHT / 2 - boundary) % numPixel; i < HEIGHT - boundary; i += numPixel)
+    for (int i = boundary + (HEIGHT / 2 - boundary) % numPixel; i <= HEIGHT - boundary; i += numPixel)
     {
         writeVol(-(i - HEIGHT / 2), selfStruct->yScale, pData);
         cacheOneCenter(WIDTH / 2 - 12, i, 12, pData, WHITE);

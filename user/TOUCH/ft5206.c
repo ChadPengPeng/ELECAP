@@ -155,48 +155,42 @@ u8 FT5206_Scan(u8 mode)
 	u8 i=0;
 	u8 res=0;
 	u8 temp;
-	static u8 t=0;// 控制查询间隔,从而降低CPU占用率   
-	t++;
-	if((t%10)==0||t<10)// 空闲时,每进入10次CTP_Scan函数才检测1次,从而节省CPU使用率
+	FT5206_RD_Reg(FT_REG_NUM_FINGER,&mode,1);// 读取触摸点的状态  
+	if((mode&0XF)&&((mode&0XF)<6))
 	{
-		FT5206_RD_Reg(FT_REG_NUM_FINGER,&mode,1);// 读取触摸点的状态  
-		if((mode&0XF)&&((mode&0XF)<6))
+		temp=0XFF<<(mode&0XF);// 将点的个数转换为1的位数,匹配tp_dev.sta定义 
+		tp_dev.sta=(~temp)|TP_PRES_DOWN|TP_CATH_PRES; 
+		for(i=0;i<5;i++)
 		{
-			temp=0XFF<<(mode&0XF);// 将点的个数转换为1的位数,匹配tp_dev.sta定义 
-			tp_dev.sta=(~temp)|TP_PRES_DOWN|TP_CATH_PRES; 
-			for(i=0;i<5;i++)
+			if(tp_dev.sta&(1<<i))		// 触摸有效
 			{
-				if(tp_dev.sta&(1<<i))		// 触摸有效
+				FT5206_RD_Reg(FT5206_TPX_TBL[i],buf,4);	// 读取XY坐标值 
+				if(lcddev.dir==DISPLAY_DIR_R)
 				{
-					FT5206_RD_Reg(FT5206_TPX_TBL[i],buf,4);	// 读取XY坐标值 
-					if(lcddev.dir==DISPLAY_DIR_R)
-					{
-						tp_dev.y[i]=lcddev.height-(((u16)(buf[0]&0X0F)<<8)+buf[1])-1;
-						tp_dev.x[i]=((u16)(buf[2]&0X0F)<<8)+buf[3];
-					}
-					else if(lcddev.dir==DISPLAY_DIR_L)
-					{
-						tp_dev.y[i]=(((u16)(buf[0]&0X0F)<<8)+buf[1]);
-						tp_dev.x[i]=lcddev.width-(((u16)(buf[2]&0X0F)<<8)+buf[3])-1;
-					}
-					else if(lcddev.dir==DISPLAY_DIR_U)
-					{
-						tp_dev.x[i]=lcddev.width-(((u16)(buf[0]&0X0F)<<8)+buf[1])-1;
-						tp_dev.y[i]=lcddev.height-(((u16)(buf[2]&0X0F)<<8)+buf[3])-1;
-					}  
-					else
-					{
-						tp_dev.x[i]=(((u16)(buf[0]&0X0F)<<8)+buf[1]);
-						tp_dev.y[i]=(((u16)(buf[2]&0X0F)<<8)+buf[3]);
-					} 
-					if((buf[0]&0XF0)!=0X80)
-						tp_dev.x[i]=tp_dev.y[i]=0;// 必须是contact事件，才认为有效
-				}			
-			} 
-			res=1;
-			if(tp_dev.x[0]==0 && tp_dev.y[0]==0)mode=0;	// 读到的数据都是0,则忽略此次数据
-			t=0;		// 触发一次,则会最少连续监测10次,从而提高命中率
-		}
+					tp_dev.y[i]=lcddev.height-(((u16)(buf[0]&0X0F)<<8)+buf[1])-1;
+					tp_dev.x[i]=((u16)(buf[2]&0X0F)<<8)+buf[3];
+				}
+				else if(lcddev.dir==DISPLAY_DIR_L)
+				{
+					tp_dev.y[i]=(((u16)(buf[0]&0X0F)<<8)+buf[1]);
+					tp_dev.x[i]=lcddev.width-(((u16)(buf[2]&0X0F)<<8)+buf[3])-1;
+				}
+				else if(lcddev.dir==DISPLAY_DIR_U)
+				{
+					tp_dev.x[i]=lcddev.width-(((u16)(buf[0]&0X0F)<<8)+buf[1])-1;
+					tp_dev.y[i]=lcddev.height-(((u16)(buf[2]&0X0F)<<8)+buf[3])-1;
+				}  
+				else
+				{
+					tp_dev.x[i]=(((u16)(buf[0]&0X0F)<<8)+buf[1]);
+					tp_dev.y[i]=(((u16)(buf[2]&0X0F)<<8)+buf[3]);
+				} 
+				if((buf[0]&0XF0)!=0X80)
+					tp_dev.x[i]=tp_dev.y[i]=0;// 必须是contact事件，才认为有效
+			}			
+		} 
+		res=1;
+		if(tp_dev.x[0]==0 && tp_dev.y[0]==0)mode=0;	// 读到的数据都是0,则忽略此次数据
 	}
 	if((mode&0X1F)==0)// 无触摸点按下
 	{ 
@@ -210,9 +204,7 @@ u8 FT5206_Scan(u8 mode)
 			tp_dev.y[0]=0xffff;
 			tp_dev.sta&=0XE0;	// 清除点有效标记	
 		}	 
-	} 	
-	if(t>240)
-		t=10;// 重新从10开始计数
+	}
 	return res;
 }
  

@@ -12,7 +12,7 @@ void keyEvent()
         if (state[e] == HoldEnd)
             state[e] = NoneState;
         // warning: Only when key is PE0-PE3, this code can work.
-        if (lastClick[e] == 0b11111111 && state[e] == NoneState)
+        if (lastClick[e] == 0b00001111 && state[e] == NoneState)
         {
             state[e] = OnClick;
         }

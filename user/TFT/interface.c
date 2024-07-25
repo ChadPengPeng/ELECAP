@@ -1,5 +1,36 @@
 #include "interface.h"
 // using function in interference.c to implement some other function
+u16 colorList[256] = {0};
+// colorIndex used to store last used color index, can accelerate program like cpu cache
+u16 colorIndex = 0;
+u16 colorLength = 1;
+
+void resetColorList()
+{
+    for (int i = 0; i < 256; i++)
+    {
+        colorList[i] = 0;
+    }
+    colorIndex = 0;
+    colorLength = 1;
+}
+// save color and return index
+u8 _saveColor(u16 color)
+{
+    if (colorList[colorIndex] == color)
+        return colorIndex;
+    for (int i = 0; i < colorLength; i++)
+    {
+        if (colorList[i] == color)
+        {
+            colorIndex = i;
+            return i;
+        }
+    }
+    colorList[colorLength] = color;
+    return colorLength++;
+}
+
 u16 fadeColor(u16 color, u16 weight)
 {
     return Migrate((getR(color) * weight) >> 8, (getG(color) * weight) >> 8, (getB(color) * weight) >> 8);
@@ -101,12 +132,14 @@ void cacheLine(short x1, short y1, short x2, short y2, u16 color)
     short xCursor, yCursor;
     xCursor = 0;
     yCursor = 0;
+
+    u8 colorIndex = _saveColor(color);
     if (xDis >= yDis)
     {
         int yOverflow = 0;
         for (int i = 0; i <= xDis; i++)
         {
-            cachePoint(x1 + xCursor, y1 + yCursor, color);
+            cacheIndex(x1 + xCursor, y1 + yCursor, colorIndex);
             xCursor += xDirect;
             yOverflow += 2 * yDis;
             if (yOverflow >= xDis)
@@ -121,7 +154,7 @@ void cacheLine(short x1, short y1, short x2, short y2, u16 color)
         int xOverflow = 0;
         for (int i = 0; i <= yDis; i++)
         {
-            cachePoint(x1 + xCursor, y1 + yCursor, color);
+            cacheIndex(x1 + xCursor, y1 + yCursor, colorIndex);
             yCursor += yDirect;
             xOverflow += 2 * xDis;
             if (xOverflow >= yDis)
@@ -143,6 +176,7 @@ void cacheChar(short x, short y, u8 num, u8 size, u16 color)
     u16 y0 = y;
     u8 csize = (size / 8 + ((size % 8) ? 1 : 0)) * (size / 2); // 得到字体一个字符对应点阵集所占的字节数
     num = num - ' ';                                           // 得到偏移后的值（ASCII字库是从空格开始取模，所以-' '就是对应字符的字库）
+    u8 colorIndex = _saveColor(color);
     for (t = 0; t < csize; t++)
     {
         if (size == 12)
@@ -158,7 +192,7 @@ void cacheChar(short x, short y, u8 num, u8 size, u16 color)
         for (t1 = 0; t1 < 8; t1++)
         {
             if (temp & 0x80)
-                cachePoint(x, y, color);
+                cacheIndex(x, y, colorIndex);
             temp <<= 1;
             y++;
             if (y >= HEIGHT)
@@ -291,31 +325,34 @@ void cacheOneCenter(short x, short y, u8 size, char *p, u16 color)
 
 void cacheCircle(short x0, short y0, short r, u16 color)
 {
+    x0 = constrain(x0, r, WIDTH - 1 - r);
+    y0 = constrain(y0, r, HEIGHT - 1 - r);
     short x = 0;
     short y = r;
     short d = 3 - 2 * r;
 
+    u8 colorIndex = _saveColor(color);
     while (x <= y)
     {
         if (y0 + y < HEIGHT - 1)
         {
-            cachePoint(x0 + x, y0 + y, color); // down
-            cachePoint(x0 - x, y0 + y, color);
+            cacheIndex(x0 + x, y0 + y, colorIndex); // down
+            cacheIndex(x0 - x, y0 + y, colorIndex);
         }
         if (x0 + y < WIDTH - 1)
         {
-            cachePoint(x0 + y, y0 + x, color); // right
-            cachePoint(x0 + y, y0 - x, color);
+            cacheIndex(x0 + y, y0 + x, colorIndex); // right
+            cacheIndex(x0 + y, y0 - x, colorIndex);
         }
         if (x0 - y > 0)
         {
-            cachePoint(x0 - y, y0 + x, color); // left
-            cachePoint(x0 - y, y0 - x, color);
+            cacheIndex(x0 - y, y0 + x, colorIndex); // left
+            cacheIndex(x0 - y, y0 - x, colorIndex);
         }
         if (y0 - y > 0)
         {
-            cachePoint(x0 - x, y0 - y, color); // up
-            cachePoint(x0 + x, y0 - y, color);
+            cacheIndex(x0 - x, y0 - y, colorIndex); // up
+            cacheIndex(x0 + x, y0 - y, colorIndex);
         }
 
         if (d < 0)
@@ -351,17 +388,18 @@ void cacheRoundedRec(short x, short y, short width, short height, int r, u16 col
     short ynr = y0 - dy + r;
     short ypr = y0 + dy - r;
 
+    u8 colorIndex = _saveColor(color);
     while (x <= y)
     {
 
-        cachePoint(xpr + x, ypr + y, color); // rightdown
-        cachePoint(xpr + y, ypr + x, color);
-        cachePoint(xnr - y, ypr + x, color); // leftdown
-        cachePoint(xnr - x, ypr + y, color);
-        cachePoint(xnr - x, ynr - y, color); // leftup
-        cachePoint(xnr - y, ynr - x, color);
-        cachePoint(xpr + y, ynr - x, color); // rightup
-        cachePoint(xpr + x, ynr - y, color);
+        cacheIndex(xpr + x, ypr + y, colorIndex); // rightdown
+        cacheIndex(xpr + y, ypr + x, colorIndex);
+        cacheIndex(xnr - y, ypr + x, colorIndex); // leftdown
+        cacheIndex(xnr - x, ypr + y, colorIndex);
+        cacheIndex(xnr - x, ynr - y, colorIndex); // leftup
+        cacheIndex(xnr - y, ynr - x, colorIndex);
+        cacheIndex(xpr + y, ynr - x, colorIndex); // rightup
+        cacheIndex(xpr + x, ynr - y, colorIndex);
 
         if (d < 0)
         {
@@ -373,23 +411,6 @@ void cacheRoundedRec(short x, short y, short width, short height, int r, u16 col
             y--;
         }
         x++;
-    }
-}
-
-void cacheVLine(short x0, short x1, short y, u16 color)
-{
-    u16 *thisLine = frameCache + y * WIDTH;
-    if (y >= HEIGHT)
-        return;
-    if (y < 0)
-        return;
-    if (x1 > WIDTH - 1)
-        x1 = WIDTH - 1;
-    if (x0 < 0)
-        x0 = 0;
-    for (int i = x0; i <= x1; i++)
-    {
-        thisLine[i] = color;
     }
 }
 
@@ -418,7 +439,7 @@ void cacheCenterBlock(short centerX, short centerY, short width, short height, u
     short halfHeight = height / 2;
     for (int j = centerY - halfHeight; j <= centerY + halfHeight; j++)
     {
-        cacheVLine(centerX - halfWidth, centerX + halfWidth, j, color);
+        cacheLine(centerX - halfWidth, j, centerX + halfWidth, j, color);
     }
 }
 
@@ -441,12 +462,13 @@ void cacheRoundedRight(short x, short y, short width, short height, short r, u16
     short ynr = y0 - dy + r;
     short ypr = y0 + dy - r;
 
+    u8 colorIndex = _saveColor(color);
     while (x <= y)
     {
-        cachePoint(xnr - y, ypr + x, color); // leftdown
-        cachePoint(xnr - x, ypr + y, color);
-        cachePoint(xnr - x, ynr - y, color); // leftup
-        cachePoint(xnr - y, ynr - x, color);
+        cacheIndex(xnr - y, ypr + x, colorIndex); // leftdown
+        cacheIndex(xnr - x, ypr + y, colorIndex);
+        cacheIndex(xnr - x, ynr - y, colorIndex); // leftup
+        cacheIndex(xnr - y, ynr - x, colorIndex);
 
         if (d < 0)
         {
@@ -470,7 +492,7 @@ void cacheRoundedBackgroundRight(short x, short y, short width, short height, sh
     cacheLine(x - dx, y - dy + r, x - dx, y + dy - r, color); // left
     for (int j = y - dy + 1; j < y + dy; j++)
     {
-        cacheVLine(x - dx + 1 + r, WIDTH - 1, j, backgroundColor);
+        cacheLine(x - dx + 1 + r, j, WIDTH - 1, j, backgroundColor);
     }
 
     short x0 = x;
@@ -484,12 +506,13 @@ void cacheRoundedBackgroundRight(short x, short y, short width, short height, sh
     short ynr = y0 - dy + r;
     short ypr = y0 + dy - r;
 
+    u8 colorIndex = _saveColor(color);
     while (x <= y)
     {
-        cachePoint(xnr - y, ypr + x, color); // leftdown
-        cachePoint(xnr - x, ypr + y, color);
-        cachePoint(xnr - x, ynr - y, color); // leftup
-        cachePoint(xnr - y, ynr - x, color);
+        cacheIndex(xnr - y, ypr + x, colorIndex); // leftdown
+        cacheIndex(xnr - x, ypr + y, colorIndex);
+        cacheIndex(xnr - x, ynr - y, colorIndex); // leftup
+        cacheIndex(xnr - y, ynr - x, colorIndex);
         cacheLine(xnr - x, ypr + y - 1, xnr - x, ynr - y + 1, backgroundColor);
         if (d < 0)
         {
@@ -516,7 +539,7 @@ void cacheRoundedRecBackground(short x, short y, short width, short height, shor
     cacheLine(x - dx, y - dy + r, x - dx, y + dy - r, color); // left
     for (int j = y - dy + 1; j < y + dy; j++)
     {
-        cacheVLine(x - dx + 1 + r, x + dx - r - 1, j, backgroundColor);
+        cacheLine(x - dx + 1 + r, j, x + dx - r - 1, j, backgroundColor);
     }
 
     short x0 = x;
@@ -530,17 +553,18 @@ void cacheRoundedRecBackground(short x, short y, short width, short height, shor
     short ynr = y0 - dy + r;
     short ypr = y0 + dy - r;
 
+    u8 colorIndex = _saveColor(color);
     while (x <= y)
     {
 
-        cachePoint(xpr + x, ypr + y, color); // rightdown
-        cachePoint(xpr + y, ypr + x, color);
-        cachePoint(xnr - y, ypr + x, color); // leftdown
-        cachePoint(xnr - x, ypr + y, color);
-        cachePoint(xnr - x, ynr - y, color); // leftup
-        cachePoint(xnr - y, ynr - x, color);
-        cachePoint(xpr + y, ynr - x, color); // rightup
-        cachePoint(xpr + x, ynr - y, color);
+        cacheIndex(xpr + x, ypr + y, colorIndex); // rightdown
+        cacheIndex(xpr + y, ypr + x, colorIndex);
+        cacheIndex(xnr - y, ypr + x, colorIndex); // leftdown
+        cacheIndex(xnr - x, ypr + y, colorIndex);
+        cacheIndex(xnr - x, ynr - y, colorIndex); // leftup
+        cacheIndex(xnr - y, ynr - x, colorIndex);
+        cacheIndex(xpr + y, ynr - x, colorIndex); // rightup
+        cacheIndex(xpr + x, ynr - y, colorIndex);
         cacheLine(xnr - x, ypr + y - 1, xnr - x, ynr - y + 1, backgroundColor);
         cacheLine(xpr + x, ypr + y - 1, xpr + x, ynr - y + 1, backgroundColor);
 

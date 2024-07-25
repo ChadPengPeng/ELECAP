@@ -151,10 +151,18 @@ enum FOLDSTATE
 #define to565(color) (((Color & 0X00FCFCFC) >> 2) | ((Color & 0X0000FC00) >> 4) | ((Color & 0X00FC0000) >> 6))
 #define inScreen(x, y) (((x) >= 0) && ((x) < WIDTH) && ((y) >= 0) && ((y) < HEIGHT))
 
-extern u16 *frameCache;
-//#define cachePoint(x, y, color) frameCache[y+x] = (color)
-#define cachePoint(x, y, color) frameCache[constrain(y,0,HEIGHT-1)*WIDTH+constrain(x,0,WIDTH-1)] = (color)
-#define getPoint(x, y) (frameCache[y*WIDTH+x])
+extern u8 *frameCache;
+extern u8 **frameCacheMatrix;
+#define frameCacheSize WIDTH*HEIGHT
+extern void resetColorList();
+extern u8 _saveColor(u16 color);
+extern u16 colorList[];
+#define _getColor(index) colorList[index]
+
+#define cachePoint(x, y, color) frameCacheMatrix[y][x] = _saveColor(color)
+#define cacheIndex(x, y, index) frameCacheMatrix[y][x] = index
+#define getPoint(x, y) _getColor(frameCacheMatrix[y][x])
+
 
 extern u16 fadeColor(u16 color, u16 weight);
 extern u16 approachColor(u16 color, u16 target, u16 weight);
@@ -167,7 +175,6 @@ extern int getRow(short x, short y, short width, short size, char *p);
 extern void cacheOneCenter(short x, short y, u8 size, char *p, u16 color);
 extern void cacheCircle(short x0, short y0, short r, u16 color);
 extern void cacheRoundedRec(short x, short y, short width, short height, int r, u16 color);
-extern void cacheVLine(short x0, short x1, short y, u16 color);
 extern void cacheRec(short x1, short y1, short x2, short y2, u16 color);
 extern void cacheCenterRec(short centerX, short centerY, short width, short height, u16 color);
 extern void cacheCenterBlock(short centerX, short centerY, short width, short height, u16 color);

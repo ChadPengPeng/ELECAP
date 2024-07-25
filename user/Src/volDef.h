@@ -6,7 +6,7 @@
 #define DAC_MAX 4095
 
 #define adcTIMfreq 10 * 1000 * 1000
-#define dacTIMfreq 12 * 1000 * 1000
+#define dacTIMfreq 10 * 1000 * 1000
 
 #define ABSVoltagePixel 40 // 1V 对应像素数
 #define toVoltage(x, thisOsc) ((float)(x - ADC_MAX / 2) * VREF / (float)ADC_MAX * ABSVoltagePixel / ((thisOsc)->yScale))

@@ -1,11 +1,17 @@
 #include "pipline.h"
 // core logic to get each frame
 
-u16 *frameCache;
+u8 *frameCache;
+u8 **frameCacheMatrix;
 UIobject *cursor;
 void graphInit()
 {
-    frameCache = (u16 *)malloc(WIDTH * HEIGHT * sizeof(u16));
+    frameCache = (u8 *)malloc(frameCacheSize);
+    frameCacheMatrix = (u8 **)malloc(HEIGHT * sizeof(u8 *));
+    for (int i = 0; i < HEIGHT; i++)
+    {
+        frameCacheMatrix[i] = frameCache + i * WIDTH;
+    }
     SCREEN_Init();
     headInit();
     cursor = getHead();
@@ -239,25 +245,29 @@ void shadeUI()
 
 void graph()
 {
-    SetWindow(0, 0, WIDTH*2, HEIGHT*2);
-    for (int i = 0; i < HEIGHT; i++)
+    SetWindow(0, 0, WIDTH * 2, HEIGHT * 2);
+    // for (int i = 0; i < GRAPHICSIZE ; i++)
+    // {
+    //     WriteColor(_getColor(frameCache[i]));
+    // }
+    for (int j = 0; j < HEIGHT; j++)
     {
-        int offset = i * WIDTH;
-        for (int j = 0; j < WIDTH; j++)
+        u8 *thisLine = frameCacheMatrix[j];
+        for (int i = 0; i < WIDTH; i++)
         {
-            WriteColor(frameCache[offset + j]);
-            WriteColor(frameCache[offset + j]);
+            u16 color = _getColor(thisLine[i]);
+            WriteColor(color);
+            WriteColor(color);
         }
-        for (int j = 0; j < WIDTH; j++)
+        for (int i = 0; i < WIDTH; i++)
         {
-            WriteColor(frameCache[offset + j]);
-            WriteColor(frameCache[offset + j]);
+            u16 color = _getColor(thisLine[i]);
+            WriteColor(color);
+            WriteColor(color);
         }
     }
-    // for (int i = 0; i < GRAPHICSIZE; i++)
-    // {
-    //     WriteColor(frameCache[i]);
-    // }
+
+    resetColorList();
 }
 int deltaT = 1;
 void nextGraphic()

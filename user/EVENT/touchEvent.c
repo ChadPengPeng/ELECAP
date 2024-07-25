@@ -12,7 +12,7 @@ void addTouchEvent(int x, int y, int sta)
     if (state == HoldEnd)
         state = NoneState;
 
-    if (lastClick == 0b01111111 && sta)
+    if (lastClick == 0b00000111 && sta)
     {
         state = OnClick;
         touchingParam.clickX = x;
