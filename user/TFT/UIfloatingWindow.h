@@ -8,4 +8,6 @@ extern UIobject *flotingUI(short centerx, short centery, short width, short heig
 extern void floatingMessage(char *message);
 extern void resetFloatingWindowCounter();
 extern void updateMessage(char *message);
+
+extern char floatMessage[];
 #endif // __UIFLOATINGWINDOW__

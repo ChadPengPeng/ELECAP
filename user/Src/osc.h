@@ -59,6 +59,7 @@ extern void processWave(OscData *data, uint16_t *wave, int length, int *waveUIli
 extern int getVoltageNum();
 extern void setXscale(OscData *data, int xscale);
 extern void setYscale(OscData *data, int yscale);
+extern void setXbias(OscData *data, int xbias);
 extern void setYbias(OscData *data, int ybias);
 extern void setTrigger(OscData *data, int trigger);
 extern void bindOscWaveCh1(OscData *data, int *waveUIlist);

@@ -7,84 +7,119 @@
 
 // used for gesures processing
 char gesureString[64];
-#define gestureThreshold 100
+#define gestureThreshold 10
+#define zoomPixel 70
+extern OscData *thisOsc;
+
 void UIwaveEventlistener(UIobject *this, Event event)
 {
-    static int beginLongHold = 0;
     int direction;
-    int gesturenum;
+    static int lastXbias;
+    static int lastYbias;
+    static int lastXdist;
+    static int lastYdist;
+    static int lastXscale;
+    static int lastYscale;
+    static int gestureValid = 0;
     State state = stateMask(event);
-    if (touchingParam.longHold)
+    
+    if (state == OnClick)
+    {
+        lastXbias = thisOsc->xBias;
+        lastYbias = thisOsc->yBias;
+        gestureValid = 0;
+        if ((touchingParam.multiTouchSta >> 1) & 0x01)
+        {
+            lastXdist = absM(touchingParam.xList[1] - touchingParam.xList[0]);
+            lastYdist = absM(touchingParam.yList[1] - touchingParam.yList[0]);
+            lastXscale = thisOsc->xScale;
+            lastYscale = thisOsc->yScale;
+        }
+    }
+    else if (state == HoldEnd){
+        gestureValid = 0;
+    }
+    else if (touchingParam.longHold)
     {
         int deltaX = touchingParam.cursorNowX - touchingParam.clickX;
         int deltaY = touchingParam.cursorNowY - touchingParam.clickY;
         direction = absM(deltaX) > absM(deltaY);
-        if (direction)
+        if (absM(deltaX) > gestureThreshold || absM(deltaY) > gestureThreshold)
         {
-            gesturenum = deltaX / gestureThreshold;
-            if (deltaX > 0)
+            gestureValid = 1;
+        }
+        if (gestureValid)
+        {
+            if (direction)
             {
-                int i;
-                for (i = 0; i < gesturenum; i++)
-                {
-                    gesureString[i] = '>';
-                }
-                gesureString[i] = 'R';
-                gesureString[i + 1] = '\0';
+                setXbias(thisOsc, lastXbias + deltaX);
+                sprintf(floatMessage, "xBias:%d", thisOsc->xBias);
+                updateMessage(floatMessage);
             }
             else
             {
-                int i;
-                for (i = 0; i < -gesturenum; i++)
-                {
-                    gesureString[i] = '<';
-                }
-                gesureString[i] = 'L';
-                gesureString[i + 1] = '\0';
+                setYbias(thisOsc, lastYbias + deltaY);
+                sprintf(floatMessage, "yBias:%d", thisOsc->yBias);
+                updateMessage(floatMessage);
             }
-        }
-        else
-        {
-            gesturenum = deltaY / gestureThreshold;
-            if (deltaY > 0)
-            {
-                int i;
-                for (i = 0; i < gesturenum; i++)
-                {
-                    gesureString[i] = '^';
-                }
-                gesureString[i] = 'D';
-                gesureString[i + 1] = '\0';
-            }
-            else
-            {
-                int i;
-                for (i = 0; i < -gesturenum; i++)
-                {
-                    gesureString[i] = 'v';
-                }
-                gesureString[i] = 'U';
-                gesureString[i + 1] = '\0';
-            }
-        }
-
-        if (beginLongHold == 1)
-        {
-            floatingMessage(gesureString);
-            beginLongHold = 0;
-        }
-        else if (state == Hold)
-        {
-            updateMessage(gesureString);
-        }
-        else if (state == HoldEnd)
-        {
-            // todo
         }
     }
-    if (state == OnClick)
+    else if ((touchingParam.multiTouchSta >> 1) & 0x01)
     {
-        beginLongHold = 1;
+        int deltaX = absM(touchingParam.xList[1] - touchingParam.xList[0]) - lastXdist;
+        int deltaY = absM(touchingParam.yList[1] - touchingParam.yList[0]) - lastYdist;
+        direction = absM(deltaX) > abs(deltaY);
+        if (absM(deltaX) > gestureThreshold || absM(deltaY) > gestureThreshold)
+        {
+            gestureValid = 1;
+        }
+        if (gestureValid)
+        {
+            if (direction)
+            {
+                int xscale = lastXscale;
+                if (deltaX > 0)
+                {
+                    for (int i = 0; i < deltaX / zoomPixel; i++)
+                    {
+                        xscale = highDigitPlusOne(xscale);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < -deltaX / zoomPixel; i++)
+                    {
+                        xscale = highDigitMinusOne(xscale);
+                    }
+                }
+                xscale = constrain(xscale, 50000, 1000000);
+                setXscale(thisOsc, xscale);
+                sprintf(floatMessage, "xscale:%d", xscale);
+                updateMessage(floatMessage);
+            }
+            else
+            {
+                int yscale = lastYscale;
+                if (deltaY > 0)
+                {
+                    for (int i = 0; i < deltaY / zoomPixel; i++)
+                    {
+                        yscale = highDigitPlusOne(yscale);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < -deltaY / zoomPixel; i++)
+                    {
+                        yscale = highDigitMinusOne(yscale);
+                    }
+                }
+                yscale = constrain(yscale, 1, 1000000);
+                setYscale(thisOsc, yscale);
+                sprintf(floatMessage, "yscale:%d", yscale);
+                updateMessage(floatMessage);
+            }
+        }
     }
 }
 

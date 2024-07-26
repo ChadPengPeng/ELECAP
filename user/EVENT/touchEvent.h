@@ -3,12 +3,15 @@
 #include "event.h"
 #include "main.h"
 
+#define MAX_TOUCH_POINTS 5
 typedef struct touchParam_struct
 {
     int clickingTick;
     int holding;
     int touching;
     int clickX, clickY;
+    int xList[MAX_TOUCH_POINTS], yList[MAX_TOUCH_POINTS];
+    int multiTouchSta;
     int cursorNowX, cursorNowY;
     int longHold;
 } touchParam;

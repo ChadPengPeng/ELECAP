@@ -140,7 +140,7 @@ enum FOLDSTATE
 #define SetWindow(sx, sy, width, height)   \
     LCD_Set_Window(sx, sy, width, height); \
     LCD_WriteRAM_Prepare()
-#define WriteColor(color) LCD_WriteRAM(color)
+#define WriteColor(color) LCD->LCD_RAM = color;
 #define ReadColor(x, y) LCD_ReadPoint(x, y)
 
 #define getDiv(approachTime, deltaTime) ((approachTime) / (deltaTime * 3))

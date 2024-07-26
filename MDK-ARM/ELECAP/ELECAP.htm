@@ -3,7 +3,7 @@
 <title>Static Call Graph - [ELECAP\ELECAP.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ELECAP\ELECAP.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6220000: Last Updated: Fri Jul 26 04:21:21 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6220000: Last Updated: Fri Jul 26 17:43:35 2024
 <BR><P>
 <H3>Maximum Stack Usage =       4024 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -17,7 +17,7 @@ Mutually Recursive functions
  <LI><a href="#[3]">MemManage_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[3]">MemManage_Handler</a><BR>
  <LI><a href="#[1]">NMI_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[1]">NMI_Handler</a><BR>
  <LI><a href="#[5]">UsageFault_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[5]">UsageFault_Handler</a><BR>
- <LI><a href="#[18a]">updateChild</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[18a]">updateChild</a><BR>
+ <LI><a href="#[189]">updateChild</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[189]">updateChild</a><BR>
 </UL>
 <P>
 <H3>
@@ -231,7 +231,7 @@ Global Symbols
 <P><STRONG><a name="[98]"></a>__main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry.o(.ARM.Collect$$$$00000000))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32h750xx.o(.text)
 </UL>
-<P><STRONG><a name="[19f]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
+<P><STRONG><a name="[1a0]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
 
 <P><STRONG><a name="[c0]"></a>_main_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
 <BR><BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
@@ -241,15 +241,15 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
-<P><STRONG><a name="[1a0]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
+<P><STRONG><a name="[1a1]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
 
-<P><STRONG><a name="[1a1]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
+<P><STRONG><a name="[1a2]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
 
-<P><STRONG><a name="[1a2]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
+<P><STRONG><a name="[1a3]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
 
-<P><STRONG><a name="[1a3]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
+<P><STRONG><a name="[1a4]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
 
-<P><STRONG><a name="[1a4]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
+<P><STRONG><a name="[1a5]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
 
 <P><STRONG><a name="[0]"></a>Reset_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, startup_stm32h750xx.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32h750xx.o(RESET)
@@ -667,19 +667,18 @@ Global Symbols
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
 </UL>
 <BR>[Called By]<UL><LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_SetConfig
-<LI><a href="#[193]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
-<LI><a href="#[19a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+<LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<LI><a href="#[19b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
 <P><STRONG><a name="[c6]"></a>__aeabi_memset</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, memseta.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_memset$wrapper
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UIwaveEventlistener
 </UL>
 
-<P><STRONG><a name="[1a5]"></a>__aeabi_memset4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+<P><STRONG><a name="[1a6]"></a>__aeabi_memset4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 
-<P><STRONG><a name="[1a6]"></a>__aeabi_memset8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+<P><STRONG><a name="[1a7]"></a>__aeabi_memset8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 
 <P><STRONG><a name="[c5]"></a>__aeabi_memclr</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, memseta.o(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
@@ -689,7 +688,7 @@ Global Symbols
 
 <P><STRONG><a name="[14c]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
-<LI><a href="#[177]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;resetColorList
+<LI><a href="#[18c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;resetColorList
 </UL>
 
 <P><STRONG><a name="[105]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))
@@ -703,10 +702,10 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
 </UL>
 
-<P><STRONG><a name="[1a7]"></a>__aeabi_uidiv</STRONG> (Thumb, 0 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
+<P><STRONG><a name="[1a8]"></a>__aeabi_uidiv</STRONG> (Thumb, 0 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
 
-<P><STRONG><a name="[19e]"></a>__aeabi_uidivmod</STRONG> (Thumb, 44 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[193]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<P><STRONG><a name="[19f]"></a>__aeabi_uidivmod</STRONG> (Thumb, 44 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 
 <P><STRONG><a name="[c4]"></a>__aeabi_llsl</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, llshl.o(.text))
@@ -716,7 +715,7 @@ Global Symbols
 <LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2ulz
 </UL>
 
-<P><STRONG><a name="[1a8]"></a>_ll_shift_l</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llshl.o(.text), UNUSED)
+<P><STRONG><a name="[1a9]"></a>_ll_shift_l</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llshl.o(.text), UNUSED)
 
 <P><STRONG><a name="[c3]"></a>__aeabi_llsr</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, llushr.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
@@ -724,9 +723,9 @@ Global Symbols
 <LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2ulz
 </UL>
 
-<P><STRONG><a name="[1a9]"></a>_ll_ushift_r</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llushr.o(.text), UNUSED)
+<P><STRONG><a name="[1aa]"></a>_ll_ushift_r</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llushr.o(.text), UNUSED)
 
-<P><STRONG><a name="[1aa]"></a>__I$use$fp</STRONG> (Thumb, 0 bytes, Stack size 48 bytes, iusefp.o(.text), UNUSED)
+<P><STRONG><a name="[1ab]"></a>__I$use$fp</STRONG> (Thumb, 0 bytes, Stack size 48 bytes, iusefp.o(.text), UNUSED)
 
 <P><STRONG><a name="[c8]"></a>__aeabi_dadd</STRONG> (Thumb, 322 bytes, Stack size 48 bytes, dadd.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_lasr
@@ -736,7 +735,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
-<LI><a href="#[19a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+<LI><a href="#[19b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
 <P><STRONG><a name="[cc]"></a>__aeabi_dsub</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, dadd.o(.text), UNUSED)
@@ -750,24 +749,24 @@ Global Symbols
 <P><STRONG><a name="[ce]"></a>__aeabi_dmul</STRONG> (Thumb, 228 bytes, Stack size 48 bytes, dmul.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[19a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+<BR>[Called By]<UL><LI><a href="#[19b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
 <P><STRONG><a name="[cf]"></a>__aeabi_ddiv</STRONG> (Thumb, 222 bytes, Stack size 32 bytes, ddiv.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round
 </UL>
-<BR>[Called By]<UL><LI><a href="#[19a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+<BR>[Called By]<UL><LI><a href="#[19b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
 <P><STRONG><a name="[d0]"></a>__aeabi_d2ulz</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, dfixul.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
 </UL>
-<BR>[Called By]<UL><LI><a href="#[19a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+<BR>[Called By]<UL><LI><a href="#[19b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
-<P><STRONG><a name="[19b]"></a>__aeabi_cdrcmple</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, cdrcmple.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[19a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+<P><STRONG><a name="[19c]"></a>__aeabi_cdrcmple</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, cdrcmple.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[19b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
 <P><STRONG><a name="[c1]"></a>__scatterload</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, init.o(.text))
@@ -776,13 +775,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_main_scatterload
 </UL>
 
-<P><STRONG><a name="[1ab]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
+<P><STRONG><a name="[1ac]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
 
 <P><STRONG><a name="[c9]"></a>__aeabi_lasr</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, llsshr.o(.text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 
-<P><STRONG><a name="[1ac]"></a>_ll_sshift_r</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llsshr.o(.text), UNUSED)
+<P><STRONG><a name="[1ad]"></a>_ll_sshift_r</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llsshr.o(.text), UNUSED)
 
 <P><STRONG><a name="[cb]"></a>_double_round</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, depilogue.o(.text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
@@ -1042,7 +1041,7 @@ Global Symbols
 <LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FT5206_Init
 </UL>
 
-<P><STRONG><a name="[a4]"></a>FT5206_Scan</STRONG> (Thumb, 454 bytes, Stack size 48 bytes, ft5206.o(.text.FT5206_Scan))
+<P><STRONG><a name="[a4]"></a>FT5206_Scan</STRONG> (Thumb, 440 bytes, Stack size 48 bytes, ft5206.o(.text.FT5206_Scan))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = FT5206_Scan &rArr; FT5206_RD_Reg &rArr; CT_IIC_Read_Byte &rArr; delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FT5206_RD_Reg
@@ -1104,7 +1103,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_Start_IT
 <LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_Enable
 </UL>
-<BR>[Called By]<UL><LI><a href="#[172]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getWaveCH1
+<BR>[Called By]<UL><LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getWaveCH1
 </UL>
 
 <P><STRONG><a name="[f8]"></a>HAL_ADC_Stop_DMA</STRONG> (Thumb, 324 bytes, Stack size 16 bytes, stm32h7xx_hal_adc.o(.text.HAL_ADC_Stop_DMA))
@@ -1114,7 +1113,7 @@ Global Symbols
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_ConversionStop
 </UL>
-<BR>[Called By]<UL><LI><a href="#[17c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ifBusy
+<BR>[Called By]<UL><LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ifBusy
 </UL>
 
 <P><STRONG><a name="[e7]"></a>HAL_DACEx_ConvCpltCallbackCh2</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32h7xx_hal_dac_ex.o(.text.HAL_DACEx_ConvCpltCallbackCh2))
@@ -1178,7 +1177,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_Start_IT
 </UL>
-<BR>[Called By]<UL><LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;generageWave
+<BR>[Called By]<UL><LI><a href="#[172]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;generageWave
 </UL>
 
 <P><STRONG><a name="[fe]"></a>HAL_DAC_Stop_DMA</STRONG> (Thumb, 92 bytes, Stack size 16 bytes, stm32h7xx_hal_dac.o(.text.HAL_DAC_Stop_DMA))
@@ -1186,7 +1185,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_Abort
 </UL>
-<BR>[Called By]<UL><LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;generageWave
+<BR>[Called By]<UL><LI><a href="#[172]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;generageWave
 </UL>
 
 <P><STRONG><a name="[f5]"></a>HAL_DMAEx_ConfigMuxSync</STRONG> (Thumb, 120 bytes, Stack size 16 bytes, stm32h7xx_hal_dma_ex.o(.text.HAL_DMAEx_ConfigMuxSync))
@@ -1206,8 +1205,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_Stop_DMA
-<LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DAC_Stop_DMA
+<BR>[Called By]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DAC_Stop_DMA
+<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_Stop_DMA
 </UL>
 
 <P><STRONG><a name="[f3]"></a>HAL_DMA_Init</STRONG> (Thumb, 1630 bytes, Stack size 24 bytes, stm32h7xx_hal_dma.o(.text.HAL_DMA_Init))
@@ -1225,8 +1224,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetConfig
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_Start_DMA
-<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DAC_Start_DMA
+<BR>[Called By]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DAC_Start_DMA
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_Start_DMA
 </UL>
 
 <P><STRONG><a name="[101]"></a>HAL_Delay</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, stm32h7xx_hal.o(.text.HAL_Delay))
@@ -1265,14 +1264,15 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[e1]"></a>HAL_GPIO_ReadPin</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32h7xx_hal_gpio.o(.text.HAL_GPIO_ReadPin))
-<BR><BR>[Called By]<UL><LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keyEvent
+<BR><BR>[Called By]<UL><LI><a href="#[17f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keyEvent
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CT_IIC_Read_Byte
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CT_IIC_Wait_Ack
 </UL>
 
 <P><STRONG><a name="[de]"></a>HAL_GPIO_WritePin</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32h7xx_hal_gpio.o(.text.HAL_GPIO_WritePin))
 <BR><BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
-<LI><a href="#[17e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initOscData
+<LI><a href="#[17d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initOscData
+<LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setYscale
 <LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TP_GPIO_Init
 <LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FT5206_Init
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CT_IIC_Read_Byte
@@ -1290,7 +1290,9 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[d7]"></a>HAL_GetTick</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32h7xx_hal.o(.text.HAL_GetTick))
-<BR><BR>[Called By]<UL><LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCCEx_PLL3_Config
+<BR><BR>[Called By]<UL><LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_WaitOnFlagUntilTimeout
+<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_CheckIdleState
+<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCCEx_PLL3_Config
 <LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCCEx_PLL2_Config
 <LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_Abort
 <LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_Stop_DMA
@@ -1302,15 +1304,13 @@ Global Symbols
 <LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
 <LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_OscConfig
 <LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_PWREx_ConfigSupply
-<LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;addTouchEvent
-<LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextGraphic
+<LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;addTouchEvent
+<LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextGraphic
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCCEx_PeriphCLKConfig
-<LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_WaitOnFlagUntilTimeout
-<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_CheckIdleState
 <LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;floatingOnFoldingUpdate
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;onWaitingUpdate
-<LI><a href="#[18b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shadeCursor
+<LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shadeCursor
 </UL>
 
 <P><STRONG><a name="[13a]"></a>HAL_I2CEx_ConfigAnalogFilter</STRONG> (Thumb, 74 bytes, Stack size 0 bytes, stm32h7xx_hal_i2c_ex.o(.text.HAL_I2CEx_ConfigAnalogFilter))
@@ -1347,10 +1347,10 @@ Global Symbols
 <P><STRONG><a name="[107]"></a>HAL_Init</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, stm32h7xx_hal.o(.text.HAL_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = HAL_Init &rArr; HAL_InitTick &rArr; HAL_NVIC_SetPriority
 </UL>
-<BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetSysClockFreq
+<BR>[Calls]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriorityGrouping
+<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetSysClockFreq
 <LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
 <LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_MspInit
-<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriorityGrouping
 </UL>
 <BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1358,24 +1358,24 @@ Global Symbols
 <P><STRONG><a name="[10a]"></a>HAL_InitTick</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, stm32h7xx_hal.o(.text.HAL_InitTick))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = HAL_InitTick &rArr; HAL_NVIC_SetPriority
 </UL>
-<BR>[Calls]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriority
-<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SYSTICK_Config
+<BR>[Calls]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SYSTICK_Config
+<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriority
 </UL>
 <BR>[Called By]<UL><LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
 <LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
 </UL>
 
-<P><STRONG><a name="[182]"></a>HAL_MPU_ConfigRegion</STRONG> (Thumb, 94 bytes, Stack size 8 bytes, stm32h7xx_hal_cortex.o(.text.HAL_MPU_ConfigRegion))
+<P><STRONG><a name="[181]"></a>HAL_MPU_ConfigRegion</STRONG> (Thumb, 94 bytes, Stack size 8 bytes, stm32h7xx_hal_cortex.o(.text.HAL_MPU_ConfigRegion))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = HAL_MPU_ConfigRegion
 </UL>
 <BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[181]"></a>HAL_MPU_Disable</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32h7xx_hal_cortex.o(.text.HAL_MPU_Disable))
+<P><STRONG><a name="[180]"></a>HAL_MPU_Disable</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32h7xx_hal_cortex.o(.text.HAL_MPU_Disable))
 <BR><BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[183]"></a>HAL_MPU_Enable</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, stm32h7xx_hal_cortex.o(.text.HAL_MPU_Enable))
+<P><STRONG><a name="[182]"></a>HAL_MPU_Enable</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, stm32h7xx_hal_cortex.o(.text.HAL_MPU_Enable))
 <BR><BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -1433,15 +1433,15 @@ Global Symbols
 <P><STRONG><a name="[114]"></a>HAL_RCCEx_GetPLL2ClockFreq</STRONG> (Thumb, 284 bytes, Stack size 8 bytes, stm32h7xx_hal_rcc_ex.o(.text.HAL_RCCEx_GetPLL2ClockFreq))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = HAL_RCCEx_GetPLL2ClockFreq
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCCEx_GetPeriphCLKFreq
-<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_SetConfig
+<BR>[Called By]<UL><LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_SetConfig
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCCEx_GetPeriphCLKFreq
 </UL>
 
 <P><STRONG><a name="[115]"></a>HAL_RCCEx_GetPLL3ClockFreq</STRONG> (Thumb, 284 bytes, Stack size 8 bytes, stm32h7xx_hal_rcc_ex.o(.text.HAL_RCCEx_GetPLL3ClockFreq))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = HAL_RCCEx_GetPLL3ClockFreq
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCCEx_GetPeriphCLKFreq
-<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_SetConfig
+<BR>[Called By]<UL><LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_SetConfig
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCCEx_GetPeriphCLKFreq
 </UL>
 
 <P><STRONG><a name="[d4]"></a>HAL_RCCEx_GetPeriphCLKFreq</STRONG> (Thumb, 1022 bytes, Stack size 24 bytes, stm32h7xx_hal_rcc_ex.o(.text.HAL_RCCEx_GetPeriphCLKFreq))
@@ -1494,8 +1494,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetSysClockFreq
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCCEx_GetPeriphCLKFreq
-<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_SetConfig
+<BR>[Called By]<UL><LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_SetConfig
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCCEx_GetPeriphCLKFreq
 </UL>
 
 <P><STRONG><a name="[11a]"></a>HAL_RCC_GetPCLK2Freq</STRONG> (Thumb, 96 bytes, Stack size 8 bytes, stm32h7xx_hal_rcc.o(.text.HAL_RCC_GetPCLK2Freq))
@@ -1526,10 +1526,10 @@ Global Symbols
 <P><STRONG><a name="[11c]"></a>HAL_SRAM_Init</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, stm32h7xx_hal_sram.o(.text.HAL_SRAM_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 336<LI>Call Chain = HAL_SRAM_Init &rArr; HAL_SRAM_MspInit &rArr; HAL_RCCEx_PeriphCLKConfig &rArr; RCCEx_PLL3_Config
 </UL>
-<BR>[Calls]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SRAM_MspInit
-<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FMC_NORSRAM_Extended_Timing_Init
+<BR>[Calls]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FMC_NORSRAM_Extended_Timing_Init
 <LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FMC_NORSRAM_Timing_Init
 <LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FMC_NORSRAM_Init
+<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SRAM_MspInit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_FMC_Init
 </UL>
@@ -1580,8 +1580,8 @@ Global Symbols
 <P><STRONG><a name="[121]"></a>HAL_TIM_Base_Init</STRONG> (Thumb, 96 bytes, Stack size 8 bytes, stm32h7xx_hal_tim.o(.text.HAL_TIM_Base_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = HAL_TIM_Base_Init &rArr; HAL_TIM_Base_MspInit &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_MspInit
-<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Base_SetConfig
+<BR>[Calls]<UL><LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Base_SetConfig
+<LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_MspInit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM15_Init
 <LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM13_Init
@@ -1599,18 +1599,18 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Init
 </UL>
 
-<P><STRONG><a name="[173]"></a>HAL_TIM_Base_Start</STRONG> (Thumb, 172 bytes, Stack size 0 bytes, stm32h7xx_hal_tim.o(.text.HAL_TIM_Base_Start))
-<BR><BR>[Called By]<UL><LI><a href="#[172]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getWaveCH1
-<LI><a href="#[17f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initWaveG
+<P><STRONG><a name="[176]"></a>HAL_TIM_Base_Start</STRONG> (Thumb, 172 bytes, Stack size 0 bytes, stm32h7xx_hal_tim.o(.text.HAL_TIM_Base_Start))
+<BR><BR>[Called By]<UL><LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getWaveCH1
+<LI><a href="#[17e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initWaveG
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[184]"></a>HAL_TIM_Base_Start_IT</STRONG> (Thumb, 180 bytes, Stack size 0 bytes, stm32h7xx_hal_tim.o(.text.HAL_TIM_Base_Start_IT))
+<P><STRONG><a name="[183]"></a>HAL_TIM_Base_Start_IT</STRONG> (Thumb, 180 bytes, Stack size 0 bytes, stm32h7xx_hal_tim.o(.text.HAL_TIM_Base_Start_IT))
 <BR><BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[17d]"></a>HAL_TIM_Base_Stop</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, stm32h7xx_hal_tim.o(.text.HAL_TIM_Base_Stop))
-<BR><BR>[Called By]<UL><LI><a href="#[17c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ifBusy
+<P><STRONG><a name="[17c]"></a>HAL_TIM_Base_Stop</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, stm32h7xx_hal_tim.o(.text.HAL_TIM_Base_Stop))
+<BR><BR>[Called By]<UL><LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ifBusy
 </UL>
 
 <P><STRONG><a name="[125]"></a>HAL_TIM_SlaveConfigSynchro</STRONG> (Thumb, 88 bytes, Stack size 16 bytes, stm32h7xx_hal_tim.o(.text.HAL_TIM_SlaveConfigSynchro))
@@ -1643,10 +1643,10 @@ Global Symbols
 <P><STRONG><a name="[127]"></a>HAL_UART_Init</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, stm32h7xx_hal_uart.o(.text.HAL_UART_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 304<LI>Call Chain = HAL_UART_Init &rArr; HAL_UART_MspInit &rArr; HAL_RCCEx_PeriphCLKConfig &rArr; RCCEx_PLL3_Config
 </UL>
-<BR>[Calls]<UL><LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_MspInit
-<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_CheckIdleState
+<BR>[Calls]<UL><LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_CheckIdleState
 <LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_SetConfig
 <LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_AdvFeatureConfig
+<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_MspInit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_USART2_UART_Init
 <LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_USART1_UART_Init
@@ -1689,7 +1689,7 @@ Global Symbols
 <LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Set_Window
 <LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
 </UL>
-<BR>[Called By]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graphInit
+<BR>[Called By]<UL><LI><a href="#[177]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graphInit
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -1705,17 +1705,13 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetCursor
 </UL>
-<BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
-<LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graph
+<BR>[Called By]<UL><LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextGraphic
+<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
 <LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Fill
 </UL>
 
-<P><STRONG><a name="[176]"></a>LCD_WriteRAM</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, dev_lcd.o(.text.LCD_WriteRAM))
-<BR><BR>[Called By]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graph
-</UL>
-
-<P><STRONG><a name="[175]"></a>LCD_WriteRAM_Prepare</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, dev_lcd.o(.text.LCD_WriteRAM_Prepare))
-<BR><BR>[Called By]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graph
+<P><STRONG><a name="[18b]"></a>LCD_WriteRAM_Prepare</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, dev_lcd.o(.text.LCD_WriteRAM_Prepare))
+<BR><BR>[Called By]<UL><LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextGraphic
 </UL>
 
 <P><STRONG><a name="[130]"></a>MX_ADC1_Init</STRONG> (Thumb, 178 bytes, Stack size 48 bytes, adc.o(.text.MX_ADC1_Init))
@@ -1953,8 +1949,8 @@ Global Symbols
 <P><STRONG><a name="[12b]"></a>UART_CheckIdleState</STRONG> (Thumb, 366 bytes, Stack size 24 bytes, stm32h7xx_hal_uart.o(.text.UART_CheckIdleState))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = UART_CheckIdleState &rArr; UART_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
-<LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_WaitOnFlagUntilTimeout
+<BR>[Calls]<UL><LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_WaitOnFlagUntilTimeout
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Init
 </UL>
@@ -1980,12 +1976,17 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_CheckIdleState
 </UL>
 
-<P><STRONG><a name="[bc]"></a>UIwaveEventlistener</STRONG> (Thumb, 278 bytes, Stack size 16 bytes, uiwave.o(.text.UIwaveEventlistener))
-<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = UIwaveEventlistener &rArr; updateMessage &rArr; getRow
+<P><STRONG><a name="[bc]"></a>UIwaveEventlistener</STRONG> (Thumb, 728 bytes, Stack size 40 bytes, uiwave.o(.text.UIwaveEventlistener))
+<BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = UIwaveEventlistener &rArr; updateMessage &rArr; getRow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
-<LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMessage
-<LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;floatingMessage
+<BR>[Calls]<UL><LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setYscale
+<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setXscale
+<LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;highDigitMinusOne
+<LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;highDigitPlusOne
+<LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMessage
+<LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setYbias
+<LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setXbias
+<LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uiwave.o(.text.waveUI)
 </UL>
@@ -1996,27 +1997,27 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32h750xx.o(RESET)
 </UL>
-<P><STRONG><a name="[165]"></a>_saveColor</STRONG> (Thumb, 150 bytes, Stack size 28 bytes, interface.o(.text._saveColor))
+<P><STRONG><a name="[16b]"></a>_saveColor</STRONG> (Thumb, 150 bytes, Stack size 28 bytes, interface.o(.text._saveColor))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = _saveColor
 </UL>
-<BR>[Called By]<UL><LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawMesh
+<BR>[Called By]<UL><LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawMesh
 </UL>
 
-<P><STRONG><a name="[152]"></a>addEvent</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, event.o(.text.addEvent))
-<BR><BR>[Called By]<UL><LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keyEvent
-<LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;addTouchEvent
+<P><STRONG><a name="[157]"></a>addEvent</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, event.o(.text.addEvent))
+<BR><BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;addTouchEvent
+<LI><a href="#[17f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keyEvent
 </UL>
 
-<P><STRONG><a name="[151]"></a>addTouchEvent</STRONG> (Thumb, 176 bytes, Stack size 24 bytes, touchevent.o(.text.addTouchEvent))
+<P><STRONG><a name="[156]"></a>addTouchEvent</STRONG> (Thumb, 176 bytes, Stack size 24 bytes, touchevent.o(.text.addTouchEvent))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = addTouchEvent
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
-<LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;addEvent
+<LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;addEvent
 </UL>
 <BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[156]"></a>approachColorDiv</STRONG> (Thumb, 154 bytes, Stack size 16 bytes, interface.o(.text.approachColorDiv))
+<P><STRONG><a name="[15b]"></a>approachColorDiv</STRONG> (Thumb, 154 bytes, Stack size 16 bytes, interface.o(.text.approachColorDiv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = approachColorDiv
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;floatingOnFoldingUpdate
@@ -2032,63 +2033,63 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uisample.o(.text.backgroundUI)
 </UL>
-<P><STRONG><a name="[153]"></a>backgroundUI</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, uisample.o(.text.backgroundUI))
+<P><STRONG><a name="[158]"></a>backgroundUI</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, uisample.o(.text.backgroundUI))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = backgroundUI &rArr; getUIobject &rArr; malloc
 </UL>
-<BR>[Calls]<UL><LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;priorityInsert
-<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getUIobject
+<BR>[Calls]<UL><LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;priorityInsert
+<LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getUIobject
 </UL>
-<BR>[Called By]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graphInit
+<BR>[Called By]<UL><LI><a href="#[177]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graphInit
 </UL>
 
-<P><STRONG><a name="[185]"></a>bindOscWaveCh1</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, osc.o(.text.bindOscWaveCh1))
+<P><STRONG><a name="[184]"></a>bindOscWaveCh1</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, osc.o(.text.bindOscWaveCh1))
 <BR><BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[a7]"></a>buttonOnClick</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, uibutton.o(.text.buttonOnClick))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = buttonOnClick &rArr; floatingMessage &rArr; getRow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;approachColorDiv
-<LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;floatingMessage
+<BR>[Calls]<UL><LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;floatingMessage
+<LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;approachColorDiv
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uibutton.o(.text.buttonUI)
 </UL>
 <P><STRONG><a name="[a6]"></a>buttonOnUpdate</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, uibutton.o(.text.buttonOnUpdate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = buttonOnUpdate &rArr; approachColorDiv
 </UL>
-<BR>[Calls]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;approachColorDiv
+<BR>[Calls]<UL><LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;approachColorDiv
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uibutton.o(.text.buttonOnClick)
 </UL>
 <P><STRONG><a name="[a8]"></a>buttonShader</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, uibutton.o(.text.buttonShader))
 <BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = buttonShader &rArr; cacheCenterRec &rArr; cacheLine
 </UL>
-<BR>[Calls]<UL><LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterBlock
-<LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterRec
+<BR>[Calls]<UL><LI><a href="#[15e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterBlock
+<LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterRec
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uibutton.o(.text.buttonUI)
 </UL>
-<P><STRONG><a name="[159]"></a>buttonUI</STRONG> (Thumb, 132 bytes, Stack size 40 bytes, uibutton.o(.text.buttonUI))
+<P><STRONG><a name="[15f]"></a>buttonUI</STRONG> (Thumb, 132 bytes, Stack size 40 bytes, uibutton.o(.text.buttonUI))
 <BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = buttonUI &rArr; getUIobject &rArr; malloc
 </UL>
-<BR>[Calls]<UL><LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;priorityInsert
-<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getUIobject
+<BR>[Calls]<UL><LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;priorityInsert
+<LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getUIobject
 </UL>
-<BR>[Called By]<UL><LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;userInterface
+<BR>[Called By]<UL><LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;userInterface
 </UL>
 
-<P><STRONG><a name="[158]"></a>cacheCenterBlock</STRONG> (Thumb, 82 bytes, Stack size 32 bytes, interface.o(.text.cacheCenterBlock))
+<P><STRONG><a name="[15e]"></a>cacheCenterBlock</STRONG> (Thumb, 82 bytes, Stack size 32 bytes, interface.o(.text.cacheCenterBlock))
 <BR><BR>[Stack]<UL><LI>Max Depth = 100<LI>Call Chain = cacheCenterBlock &rArr; cacheLine
 </UL>
-<BR>[Calls]<UL><LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheLine
+<BR>[Calls]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheLine
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buttonShader
 </UL>
 
-<P><STRONG><a name="[157]"></a>cacheCenterRec</STRONG> (Thumb, 138 bytes, Stack size 40 bytes, interface.o(.text.cacheCenterRec))
+<P><STRONG><a name="[15d]"></a>cacheCenterRec</STRONG> (Thumb, 138 bytes, Stack size 40 bytes, interface.o(.text.cacheCenterRec))
 <BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = cacheCenterRec &rArr; cacheLine
 </UL>
-<BR>[Calls]<UL><LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheLine
+<BR>[Calls]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheLine
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;triggerModeButtonShader
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inputModeButtonShader
@@ -2096,10 +2097,10 @@ Global Symbols
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buttonShader
 </UL>
 
-<P><STRONG><a name="[15b]"></a>cacheCenterString</STRONG> (Thumb, 336 bytes, Stack size 48 bytes, interface.o(.text.cacheCenterString))
+<P><STRONG><a name="[161]"></a>cacheCenterString</STRONG> (Thumb, 336 bytes, Stack size 48 bytes, interface.o(.text.cacheCenterString))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = cacheCenterString &rArr; cacheChar
 </UL>
-<BR>[Calls]<UL><LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheChar
+<BR>[Calls]<UL><LI><a href="#[162]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheChar
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;triggerModeButtonShader
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inputModeButtonShader
@@ -2107,88 +2108,88 @@ Global Symbols
 <LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;floatingShader
 </UL>
 
-<P><STRONG><a name="[15c]"></a>cacheChar</STRONG> (Thumb, 852 bytes, Stack size 56 bytes, interface.o(.text.cacheChar))
+<P><STRONG><a name="[162]"></a>cacheChar</STRONG> (Thumb, 852 bytes, Stack size 56 bytes, interface.o(.text.cacheChar))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = cacheChar
 </UL>
-<BR>[Called By]<UL><LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterString
+<BR>[Called By]<UL><LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterString
 <LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheOneCenter
-<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheString
+<LI><a href="#[166]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheString
 </UL>
 
-<P><STRONG><a name="[15a]"></a>cacheLine</STRONG> (Thumb, 1218 bytes, Stack size 68 bytes, interface.o(.text.cacheLine))
+<P><STRONG><a name="[160]"></a>cacheLine</STRONG> (Thumb, 1218 bytes, Stack size 68 bytes, interface.o(.text.cacheLine))
 <BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = cacheLine
 </UL>
-<BR>[Called By]<UL><LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheRoundedRecBackground
-<LI><a href="#[15e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheRoundedBackgroundRight
-<LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterBlock
-<LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterRec
+<BR>[Called By]<UL><LI><a href="#[165]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheRoundedRecBackground
+<LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheRoundedBackgroundRight
+<LI><a href="#[15e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterBlock
+<LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterRec
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;waveShader
-<LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawMesh
-<LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheRec
+<LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawMesh
+<LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheRec
 </UL>
 
 <P><STRONG><a name="[147]"></a>cacheOneCenter</STRONG> (Thumb, 156 bytes, Stack size 40 bytes, interface.o(.text.cacheOneCenter))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = cacheOneCenter &rArr; cacheChar
 </UL>
-<BR>[Calls]<UL><LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheChar
+<BR>[Calls]<UL><LI><a href="#[162]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheChar
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OscDataMessageShader
-<LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawLabel
+<LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawLabel
 </UL>
 
-<P><STRONG><a name="[15d]"></a>cacheRec</STRONG> (Thumb, 82 bytes, Stack size 32 bytes, interface.o(.text.cacheRec))
+<P><STRONG><a name="[163]"></a>cacheRec</STRONG> (Thumb, 82 bytes, Stack size 32 bytes, interface.o(.text.cacheRec))
 <BR><BR>[Stack]<UL><LI>Max Depth = 100<LI>Call Chain = cacheRec &rArr; cacheLine
 </UL>
-<BR>[Calls]<UL><LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheLine
+<BR>[Calls]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheLine
 </UL>
-<BR>[Called By]<UL><LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextGraphic
+<BR>[Called By]<UL><LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextGraphic
 </UL>
 
-<P><STRONG><a name="[15e]"></a>cacheRoundedBackgroundRight</STRONG> (Thumb, 554 bytes, Stack size 64 bytes, interface.o(.text.cacheRoundedBackgroundRight))
+<P><STRONG><a name="[164]"></a>cacheRoundedBackgroundRight</STRONG> (Thumb, 554 bytes, Stack size 64 bytes, interface.o(.text.cacheRoundedBackgroundRight))
 <BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = cacheRoundedBackgroundRight &rArr; cacheLine
 </UL>
-<BR>[Calls]<UL><LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheLine
+<BR>[Calls]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheLine
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawerShader
 </UL>
 
-<P><STRONG><a name="[15f]"></a>cacheRoundedRecBackground</STRONG> (Thumb, 702 bytes, Stack size 80 bytes, interface.o(.text.cacheRoundedRecBackground))
+<P><STRONG><a name="[165]"></a>cacheRoundedRecBackground</STRONG> (Thumb, 702 bytes, Stack size 80 bytes, interface.o(.text.cacheRoundedRecBackground))
 <BR><BR>[Stack]<UL><LI>Max Depth = 148<LI>Call Chain = cacheRoundedRecBackground &rArr; cacheLine
 </UL>
-<BR>[Calls]<UL><LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheLine
+<BR>[Calls]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheLine
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;floatingShader
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;messageShader
 </UL>
 
-<P><STRONG><a name="[160]"></a>cacheString</STRONG> (Thumb, 114 bytes, Stack size 40 bytes, interface.o(.text.cacheString))
+<P><STRONG><a name="[166]"></a>cacheString</STRONG> (Thumb, 114 bytes, Stack size 40 bytes, interface.o(.text.cacheString))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = cacheString &rArr; cacheChar
 </UL>
-<BR>[Calls]<UL><LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheChar
+<BR>[Calls]<UL><LI><a href="#[162]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheChar
 </UL>
 <BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debugShader
 </UL>
 
-<P><STRONG><a name="[190]"></a>childInsert</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, uiobject.o(.text.childInsert))
-<BR><BR>[Called By]<UL><LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;userInterface
+<P><STRONG><a name="[191]"></a>childInsert</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, uiobject.o(.text.childInsert))
+<BR><BR>[Called By]<UL><LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;userInterface
 </UL>
 
 <P><STRONG><a name="[aa]"></a>debugShader</STRONG> (Thumb, 344 bytes, Stack size 72 bytes, uisample.o(.text.debugShader))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = debugShader &rArr; cacheString &rArr; cacheChar
 </UL>
-<BR>[Calls]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheString
-<LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getHead
+<BR>[Calls]<UL><LI><a href="#[166]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheString
+<LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getHead
 <LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uisample.o(.text.debugUI)
 </UL>
-<P><STRONG><a name="[162]"></a>debugUI</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, uisample.o(.text.debugUI))
+<P><STRONG><a name="[168]"></a>debugUI</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, uisample.o(.text.debugUI))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = debugUI &rArr; getUIobject &rArr; malloc
 </UL>
-<BR>[Calls]<UL><LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;priorityInsert
-<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getUIobject
+<BR>[Calls]<UL><LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;priorityInsert
+<LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getUIobject
 </UL>
-<BR>[Called By]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graphInit
+<BR>[Called By]<UL><LI><a href="#[177]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graphInit
 </UL>
 
 <P><STRONG><a name="[ef]"></a>delay_ms</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, bsp_delay.o(.text.delay_ms))
@@ -2209,11 +2210,11 @@ Global Symbols
 <LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CT_IIC_Start
 </UL>
 
-<P><STRONG><a name="[18d]"></a>dequeueEvent</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, event.o(.text.dequeueEvent))
-<BR><BR>[Called By]<UL><LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processEvent
+<P><STRONG><a name="[18e]"></a>dequeueEvent</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, event.o(.text.dequeueEvent))
+<BR><BR>[Called By]<UL><LI><a href="#[188]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processEvent
 </UL>
 
-<P><STRONG><a name="[163]"></a>drawLabel</STRONG> (Thumb, 664 bytes, Stack size 56 bytes, uiwave.o(.text.drawLabel))
+<P><STRONG><a name="[169]"></a>drawLabel</STRONG> (Thumb, 664 bytes, Stack size 56 bytes, uiwave.o(.text.drawLabel))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = drawLabel &rArr; cacheOneCenter &rArr; cacheChar
 </UL>
 <BR>[Calls]<UL><LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheOneCenter
@@ -2222,55 +2223,54 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;waveShader
 </UL>
 
-<P><STRONG><a name="[164]"></a>drawMesh</STRONG> (Thumb, 1426 bytes, Stack size 24 bytes, uiwave.o(.text.drawMesh))
+<P><STRONG><a name="[16a]"></a>drawMesh</STRONG> (Thumb, 1426 bytes, Stack size 24 bytes, uiwave.o(.text.drawMesh))
 <BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = drawMesh &rArr; cacheLine
 </UL>
-<BR>[Calls]<UL><LI><a href="#[165]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_saveColor
-<LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheLine
+<BR>[Calls]<UL><LI><a href="#[16b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_saveColor
+<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheLine
 </UL>
 <BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;waveShader
 </UL>
 
-<P><STRONG><a name="[18e]"></a>drawTransparentPoint</STRONG> (Thumb, 308 bytes, Stack size 36 bytes, interface.o(.text.drawTransparentPoint))
+<P><STRONG><a name="[18f]"></a>drawTransparentPoint</STRONG> (Thumb, 308 bytes, Stack size 36 bytes, interface.o(.text.drawTransparentPoint))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = drawTransparentPoint
 </UL>
-<BR>[Called By]<UL><LI><a href="#[18b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shadeCursor
+<BR>[Called By]<UL><LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shadeCursor
 </UL>
 
 <P><STRONG><a name="[ac]"></a>drawerShader</STRONG> (Thumb, 44 bytes, Stack size 24 bytes, uibutton.o(.text.drawerShader))
 <BR><BR>[Stack]<UL><LI>Max Depth = 156<LI>Call Chain = drawerShader &rArr; cacheRoundedBackgroundRight &rArr; cacheLine
 </UL>
-<BR>[Calls]<UL><LI><a href="#[15e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheRoundedBackgroundRight
+<BR>[Calls]<UL><LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheRoundedBackgroundRight
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uibutton.o(.text.drawerUI)
 </UL>
-<P><STRONG><a name="[166]"></a>drawerUI</STRONG> (Thumb, 134 bytes, Stack size 40 bytes, uibutton.o(.text.drawerUI))
+<P><STRONG><a name="[16c]"></a>drawerUI</STRONG> (Thumb, 134 bytes, Stack size 40 bytes, uibutton.o(.text.drawerUI))
 <BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = drawerUI &rArr; getUIobject &rArr; malloc
 </UL>
-<BR>[Calls]<UL><LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;priorityInsert
-<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getUIobject
+<BR>[Calls]<UL><LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;priorityInsert
+<LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getUIobject
 </UL>
-<BR>[Called By]<UL><LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;userInterface
-</UL>
-
-<P><STRONG><a name="[17a]"></a>eventInit</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, event.o(.text.eventInit))
-<BR><BR>[Called By]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graphInit
+<BR>[Called By]<UL><LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;userInterface
 </UL>
 
-<P><STRONG><a name="[14f]"></a>floatingMessage</STRONG> (Thumb, 94 bytes, Stack size 24 bytes, uifloatingwindow.o(.text.floatingMessage))
+<P><STRONG><a name="[179]"></a>eventInit</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, event.o(.text.eventInit))
+<BR><BR>[Called By]<UL><LI><a href="#[177]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graphInit
+</UL>
+
+<P><STRONG><a name="[15c]"></a>floatingMessage</STRONG> (Thumb, 94 bytes, Stack size 24 bytes, uifloatingwindow.o(.text.floatingMessage))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = floatingMessage &rArr; getRow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRow
+<BR>[Calls]<UL><LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRow
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buttonOnClick
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UIwaveEventlistener
 </UL>
 
 <P><STRONG><a name="[ae]"></a>floatingOnFoldingUpdate</STRONG> (Thumb, 350 bytes, Stack size 16 bytes, uifloatingwindow.o(.text.floatingOnFoldingUpdate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = floatingOnFoldingUpdate &rArr; approachColorDiv
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
-<LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;approachColorDiv
+<LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;approachColorDiv
 </UL>
 <BR>[Address Reference Count : 3]<UL><LI> uifloatingwindow.o(.text.updateMessage)
 <LI> uifloatingwindow.o(.text.onWaitingUpdate)
@@ -2279,210 +2279,201 @@ Global Symbols
 <P><STRONG><a name="[ad]"></a>floatingShader</STRONG> (Thumb, 78 bytes, Stack size 32 bytes, uifloatingwindow.o(.text.floatingShader))
 <BR><BR>[Stack]<UL><LI>Max Depth = 180<LI>Call Chain = floatingShader &rArr; cacheRoundedRecBackground &rArr; cacheLine
 </UL>
-<BR>[Calls]<UL><LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterString
-<LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheRoundedRecBackground
+<BR>[Calls]<UL><LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterString
+<LI><a href="#[165]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheRoundedRecBackground
 </UL>
 <BR>[Address Reference Count : 2]<UL><LI> uifloatingwindow.o(.text.updateMessage)
 <LI> uifloatingwindow.o(.text.floatingMessage)
 </UL>
-<P><STRONG><a name="[168]"></a>flotingUI</STRONG> (Thumb, 92 bytes, Stack size 40 bytes, uifloatingwindow.o(.text.flotingUI))
+<P><STRONG><a name="[16e]"></a>flotingUI</STRONG> (Thumb, 92 bytes, Stack size 40 bytes, uifloatingwindow.o(.text.flotingUI))
 <BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = flotingUI &rArr; getUIobject &rArr; malloc
 </UL>
-<BR>[Calls]<UL><LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;priorityInsert
-<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getUIobject
+<BR>[Calls]<UL><LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;priorityInsert
+<LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getUIobject
 </UL>
-<BR>[Called By]<UL><LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;userInterface
+<BR>[Called By]<UL><LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;userInterface
 </UL>
 
 <P><STRONG><a name="[b8]"></a>freqButtonClick</STRONG> (Thumb, 218 bytes, Stack size 8 bytes, userinterface.o(.text.freqButtonClick))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = freqButtonClick &rArr; highDigitPlusOne
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = freqButtonClick &rArr; highDigitMinusOne
 </UL>
-<BR>[Calls]<UL><LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;highDigitPlusOne
-<LI><a href="#[16b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;highDigitMinusOne
-<LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setXscale
-<LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setSliderY
-<LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;releaseKeyBind
-<LI><a href="#[16e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getKeyBind
+<BR>[Calls]<UL><LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setSliderY
+<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setXscale
+<LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;highDigitMinusOne
+<LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;highDigitPlusOne
+<LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;releaseKeyBind
+<LI><a href="#[171]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getKeyBind
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> userinterface.o(.text.userInterface)
 </UL>
 <P><STRONG><a name="[b5]"></a>freqButtonShader</STRONG> (Thumb, 104 bytes, Stack size 32 bytes, userinterface.o(.text.freqButtonShader))
 <BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = freqButtonShader &rArr; cacheCenterRec &rArr; cacheLine
 </UL>
-<BR>[Calls]<UL><LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterString
-<LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterRec
+<BR>[Calls]<UL><LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterString
+<LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterRec
 <LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> userinterface.o(.text.userInterface)
 </UL>
-<P><STRONG><a name="[16f]"></a>generageWave</STRONG> (Thumb, 2096 bytes, Stack size 80 bytes, waveg.o(.text.generageWave))
+<P><STRONG><a name="[172]"></a>generageWave</STRONG> (Thumb, 2096 bytes, Stack size 80 bytes, waveg.o(.text.generageWave))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = generageWave &rArr; HAL_DAC_Start_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DAC_Stop_DMA
 <LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DAC_Start_DMA
-<LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_sinf
+<LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_sinf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[17f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initWaveG
+<BR>[Called By]<UL><LI><a href="#[17e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initWaveG
 </UL>
 
-<P><STRONG><a name="[161]"></a>getHead</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, uiobject.o(.text.getHead))
-<BR><BR>[Called By]<UL><LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextGraphic
-<LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graphInit
+<P><STRONG><a name="[167]"></a>getHead</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, uiobject.o(.text.getHead))
+<BR><BR>[Called By]<UL><LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextGraphic
+<LI><a href="#[177]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graphInit
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debugShader
-<LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processEvent
+<LI><a href="#[188]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processEvent
 </UL>
 
-<P><STRONG><a name="[16e]"></a>getKeyBind</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, pipline.o(.text.getKeyBind))
+<P><STRONG><a name="[171]"></a>getKeyBind</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, pipline.o(.text.getKeyBind))
 <BR><BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freqButtonClick
 </UL>
 
-<P><STRONG><a name="[167]"></a>getRow</STRONG> (Thumb, 84 bytes, Stack size 20 bytes, interface.o(.text.getRow))
+<P><STRONG><a name="[16d]"></a>getRow</STRONG> (Thumb, 84 bytes, Stack size 20 bytes, interface.o(.text.getRow))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = getRow
 </UL>
-<BR>[Called By]<UL><LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMessage
-<LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;floatingMessage
+<BR>[Called By]<UL><LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;floatingMessage
+<LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMessage
 </UL>
 
-<P><STRONG><a name="[154]"></a>getUIobject</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, uiobject.o(.text.getUIobject))
+<P><STRONG><a name="[159]"></a>getUIobject</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, uiobject.o(.text.getUIobject))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = getUIobject &rArr; malloc
 </UL>
-<BR>[Calls]<UL><LI><a href="#[171]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
+<BR>[Calls]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 </UL>
-<BR>[Called By]<UL><LI><a href="#[168]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flotingUI
-<LI><a href="#[188]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;messageUI
-<LI><a href="#[166]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawerUI
-<LI><a href="#[18f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sliderUI
-<LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buttonUI
-<LI><a href="#[191]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;waveUI
-<LI><a href="#[162]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debugUI
-<LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backgroundUI
+<BR>[Called By]<UL><LI><a href="#[16e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flotingUI
+<LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;messageUI
+<LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawerUI
+<LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sliderUI
+<LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buttonUI
+<LI><a href="#[192]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;waveUI
+<LI><a href="#[168]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debugUI
+<LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backgroundUI
 </UL>
 
-<P><STRONG><a name="[172]"></a>getWaveCH1</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, osc.o(.text.getWaveCH1))
+<P><STRONG><a name="[175]"></a>getWaveCH1</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, osc.o(.text.getWaveCH1))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = getWaveCH1 &rArr; HAL_ADC_Start_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_Start_DMA
-<LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Start
+<LI><a href="#[176]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Start
 </UL>
 <BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[174]"></a>graph</STRONG> (Thumb, 130 bytes, Stack size 32 bytes, pipline.o(.text.graph))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = graph &rArr; LCD_Set_Window &rArr; LCD_SetCursor
-</UL>
-<BR>[Calls]<UL><LI><a href="#[177]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;resetColorList
-<LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Set_Window
-<LI><a href="#[176]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_WriteRAM
-<LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_WriteRAM_Prepare
-</UL>
-<BR>[Called By]<UL><LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextGraphic
-</UL>
-
-<P><STRONG><a name="[178]"></a>graphInit</STRONG> (Thumb, 488 bytes, Stack size 32 bytes, pipline.o(.text.graphInit))
+<P><STRONG><a name="[177]"></a>graphInit</STRONG> (Thumb, 488 bytes, Stack size 32 bytes, pipline.o(.text.graphInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = graphInit &rArr; LCD_Init &rArr; LCD_Fill &rArr; LCD_Set_Window &rArr; LCD_SetCursor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
-<LI><a href="#[162]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debugUI
-<LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;userInterface
-<LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backgroundUI
-<LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eventInit
-<LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getHead
-<LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;headInit
-<LI><a href="#[171]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
+<LI><a href="#[168]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debugUI
+<LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;userInterface
+<LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backgroundUI
+<LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eventInit
+<LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getHead
+<LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;headInit
+<LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 </UL>
 <BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[18c]"></a>haveEvent</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, event.o(.text.haveEvent))
-<BR><BR>[Called By]<UL><LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processEvent
+<P><STRONG><a name="[18d]"></a>haveEvent</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, event.o(.text.haveEvent))
+<BR><BR>[Called By]<UL><LI><a href="#[188]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processEvent
 </UL>
 
-<P><STRONG><a name="[179]"></a>headInit</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, uiobject.o(.text.headInit))
+<P><STRONG><a name="[178]"></a>headInit</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, uiobject.o(.text.headInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = headInit &rArr; malloc
 </UL>
-<BR>[Calls]<UL><LI><a href="#[171]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
+<BR>[Calls]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 </UL>
-<BR>[Called By]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graphInit
+<BR>[Called By]<UL><LI><a href="#[177]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graphInit
 </UL>
 
-<P><STRONG><a name="[16b]"></a>highDigitMinusOne</STRONG> (Thumb, 278 bytes, Stack size 16 bytes, mathdef.o(.text.highDigitMinusOne))
+<P><STRONG><a name="[153]"></a>highDigitMinusOne</STRONG> (Thumb, 278 bytes, Stack size 16 bytes, mathdef.o(.text.highDigitMinusOne))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = highDigitMinusOne
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freqButtonClick
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UIwaveEventlistener
 </UL>
 
-<P><STRONG><a name="[16c]"></a>highDigitPlusOne</STRONG> (Thumb, 122 bytes, Stack size 16 bytes, mathdef.o(.text.highDigitPlusOne))
+<P><STRONG><a name="[152]"></a>highDigitPlusOne</STRONG> (Thumb, 122 bytes, Stack size 16 bytes, mathdef.o(.text.highDigitPlusOne))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = highDigitPlusOne
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freqButtonClick
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UIwaveEventlistener
 </UL>
 
-<P><STRONG><a name="[17c]"></a>ifBusy</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, osc.o(.text.ifBusy))
+<P><STRONG><a name="[17b]"></a>ifBusy</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, osc.o(.text.ifBusy))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = ifBusy &rArr; HAL_ADC_Stop_DMA &rArr; HAL_DMA_Abort
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_Stop_DMA
-<LI><a href="#[17d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Stop
+<BR>[Calls]<UL><LI><a href="#[17c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Stop
+<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_Stop_DMA
 </UL>
 <BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[17e]"></a>initOscData</STRONG> (Thumb, 208 bytes, Stack size 32 bytes, osc.o(.text.initOscData))
+<P><STRONG><a name="[17d]"></a>initOscData</STRONG> (Thumb, 208 bytes, Stack size 32 bytes, osc.o(.text.initOscData))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = initOscData &rArr; malloc
 </UL>
 <BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
-<LI><a href="#[171]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
+<LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 </UL>
 <BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[17f]"></a>initWaveG</STRONG> (Thumb, 76 bytes, Stack size 8 bytes, waveg.o(.text.initWaveG))
+<P><STRONG><a name="[17e]"></a>initWaveG</STRONG> (Thumb, 76 bytes, Stack size 8 bytes, waveg.o(.text.initWaveG))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = initWaveG &rArr; generageWave &rArr; HAL_DAC_Start_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Start
-<LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;generageWave
+<BR>[Calls]<UL><LI><a href="#[176]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Start
+<LI><a href="#[172]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;generageWave
 </UL>
 <BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[b9]"></a>inputModeButtonClick</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, userinterface.o(.text.inputModeButtonClick))
-<BR><BR>[Calls]<UL><LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setSliderY
+<BR><BR>[Calls]<UL><LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setSliderY
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> userinterface.o(.text.userInterface)
 </UL>
 <P><STRONG><a name="[b6]"></a>inputModeButtonShader</STRONG> (Thumb, 146 bytes, Stack size 24 bytes, userinterface.o(.text.inputModeButtonShader))
 <BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = inputModeButtonShader &rArr; cacheCenterRec &rArr; cacheLine
 </UL>
-<BR>[Calls]<UL><LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterString
-<LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterRec
+<BR>[Calls]<UL><LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterString
+<LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterRec
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> userinterface.o(.text.userInterface)
 </UL>
-<P><STRONG><a name="[180]"></a>keyEvent</STRONG> (Thumb, 364 bytes, Stack size 16 bytes, keyevent.o(.text.keyEvent))
+<P><STRONG><a name="[17f]"></a>keyEvent</STRONG> (Thumb, 364 bytes, Stack size 16 bytes, keyevent.o(.text.keyEvent))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = keyEvent
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
-<LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;addEvent
+<LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;addEvent
 </UL>
 <BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[96]"></a>main</STRONG> (Thumb, 700 bytes, Stack size 3624 bytes, main.o(.text.main))
+<P><STRONG><a name="[96]"></a>main</STRONG> (Thumb, 840 bytes, Stack size 3624 bytes, main.o(.text.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4024<LI>Call Chain = main &rArr; MX_FMC_Init &rArr; HAL_SRAM_Init &rArr; HAL_SRAM_MspInit &rArr; HAL_RCCEx_PeriphCLKConfig &rArr; RCCEx_PLL3_Config
 </UL>
-<BR>[Calls]<UL><LI><a href="#[17c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ifBusy
-<LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keyEvent
-<LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;addTouchEvent
-<LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextGraphic
-<LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processWave
-<LI><a href="#[185]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bindOscWaveCh1
-<LI><a href="#[172]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getWaveCH1
-<LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graphInit
+<BR>[Calls]<UL><LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ifBusy
+<LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;addTouchEvent
+<LI><a href="#[17f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keyEvent
+<LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextGraphic
+<LI><a href="#[185]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processWave
+<LI><a href="#[184]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bindOscWaveCh1
+<LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getWaveCH1
+<LI><a href="#[177]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graphInit
 <LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
-<LI><a href="#[17e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initOscData
-<LI><a href="#[17f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initWaveG
-<LI><a href="#[184]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Start_IT
-<LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Start
+<LI><a href="#[17d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initOscData
+<LI><a href="#[17e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initWaveG
+<LI><a href="#[183]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Start_IT
+<LI><a href="#[176]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Start
 <LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM15_Init
 <LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM13_Init
 <LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM7_Init
@@ -2500,9 +2491,9 @@ Global Symbols
 <LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCCEx_PeriphCLKConfig
 <LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 <LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
-<LI><a href="#[183]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_MPU_Enable
-<LI><a href="#[182]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_MPU_ConfigRegion
-<LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_MPU_Disable
+<LI><a href="#[182]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_MPU_Enable
+<LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_MPU_ConfigRegion
+<LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_MPU_Disable
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr8
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
@@ -2515,14 +2506,14 @@ Global Symbols
 <P><STRONG><a name="[b0]"></a>messageOnFoldingUpdate</STRONG> (Thumb, 392 bytes, Stack size 16 bytes, uimessage.o(.text.messageOnFoldingUpdate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = messageOnFoldingUpdate &rArr; approachColorDiv
 </UL>
-<BR>[Calls]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;approachColorDiv
+<BR>[Calls]<UL><LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;approachColorDiv
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uimessage.o(.text.messageOnCursor)
 </UL>
 <P><STRONG><a name="[a2]"></a>messageShader</STRONG> (Thumb, 52 bytes, Stack size 24 bytes, uimessage.o(.text.messageShader))
 <BR><BR>[Stack]<UL><LI>Max Depth = 172<LI>Call Chain = messageShader &rArr; cacheRoundedRecBackground &rArr; cacheLine
 </UL>
-<BR>[Calls]<UL><LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheRoundedRecBackground
+<BR>[Calls]<UL><LI><a href="#[165]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheRoundedRecBackground
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OscDataMessageShader
 </UL>
@@ -2530,25 +2521,27 @@ Global Symbols
 <LI> uimessage.o(.text.messageUI)
 <LI> userinterface.o(.text.OscDataMessageOnCursor)
 </UL>
-<P><STRONG><a name="[188]"></a>messageUI</STRONG> (Thumb, 142 bytes, Stack size 40 bytes, uimessage.o(.text.messageUI))
+<P><STRONG><a name="[187]"></a>messageUI</STRONG> (Thumb, 142 bytes, Stack size 40 bytes, uimessage.o(.text.messageUI))
 <BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = messageUI &rArr; getUIobject &rArr; malloc
 </UL>
-<BR>[Calls]<UL><LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;priorityInsert
-<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getUIobject
+<BR>[Calls]<UL><LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;priorityInsert
+<LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getUIobject
 </UL>
-<BR>[Called By]<UL><LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;userInterface
+<BR>[Called By]<UL><LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;userInterface
 </UL>
 
-<P><STRONG><a name="[187]"></a>nextGraphic</STRONG> (Thumb, 192 bytes, Stack size 24 bytes, pipline.o(.text.nextGraphic))
-<BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = nextGraphic &rArr; shadeCursor &rArr; drawTransparentPoint
+<P><STRONG><a name="[186]"></a>nextGraphic</STRONG> (Thumb, 740 bytes, Stack size 32 bytes, pipline.o(.text.nextGraphic))
+<BR><BR>[Stack]<UL><LI>Max Depth = 148<LI>Call Chain = nextGraphic &rArr; shadeCursor &rArr; drawTransparentPoint
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
-<LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graph
-<LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheRec
-<LI><a href="#[18b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shadeCursor
-<LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateChild
-<LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processEvent
-<LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getHead
+<LI><a href="#[18c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;resetColorList
+<LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheRec
+<LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shadeCursor
+<LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateChild
+<LI><a href="#[188]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processEvent
+<LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getHead
+<LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Set_Window
+<LI><a href="#[18b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_WriteRAM_Prepare
 </UL>
 <BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -2569,62 +2562,79 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uifloatingwindow.o(.text.floatingOnFoldingUpdate)
 </UL>
-<P><STRONG><a name="[155]"></a>priorityInsert</STRONG> (Thumb, 118 bytes, Stack size 0 bytes, uiobject.o(.text.priorityInsert))
-<BR><BR>[Called By]<UL><LI><a href="#[168]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flotingUI
-<LI><a href="#[188]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;messageUI
-<LI><a href="#[166]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawerUI
-<LI><a href="#[18f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sliderUI
-<LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buttonUI
-<LI><a href="#[191]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;waveUI
-<LI><a href="#[162]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debugUI
-<LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backgroundUI
+<P><STRONG><a name="[15a]"></a>priorityInsert</STRONG> (Thumb, 118 bytes, Stack size 0 bytes, uiobject.o(.text.priorityInsert))
+<BR><BR>[Called By]<UL><LI><a href="#[16e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flotingUI
+<LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;messageUI
+<LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawerUI
+<LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sliderUI
+<LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buttonUI
+<LI><a href="#[192]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;waveUI
+<LI><a href="#[168]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debugUI
+<LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backgroundUI
 </UL>
 
-<P><STRONG><a name="[189]"></a>processEvent</STRONG> (Thumb, 628 bytes, Stack size 32 bytes, pipline.o(.text.processEvent))
+<P><STRONG><a name="[188]"></a>processEvent</STRONG> (Thumb, 628 bytes, Stack size 32 bytes, pipline.o(.text.processEvent))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = processEvent
 </UL>
-<BR>[Calls]<UL><LI><a href="#[18d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dequeueEvent
-<LI><a href="#[18c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;haveEvent
-<LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getHead
+<BR>[Calls]<UL><LI><a href="#[18e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dequeueEvent
+<LI><a href="#[18d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;haveEvent
+<LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getHead
 </UL>
-<BR>[Called By]<UL><LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextGraphic
+<BR>[Called By]<UL><LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextGraphic
 </UL>
 
-<P><STRONG><a name="[186]"></a>processWave</STRONG> (Thumb, 748 bytes, Stack size 32 bytes, osc.o(.text.processWave))
+<P><STRONG><a name="[185]"></a>processWave</STRONG> (Thumb, 752 bytes, Stack size 32 bytes, osc.o(.text.processWave))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = processWave
 </UL>
 <BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[16d]"></a>releaseKeyBind</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, pipline.o(.text.releaseKeyBind))
+<P><STRONG><a name="[170]"></a>releaseKeyBind</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, pipline.o(.text.releaseKeyBind))
 <BR><BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freqButtonClick
 </UL>
 
-<P><STRONG><a name="[177]"></a>resetColorList</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, interface.o(.text.resetColorList))
+<P><STRONG><a name="[18c]"></a>resetColorList</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, interface.o(.text.resetColorList))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = resetColorList
 </UL>
 <BR>[Calls]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graph
+<BR>[Called By]<UL><LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextGraphic
 </UL>
 
-<P><STRONG><a name="[169]"></a>setSliderY</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, uibutton.o(.text.setSliderY))
+<P><STRONG><a name="[16f]"></a>setSliderY</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, uibutton.o(.text.setSliderY))
 <BR><BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;triggerModeButtonClick
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inputModeButtonClick
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freqButtonClick
 </UL>
 
-<P><STRONG><a name="[16a]"></a>setXscale</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, osc.o(.text.setXscale))
-<BR><BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freqButtonClick
+<P><STRONG><a name="[14f]"></a>setXbias</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, osc.o(.text.setXbias))
+<BR><BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UIwaveEventlistener
 </UL>
 
-<P><STRONG><a name="[18b]"></a>shadeCursor</STRONG> (Thumb, 438 bytes, Stack size 72 bytes, shadecursor.o(.text.shadeCursor))
-<BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = shadeCursor &rArr; drawTransparentPoint
+<P><STRONG><a name="[154]"></a>setXscale</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, osc.o(.text.setXscale))
+<BR><BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freqButtonClick
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UIwaveEventlistener
+</UL>
+
+<P><STRONG><a name="[150]"></a>setYbias</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, osc.o(.text.setYbias))
+<BR><BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UIwaveEventlistener
+</UL>
+
+<P><STRONG><a name="[155]"></a>setYscale</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, osc.o(.text.setYscale))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = setYscale
+</UL>
+<BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UIwaveEventlistener
+</UL>
+
+<P><STRONG><a name="[18a]"></a>shadeCursor</STRONG> (Thumb, 474 bytes, Stack size 80 bytes, shadecursor.o(.text.shadeCursor))
+<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = shadeCursor &rArr; drawTransparentPoint
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
-<LI><a href="#[18e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawTransparentPoint
+<LI><a href="#[18f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawTransparentPoint
 </UL>
-<BR>[Called By]<UL><LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextGraphic
+<BR>[Called By]<UL><LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextGraphic
 </UL>
 
 <P><STRONG><a name="[b4]"></a>sliderEvent</STRONG> (Thumb, 170 bytes, Stack size 16 bytes, uibutton.o(.text.sliderEvent))
@@ -2632,13 +2642,13 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uibutton.o(.text.sliderUI)
 </UL>
-<P><STRONG><a name="[18f]"></a>sliderUI</STRONG> (Thumb, 106 bytes, Stack size 40 bytes, uibutton.o(.text.sliderUI))
+<P><STRONG><a name="[190]"></a>sliderUI</STRONG> (Thumb, 106 bytes, Stack size 40 bytes, uibutton.o(.text.sliderUI))
 <BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = sliderUI &rArr; getUIobject &rArr; malloc
 </UL>
-<BR>[Calls]<UL><LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;priorityInsert
-<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getUIobject
+<BR>[Calls]<UL><LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;priorityInsert
+<LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getUIobject
 </UL>
-<BR>[Called By]<UL><LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;userInterface
+<BR>[Called By]<UL><LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;userInterface
 </UL>
 
 <P><STRONG><a name="[b3]"></a>sliderUpdate</STRONG> (Thumb, 80 bytes, Stack size 0 bytes, uibutton.o(.text.sliderUpdate))
@@ -2646,140 +2656,141 @@ Global Symbols
 <LI> uibutton.o(.text.setSliderY)
 </UL>
 <P><STRONG><a name="[ba]"></a>triggerModeButtonClick</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, userinterface.o(.text.triggerModeButtonClick))
-<BR><BR>[Calls]<UL><LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setSliderY
+<BR><BR>[Calls]<UL><LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setSliderY
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> userinterface.o(.text.userInterface)
 </UL>
 <P><STRONG><a name="[b7]"></a>triggerModeButtonShader</STRONG> (Thumb, 168 bytes, Stack size 24 bytes, userinterface.o(.text.triggerModeButtonShader))
 <BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = triggerModeButtonShader &rArr; cacheCenterRec &rArr; cacheLine
 </UL>
-<BR>[Calls]<UL><LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterString
-<LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterRec
+<BR>[Calls]<UL><LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterString
+<LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheCenterRec
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> userinterface.o(.text.userInterface)
 </UL>
-<P><STRONG><a name="[18a]"></a>updateChild</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, pipline.o(.text.updateChild))
+<P><STRONG><a name="[189]"></a>updateChild</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, pipline.o(.text.updateChild))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16 + In Cycle
 <LI>Call Chain = updateChild &rArr;  updateChild (Cycle)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateChild
+<BR>[Calls]<UL><LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateChild
 </UL>
-<BR>[Called By]<UL><LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextGraphic
-<LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateChild
+<BR>[Called By]<UL><LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextGraphic
+<LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateChild
 </UL>
 
-<P><STRONG><a name="[150]"></a>updateMessage</STRONG> (Thumb, 88 bytes, Stack size 24 bytes, uifloatingwindow.o(.text.updateMessage))
+<P><STRONG><a name="[151]"></a>updateMessage</STRONG> (Thumb, 88 bytes, Stack size 24 bytes, uifloatingwindow.o(.text.updateMessage))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = updateMessage &rArr; getRow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRow
+<BR>[Calls]<UL><LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRow
 </UL>
 <BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UIwaveEventlistener
 </UL>
 
-<P><STRONG><a name="[17b]"></a>userInterface</STRONG> (Thumb, 336 bytes, Stack size 48 bytes, userinterface.o(.text.userInterface))
+<P><STRONG><a name="[17a]"></a>userInterface</STRONG> (Thumb, 336 bytes, Stack size 48 bytes, userinterface.o(.text.userInterface))
 <BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = userInterface &rArr; flotingUI &rArr; getUIobject &rArr; malloc
 </UL>
-<BR>[Calls]<UL><LI><a href="#[168]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flotingUI
-<LI><a href="#[188]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;messageUI
-<LI><a href="#[166]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawerUI
-<LI><a href="#[18f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sliderUI
-<LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buttonUI
-<LI><a href="#[191]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;waveUI
-<LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;childInsert
+<BR>[Calls]<UL><LI><a href="#[16e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flotingUI
+<LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;messageUI
+<LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawerUI
+<LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sliderUI
+<LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buttonUI
+<LI><a href="#[192]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;waveUI
+<LI><a href="#[191]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;childInsert
 </UL>
-<BR>[Called By]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graphInit
+<BR>[Called By]<UL><LI><a href="#[177]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graphInit
 </UL>
 
 <P><STRONG><a name="[bd]"></a>waveShader</STRONG> (Thumb, 224 bytes, Stack size 32 bytes, uiwave.o(.text.waveShader))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = waveShader &rArr; drawLabel &rArr; cacheOneCenter &rArr; cacheChar
 </UL>
-<BR>[Calls]<UL><LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawLabel
-<LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawMesh
-<LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheLine
+<BR>[Calls]<UL><LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawLabel
+<LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawMesh
+<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cacheLine
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uiwave.o(.text.waveUI)
 </UL>
-<P><STRONG><a name="[191]"></a>waveUI</STRONG> (Thumb, 84 bytes, Stack size 24 bytes, uiwave.o(.text.waveUI))
+<P><STRONG><a name="[192]"></a>waveUI</STRONG> (Thumb, 84 bytes, Stack size 24 bytes, uiwave.o(.text.waveUI))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = waveUI &rArr; getUIobject &rArr; malloc
 </UL>
-<BR>[Calls]<UL><LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;priorityInsert
-<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getUIobject
+<BR>[Calls]<UL><LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;priorityInsert
+<LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getUIobject
 </UL>
-<BR>[Called By]<UL><LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;userInterface
+<BR>[Called By]<UL><LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;userInterface
 </UL>
 
-<P><STRONG><a name="[192]"></a>__0sprintf</STRONG> (Thumb, 34 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf), UNUSED)
+<P><STRONG><a name="[193]"></a>__0sprintf</STRONG> (Thumb, 34 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sputc
-<LI><a href="#[193]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 
-<P><STRONG><a name="[1ad]"></a>__1sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf), UNUSED)
+<P><STRONG><a name="[1ae]"></a>__1sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf), UNUSED)
 
 <P><STRONG><a name="[146]"></a>__2sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2sprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OscDataMessageShader
 <LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freqButtonShader
-<LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawLabel
+<LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawLabel
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UIwaveEventlistener
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debugShader
 </UL>
 
-<P><STRONG><a name="[1ae]"></a>__c89sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf), UNUSED)
+<P><STRONG><a name="[1af]"></a>__c89sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf), UNUSED)
 
-<P><STRONG><a name="[1af]"></a>sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf), UNUSED)
+<P><STRONG><a name="[1b0]"></a>sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf), UNUSED)
 
-<P><STRONG><a name="[195]"></a>__ARM_fpclassifyf</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, fpclassifyf.o(i.__ARM_fpclassifyf))
-<BR><BR>[Called By]<UL><LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_sinf
+<P><STRONG><a name="[196]"></a>__ARM_fpclassifyf</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, fpclassifyf.o(i.__ARM_fpclassifyf))
+<BR><BR>[Called By]<UL><LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_sinf
 </UL>
 
-<P><STRONG><a name="[170]"></a>__hardfp_sinf</STRONG> (Thumb, 344 bytes, Stack size 16 bytes, sinf.o(i.__hardfp_sinf))
+<P><STRONG><a name="[173]"></a>__hardfp_sinf</STRONG> (Thumb, 344 bytes, Stack size 16 bytes, sinf.o(i.__hardfp_sinf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = __hardfp_sinf &rArr; __mathlib_rredf2
 </UL>
-<BR>[Calls]<UL><LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__set_errno
-<LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_rredf2
-<LI><a href="#[196]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_flt_underflow
-<LI><a href="#[198]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_flt_invalid
-<LI><a href="#[199]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_flt_infnan
-<LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_fpclassifyf
+<BR>[Calls]<UL><LI><a href="#[198]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__set_errno
+<LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_rredf2
+<LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_flt_underflow
+<LI><a href="#[199]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_flt_invalid
+<LI><a href="#[19a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_flt_infnan
+<LI><a href="#[196]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_fpclassifyf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;generageWave
-</UL>
-
-<P><STRONG><a name="[199]"></a>__mathlib_flt_infnan</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, funder.o(i.__mathlib_flt_infnan))
-<BR><BR>[Called By]<UL><LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_sinf
+<BR>[Called By]<UL><LI><a href="#[172]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;generageWave
 </UL>
 
-<P><STRONG><a name="[198]"></a>__mathlib_flt_invalid</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, funder.o(i.__mathlib_flt_invalid))
-<BR><BR>[Called By]<UL><LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_sinf
+<P><STRONG><a name="[19a]"></a>__mathlib_flt_infnan</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, funder.o(i.__mathlib_flt_infnan))
+<BR><BR>[Called By]<UL><LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_sinf
 </UL>
 
-<P><STRONG><a name="[196]"></a>__mathlib_flt_underflow</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, funder.o(i.__mathlib_flt_underflow))
-<BR><BR>[Called By]<UL><LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_sinf
+<P><STRONG><a name="[199]"></a>__mathlib_flt_invalid</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, funder.o(i.__mathlib_flt_invalid))
+<BR><BR>[Called By]<UL><LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_sinf
 </UL>
 
-<P><STRONG><a name="[194]"></a>__mathlib_rredf2</STRONG> (Thumb, 316 bytes, Stack size 20 bytes, rredf.o(i.__mathlib_rredf2))
+<P><STRONG><a name="[197]"></a>__mathlib_flt_underflow</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, funder.o(i.__mathlib_flt_underflow))
+<BR><BR>[Called By]<UL><LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_sinf
+</UL>
+
+<P><STRONG><a name="[195]"></a>__mathlib_rredf2</STRONG> (Thumb, 316 bytes, Stack size 20 bytes, rredf.o(i.__mathlib_rredf2))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = __mathlib_rredf2
 </UL>
-<BR>[Called By]<UL><LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_sinf
+<BR>[Called By]<UL><LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_sinf
 </UL>
 
-<P><STRONG><a name="[1b0]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
+<P><STRONG><a name="[1b1]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
 
-<P><STRONG><a name="[1b1]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+<P><STRONG><a name="[1b2]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
 
-<P><STRONG><a name="[1b2]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
+<P><STRONG><a name="[1b3]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
-<P><STRONG><a name="[197]"></a>__set_errno</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, errno.o(i.__set_errno))
-<BR><BR>[Called By]<UL><LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_sinf
+<P><STRONG><a name="[198]"></a>__set_errno</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, errno.o(i.__set_errno))
+<BR><BR>[Called By]<UL><LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_sinf
 </UL>
 
-<P><STRONG><a name="[171]"></a>malloc</STRONG> (Thumb, 92 bytes, Stack size 20 bytes, malloc.o(i.malloc))
+<P><STRONG><a name="[174]"></a>malloc</STRONG> (Thumb, 92 bytes, Stack size 20 bytes, malloc.o(i.malloc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = malloc
 </UL>
-<BR>[Called By]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graphInit
-<LI><a href="#[17e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initOscData
-<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getUIobject
-<LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;headInit
+<BR>[Called By]<UL><LI><a href="#[177]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graphInit
+<LI><a href="#[17d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initOscData
+<LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getUIobject
+<LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;headInit
 </UL>
 <P>
 <H3>
@@ -2817,37 +2828,37 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_SlaveConfigSynchro
 </UL>
 
-<P><STRONG><a name="[19a]"></a>_fp_digits</STRONG> (Thumb, 366 bytes, Stack size 64 bytes, printfa.o(i._fp_digits), UNUSED)
+<P><STRONG><a name="[19b]"></a>_fp_digits</STRONG> (Thumb, 366 bytes, Stack size 64 bytes, printfa.o(i._fp_digits), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 <LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2ulz
-<LI><a href="#[19b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
+<LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
 </UL>
-<BR>[Called By]<UL><LI><a href="#[193]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<BR>[Called By]<UL><LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 
-<P><STRONG><a name="[193]"></a>_printf_core</STRONG> (Thumb, 1744 bytes, Stack size 136 bytes, printfa.o(i._printf_core), UNUSED)
+<P><STRONG><a name="[194]"></a>_printf_core</STRONG> (Thumb, 1744 bytes, Stack size 136 bytes, printfa.o(i._printf_core), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
-<LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
-<LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_pre_padding
-<LI><a href="#[19d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_post_padding
-<LI><a href="#[19a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+<LI><a href="#[19f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+<LI><a href="#[19d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_pre_padding
+<LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_post_padding
+<LI><a href="#[19b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
-<BR>[Called By]<UL><LI><a href="#[192]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0sprintf
-</UL>
-
-<P><STRONG><a name="[19d]"></a>_printf_post_padding</STRONG> (Thumb, 36 bytes, Stack size 24 bytes, printfa.o(i._printf_post_padding), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[193]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<BR>[Called By]<UL><LI><a href="#[193]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0sprintf
 </UL>
 
-<P><STRONG><a name="[19c]"></a>_printf_pre_padding</STRONG> (Thumb, 46 bytes, Stack size 24 bytes, printfa.o(i._printf_pre_padding), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[193]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<P><STRONG><a name="[19e]"></a>_printf_post_padding</STRONG> (Thumb, 36 bytes, Stack size 24 bytes, printfa.o(i._printf_post_padding), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+</UL>
+
+<P><STRONG><a name="[19d]"></a>_printf_pre_padding</STRONG> (Thumb, 46 bytes, Stack size 24 bytes, printfa.o(i._printf_pre_padding), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 
 <P><STRONG><a name="[be]"></a>_sputc</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, printfa.o(i._sputc))
-<BR><BR>[Called By]<UL><LI><a href="#[192]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0sprintf
+<BR><BR>[Called By]<UL><LI><a href="#[193]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0sprintf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> printfa.o(i.__0sprintf)
 </UL><P>

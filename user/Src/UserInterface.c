@@ -1,10 +1,7 @@
 #include "UserInterface.h"
 
 extern OscData *thisOsc;
-char message[128];
-
-extern OscData *thisOsc;
-
+char message[64];
 void freqButtonShader(UIobject *this);
 void inputModeButtonShader(UIobject *this);
 void triggerModeButtonShader(UIobject *this);

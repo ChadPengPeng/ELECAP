@@ -72,11 +72,11 @@ int triggerDetect(uint16_t *wave, int length, OscData *data)
         data->trigger = data->avg;
     }
     int trigger = WIDTH / 2;
-    for (int i = WIDTH / 2 + constrainMax(data->xBias, 0); i < length - WIDTH / 2 + constrainMin(data->xBias, 0); i++)
+    for (int i = constrainMin(WIDTH / 2 + data->xBias, 0); i < constrainMax(length - WIDTH / 2 + data->xBias, WIDTH); i++)
     {
         if (wave[i] > data->trigger && data->trigger >= wave[i - 1])
         {
-            trigger = i;
+            trigger = i - data->xBias;
             break;
         }
     }
@@ -89,11 +89,11 @@ void processWave(OscData *data, uint16_t *wave, int length, int *waveUIlist)
     data->max = waveMax(wave, length);
     data->min = waveMin(wave, length);
     data->avg = waveAvg(wave, length);
-    data->xBias = triggerDetect(wave, length, data);
+    data->trigger = triggerDetect(wave, length, data);
     data->length = length;
-    for (int i = data->xBias; i < data->xBias + WIDTH; i++)
+    for (int i = data->trigger; i < data->trigger + WIDTH; i++)
     {
-        waveUIlist[i - data->xBias] = toWaveUI(wave[i]);
+        waveUIlist[i - data->trigger] = toWaveUI(wave[i]);
     }
 }
 
@@ -128,7 +128,7 @@ void setXscale(OscData *data, int xscale)
     // set timer6 auto reload register
     TIM6->ARR = TimerCounter - 1;
     // because TimerCounter is not float, so we need to use integer division to get the proper value of xScale
-    //data->xScale = adcTIMfreq / TimerCounter;
+    // data->xScale = adcTIMfreq / TimerCounter;
     data->xScale = xscale;
 }
 
@@ -165,7 +165,7 @@ void setYscale(OscData *data, int yscale)
     default:
         break;
     }
-    
+
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1, index >> 2); // 1/20x PIN
 
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3, index >> 1 & 0x1); // CD4052 A1 PIN
@@ -176,7 +176,6 @@ void setYscale(OscData *data, int yscale)
 void setTrigger(OscData *data, int trigger)
 {
     data->trigger = trigger;
-    // todo
 }
 
 void bindOscWaveCh1(OscData *data, int *waveUIlist)

@@ -106,7 +106,7 @@ void floatingMessage(char *message)
     thisFloatingWindow->color = BLACK;
     updateMessage(message);
 }
-
+char floatMessage[64];
 void updateMessage(char *message)
 {
     thisFloatingWindow->shader = floatingShader;

@@ -68,13 +68,13 @@ void debugShader()
     sprintf(message, "y:%.3d", tp_dev.y[0]);
     cacheString(0, 32, 100, 100, 12, message, 0xaf7d);
     extern UIobject *cursor;
-    sprintf(message, "cursor:0x%8x", (uint32_t)cursor);
+    sprintf(message, "cursor:%#8x", (uint32_t)cursor);
     cacheString(0, 48, 100, 100, 12, message, 0xaf7d);
     sprintf(message, "event:%d", eventBuffer.head);
     cacheString(0, 64, 100, 100, 12, message, 0xaf7d);
     sprintf(message, "node:%d", node);
     cacheString(0, 80, 100, 100, 12, message, 0xaf7d);
-    sprintf(message, "sta:%x", tp_dev.sta);
+    sprintf(message, "sta:%#hx", tp_dev.sta);
     cacheString(0, 96, 100, 100, 12, message, 0xaf7d);
 }
 

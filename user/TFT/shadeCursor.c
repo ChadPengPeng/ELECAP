@@ -41,30 +41,38 @@ void shadeCursor()
     if (weight == 0)
         return;
 
-    int x = 0;
-    int y = r;
-    int d = 3 - 2 * r;
-
-    while (x <= y)
+    for (int i = 0; i < MAX_TOUCH_POINTS; i++)
     {
-        drawTransparentPoint(x0 + x, y0 + y, color, weight); // down
-        drawTransparentPoint(x0 - x, y0 + y, color, weight);
-        drawTransparentPoint(x0 + y, y0 + x, color, weight); // right
-        drawTransparentPoint(x0 + y, y0 - x, color, weight);
-        drawTransparentPoint(x0 - y, y0 + x, color, weight); // left
-        drawTransparentPoint(x0 - y, y0 - x, color, weight);
-        drawTransparentPoint(x0 - x, y0 - y, color, weight); // up
-        drawTransparentPoint(x0 + x, y0 - y, color, weight);
+        if (touchingParam.multiTouchSta >> i & 0x1)
+        {
+            x0 = touchingParam.xList[i];
+            y0 = touchingParam.yList[i];
+            int x = 0;
+            int y = r;
+            int d = 3 - 2 * r;
 
-        if (d < 0)
-        {
-            d += 4 * x + 6;
+            while (x <= y)
+            {
+                drawTransparentPoint(x0 + x, y0 + y, color, weight); // down
+                drawTransparentPoint(x0 - x, y0 + y, color, weight);
+                drawTransparentPoint(x0 + y, y0 + x, color, weight); // right
+                drawTransparentPoint(x0 + y, y0 - x, color, weight);
+                drawTransparentPoint(x0 - y, y0 + x, color, weight); // left
+                drawTransparentPoint(x0 - y, y0 - x, color, weight);
+                drawTransparentPoint(x0 - x, y0 - y, color, weight); // up
+                drawTransparentPoint(x0 + x, y0 - y, color, weight);
+
+                if (d < 0)
+                {
+                    d += 4 * x + 6;
+                }
+                else
+                {
+                    d += 4 * (x - y) + 10;
+                    y--;
+                }
+                x++;
+            }
         }
-        else
-        {
-            d += 4 * (x - y) + 10;
-            y--;
-        }
-        x++;
     }
 }

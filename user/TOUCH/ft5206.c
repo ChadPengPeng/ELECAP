@@ -200,8 +200,8 @@ u8 FT5206_Scan(u8 mode)
 		}
 		else						// 之前就没有被按下
 		{ 
-			tp_dev.x[0]=0xffff;
-			tp_dev.y[0]=0xffff;
+			// tp_dev.x[0]=0xffff;
+			// tp_dev.y[0]=0xffff;
 			tp_dev.sta&=0XE0;	// 清除点有效标记	
 		}	 
 	}
