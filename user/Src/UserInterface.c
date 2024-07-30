@@ -11,6 +11,7 @@ void triggerModeButtonClick(UIobject *this, Event event);
 
 void OscDataMessageShader(UIobject *this);
 void OscDataMessageOnCursor(UIobject *this, Event event);
+// implement your own UI
 void userInterface()
 {
     flotingUI(WIDTH / 2, HEIGHT / 4, 100, 20, MacaronORANGE, BLACK, 254);
@@ -52,9 +53,9 @@ void freqButtonShader(UIobject *this)
 {
     cacheCenterRec(this->x, this->y, this->width, this->height, this->color);
     // cacheCenterBlock(this->x, this->y, this->param[0] - 1, this->param[1] - 1, this->param[2]);
-    //real freq
-    sprintf(message, "freq:\n %d", adcTIMfreq/(TIM6->ARR+1));
-    //sprintf(message, "freq:\n %d", thisOsc->xScale);
+    // real freq
+    sprintf(message, "freq:\n %d", adcTIMfreq / (TIM6->ARR + 1));
+    // sprintf(message, "freq:\n %d", thisOsc->xScale);
     cacheCenterString(this->x, this->y, this->width, this->height, 12, message, this->color);
 }
 
@@ -80,12 +81,8 @@ void triggerModeButtonShader(UIobject *this)
     cacheCenterString(this->x, this->y, this->width, this->height, 12, message, this->color);
 }
 
-void freqButtonClick(UIobject *this, Event event)
+int intValueButtonClick(UIobject *this, Event event, int *valuePtr)
 {
-    if (eventCodeMask(event) == Select)
-        buttonOnCenter(this);
-    else if (stateMask(event) != OnClick)
-        return;
     int add = 0;
     if (eventCodeMask(event) == Touch)
     {
@@ -117,13 +114,23 @@ void freqButtonClick(UIobject *this, Event event)
             break;
         }
     }
-    int freq = thisOsc->xScale;
+    int value = *valuePtr;
     if (add == 1)
-        freq = highDigitPlusOne(freq);
+        value = highDigitPlusOne(value);
     else if (add == -1)
-        freq = highDigitMinusOne(freq);
-    freq = constrain(freq, 50000, 1000000);
-    setXscale(thisOsc, freq);
+        value = highDigitMinusOne(value);
+    value = constrain(value, 5000, 1000000);
+    return value;
+}
+
+void freqButtonClick(UIobject *this, Event event)
+{
+	if (eventCodeMask(event) == Select)
+        buttonOnCenter(this);
+    else if (stateMask(event) != OnClick)
+        return ;
+    int newFreq = intValueButtonClick(this, event, &thisOsc->xScale);
+    setXscale(thisOsc, newFreq);
 }
 
 void inputModeButtonClick(UIobject *this, Event event)
@@ -132,10 +139,8 @@ void inputModeButtonClick(UIobject *this, Event event)
         buttonOnCenter(this);
     else if (stateMask(event) == OnClick)
     {
-        if (thisOsc->inputMode == AC)
-            thisOsc->inputMode = DC;
-        else
-            thisOsc->inputMode = AC;
+        InputMode inputMode = 1 - thisOsc->inputMode;
+        setInputMode(thisOsc, inputMode);
     }
 }
 
@@ -145,10 +150,8 @@ void triggerModeButtonClick(UIobject *this, Event event)
         buttonOnCenter(this);
     else if (stateMask(event) == OnClick)
     {
-        if (thisOsc->triggerMode == Auto)
-            thisOsc->triggerMode = Manual;
-        else
-            thisOsc->triggerMode = Auto;
+        TriggerMode triggerMode = 1 - thisOsc->triggerMode;
+        setTriggerMode(thisOsc, triggerMode);
     }
 }
 

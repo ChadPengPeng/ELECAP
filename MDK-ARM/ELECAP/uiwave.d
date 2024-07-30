@@ -40,4 +40,5 @@ elecap/uiwave.o: ..\user\TFT\UIwave.c ..\user\TFT\UIwave.h \
   ..\user\device\bsp_delay.h ..\user\TOUCH\fontInclude.h \
   ..\user\Src\mathDef.h ..\user\Src\osc.h ..\user\Src\volDef.h \
   ..\Core\Inc\adc.h ..\Core\Inc\main.h ..\Core\Inc\tim.h \
+  ..\user\Src\VolBiasDac.h ..\Core\Inc\i2c.h \
   ..\user\TFT\UIfloatingWindow.h ..\user\EVENT\touchEvent.h

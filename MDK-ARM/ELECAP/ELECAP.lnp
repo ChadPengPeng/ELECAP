@@ -63,6 +63,7 @@
 "elecap\userinterface.o"
 "elecap\keyevent.o"
 "elecap\mathdef.o"
+"elecap\volbiasdac.o"
 --library_type=microlib --strict --scatter "ELECAP\ELECAP.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

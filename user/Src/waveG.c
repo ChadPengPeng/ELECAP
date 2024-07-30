@@ -29,7 +29,7 @@ void generageWave()
     case SAWTOOTH:
         for (int i = 0; i < length; i++)
         {
-            dacWave[i] = toDacNum((uint16_t)(waveG.amp * 2.0f * i / length + VREF / 2.0f));
+            dacWave[i] = toDacNum(waveG.amp * 2.0f * i / length + VREF / 2.0f);
             dacWave[i] = constrain(dacWave[i], 0, DAC_MAX);
         }
         break;
@@ -37,7 +37,7 @@ void generageWave()
     case TRIANGLE:
         for (int i = 0; i < length; i++)
         {
-            dacWave[i] = toDacNum((uint16_t)(waveG.amp * 2.0f * i / length + VREF / 2.0f)); // todo
+            dacWave[i] = toDacNum(waveG.amp * 2.0f * i / length + VREF / 2.0f); // todo
             dacWave[i] = constrain(dacWave[i], 0, DAC_MAX);
         }
         break;
@@ -45,7 +45,7 @@ void generageWave()
     case SQUARE:
         for (int i = 0; i < length; i++)
         {
-            dacWave[i] = toDacNum((uint16_t)(waveG.amp * 2.0f * i / length + VREF / 2.0f)); // todo
+            dacWave[i] = toDacNum(waveG.amp * 2.0f * i / length + VREF / 2.0f); // todo
             dacWave[i] = constrain(dacWave[i], 0, 4095);
         }
         break;
@@ -53,14 +53,21 @@ void generageWave()
     default:
         break;
     }
-    HAL_DAC_Start_DMA(&hdac1, DAC_CHANNEL_1, (uint32_t *)dacWave, waveG.length, DAC_ALIGN_12B_R);
+    HAL_DAC_Start_DMA(&hdac1, DAC_CHANNEL_1, (uint32_t *)dacWave, length, DAC_ALIGN_12B_R);
 }
 
+uint16_t DcWaveList[64];
 void generateVoltage(float volt)
 {
+    HAL_TIM_Base_Stop(&htim7);
     HAL_DAC_Stop_DMA(&hdac1, DAC_CHANNEL_1);
-    HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_1, DAC_ALIGN_12B_R, toDacNum(volt));
-    HAL_DAC_Start_DMA(&hdac1, DAC_CHANNEL_1, (uint32_t *)dacWave, waveG.length, DAC_ALIGN_12B_R);
+    uint16_t value = toDacNum(volt);
+    for (int i = 0; i < 64; i++)
+    {
+        DcWaveList[i] = value;
+    }
+    HAL_TIM_Base_Start(&htim7);
+    HAL_DAC_Start_DMA(&hdac1, DAC_CHANNEL_1, (uint32_t *)DcWaveList, 64, DAC_ALIGN_12B_R);
 }
 
 void setFreq(float freq)

@@ -3,26 +3,30 @@
 void keyEvent()
 {
     static State state[keyNum];
-    static uint8_t lastClick[keyNum] = {0};
-    for (Event e = KEY1; e <= KEY4; e++)
+    static uint8_t lastClick[keyNum] = {0, 0, 0, 0};
+    for (EventCode e = KEY1; e <= KEY4; e++)
     {
-        lastClick[e] = (HAL_GPIO_ReadPin(GPIOE, (uint16_t)1 << (e - KEY1)) == RESET) | lastClick[e] << 1;
-        if (state[e] == OnClick)
-            state[e] = Hold;
-        if (state[e] == HoldEnd)
-            state[e] = NoneState;
+        int KeyIndex = e - KEY1;
+        int click = (HAL_GPIO_ReadPin(GPIOE, (uint16_t)1 << (KeyIndex)) == RESET);
+        if (state[KeyIndex] == OnClick)
+            state[KeyIndex] = Hold;
+        if (state[KeyIndex] == HoldEnd)
+            state[KeyIndex] = NoneState;
         // warning: Only when key is PE0-PE3, this code can work.
-        if (lastClick[e] == 0b00001111 && state[e] == NoneState)
+        if (lastClick[KeyIndex] == 0b00000111 && click != 0)
         {
-            state[e] = OnClick;
+            state[KeyIndex] = OnClick;
         }
-        if (lastClick[e] == 0b00000000 && state[e] == Hold)
+        if (lastClick[KeyIndex] == 0b00001000 && click == 0 && state[KeyIndex] == Hold)
         {
-            state[e] = HoldEnd;
+            state[KeyIndex] = HoldEnd;
         }
-        if (state[e] != NoneState)
+
+        lastClick[KeyIndex] = click | ((lastClick[KeyIndex] << 1) & 0b00001111);
+
+        if (state[KeyIndex] != NoneState)
         {
-            addEvent(getEvent(e, state[e]));
+            addEvent(getEvent(e, state[KeyIndex]));
         }
     }
 }

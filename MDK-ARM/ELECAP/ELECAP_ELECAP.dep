@@ -1,7 +1,7 @@
 Dependencies for Project 'ELECAP', Target 'ELECAP': (DO NOT MODIFY !)
 CompilerVersion: 6220000::V6.22::ARMCLANG
-F (startup_stm32h750xx.s)(0x66A2A8B5)(--target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4 -Wa,armasm,--pd,"__MICROLIB SETA 1"-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-Wa,armasm,--pd,"__UVISION_VERSION SETA 540" -Wa,armasm,--pd,"STM32H750xx SETA 1" -Wa,armasm,--pd,"_RTE_ SETA 1"-o elecap/startup_stm32h750xx.o)
-F (../Core/Src/main.c)(0x66A35E58)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/main.o -MMD)
+F (startup_stm32h750xx.s)(0x66A683CE)(--target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4 -Wa,armasm,--pd,"__MICROLIB SETA 1"-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-Wa,armasm,--pd,"__UVISION_VERSION SETA 540" -Wa,armasm,--pd,"STM32H750xx SETA 1" -Wa,armasm,--pd,"_RTE_ SETA 1"-o elecap/startup_stm32h750xx.o)
+F (../Core/Src/main.c)(0x66A698B3)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/main.o -MMD)
 I (..\Core\Inc\main.h)(0x665F396B)
 I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h)(0x6654A03C)
 I (..\Core\Inc\stm32h7xx_hal_conf.h)(0x669866F3)
@@ -42,7 +42,7 @@ I (..\Core\Inc\adc.h)(0x669866F2)
 I (..\Core\Inc\dac.h)(0x669866F2)
 I (..\Core\Inc\dma.h)(0x668E9A3D)
 I (..\Core\Inc\i2c.h)(0x669A0D95)
-I (..\Core\Inc\tim.h)(0x669E7FFD)
+I (..\Core\Inc\tim.h)(0x66A683C3)
 I (..\Core\Inc\usart.h)(0x669866F3)
 I (..\Core\Inc\gpio.h)(0x665F3527)
 I (..\Core\Inc\fmc.h)(0x665F3527)
@@ -62,11 +62,12 @@ I (..\user\EVENT\touchEvent.h)(0x66A35E3D)
 I (..\user\TFT\shadeCursor.h)(0x669CB2A2)
 I (..\user\TFT\UIsample.h)(0x66A1526F)
 I (..\user\Src\ITHandler.h)(0x669A4768)
-I (..\user\Src\osc.h)(0x66A36356)
-I (..\user\Src\volDef.h)(0x66A2A233)
-I (..\user\Src\waveG.h)(0x669ED3FB)
+I (..\user\Src\osc.h)(0x66A695A1)
+I (..\user\Src\volDef.h)(0x66A67EF2)
+I (..\user\Src\VolBiasDac.h)(0x66A67C12)
+I (..\user\Src\waveG.h)(0x66A3C298)
 I (..\user\EVENT\keyEvent.h)(0x669EBEDD)
-F (../Core/Src/gpio.c)(0x66A1636D)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/gpio.o -MMD)
+F (../Core/Src/gpio.c)(0x66A6806A)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/gpio.o -MMD)
 I (..\Core\Inc\gpio.h)(0x665F3527)
 I (..\Core\Inc\main.h)(0x665F396B)
 I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h)(0x6654A03C)
@@ -294,8 +295,8 @@ I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim.h)(0x6654A03C)
 I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim_ex.h)(0x6654A03C)
 I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h)(0x6654A03C)
 I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h)(0x6654A03C)
-F (../Core/Src/tim.c)(0x66A2A1BB)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/tim.o -MMD)
-I (..\Core\Inc\tim.h)(0x669E7FFD)
+F (../Core/Src/tim.c)(0x66A683CD)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/tim.o -MMD)
+I (..\Core\Inc\tim.h)(0x66A683C3)
 I (..\Core\Inc\main.h)(0x665F396B)
 I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h)(0x6654A03C)
 I (..\Core\Inc\stm32h7xx_hal_conf.h)(0x669866F3)
@@ -408,16 +409,18 @@ I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim_ex.h)(0x6654A03C)
 I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h)(0x6654A03C)
 I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h)(0x6654A03C)
 I (..\Core\Inc\stm32h7xx_it.h)(0x669EBA82)
-I (..\user\Src\osc.h)(0x66A36356)
-I (..\user\Src\volDef.h)(0x66A2A233)
+I (..\user\Src\osc.h)(0x66A695A1)
+I (..\user\Src\volDef.h)(0x66A67EF2)
 I (..\Core\Inc\adc.h)(0x669866F2)
-I (..\Core\Inc\tim.h)(0x669E7FFD)
+I (..\Core\Inc\tim.h)(0x66A683C3)
 I (..\user\TFT\interface.h)(0x66A2BA77)
 I (..\user\device\dev_lcd.h)(0x66A262B6)
 I (..\user\device\bsp_system.h)(0x669CD74F)
 I (..\user\device\bsp_delay.h)(0x627FADD1)
 I (..\user\TOUCH\fontInclude.h)(0x6661C123)
 I (..\user\Src\mathDef.h)(0x66A1404F)
+I (..\user\Src\VolBiasDac.h)(0x66A67C12)
+I (..\Core\Inc\i2c.h)(0x669A0D95)
 I (..\user\EVENT\event.h)(0x66A158CE)
 F (../Core/Src/stm32h7xx_hal_msp.c)(0x669A395F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/stm32h7xx_hal_msp.o -MMD)
 I (..\Core\Inc\main.h)(0x665F396B)
@@ -1765,7 +1768,7 @@ I (..\user\device\dev_lcd.h)(0x66A262B6)
 I (..\user\device\bsp_delay.h)(0x627FADD1)
 I (..\user\TOUCH\fontInclude.h)(0x6661C123)
 I (..\user\Src\mathDef.h)(0x66A1404F)
-F (..\user\TFT\UIsample.c)(0x66A35CCF)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/uisample.o -MMD)
+F (..\user\TFT\UIsample.c)(0x66A684CD)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/uisample.o -MMD)
 I (..\user\TFT\UIsample.h)(0x66A1526F)
 I (..\user\TFT\UIobject.h)(0x66A150CC)
 I (..\user\EVENT\event.h)(0x66A158CE)
@@ -1814,7 +1817,7 @@ I (..\user\EVENT\touchEvent.h)(0x66A35E3D)
 I (..\Core\Inc\main.h)(0x665F396B)
 I (..\user\TOUCH\touch.h)(0x5FC0E4E9)
 I (..\user\system\system.h)(0x5FD43AF0)
-F (..\user\TFT\UIwave.c)(0x66A36BA5)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/uiwave.o -MMD)
+F (..\user\TFT\UIwave.c)(0x66A69292)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/uiwave.o -MMD)
 I (..\user\TFT\UIwave.h)(0x66A27764)
 I (..\user\TFT\UIobject.h)(0x66A150CC)
 I (..\user\EVENT\event.h)(0x66A158CE)
@@ -1859,11 +1862,13 @@ I (..\user\device\dev_lcd.h)(0x66A262B6)
 I (..\user\device\bsp_delay.h)(0x627FADD1)
 I (..\user\TOUCH\fontInclude.h)(0x6661C123)
 I (..\user\Src\mathDef.h)(0x66A1404F)
-I (..\user\Src\osc.h)(0x66A36356)
-I (..\user\Src\volDef.h)(0x66A2A233)
+I (..\user\Src\osc.h)(0x66A695A1)
+I (..\user\Src\volDef.h)(0x66A67EF2)
 I (..\Core\Inc\adc.h)(0x669866F2)
 I (..\Core\Inc\main.h)(0x665F396B)
-I (..\Core\Inc\tim.h)(0x669E7FFD)
+I (..\Core\Inc\tim.h)(0x66A683C3)
+I (..\user\Src\VolBiasDac.h)(0x66A67C12)
+I (..\Core\Inc\i2c.h)(0x669A0D95)
 I (..\user\TFT\UIfloatingWindow.h)(0x66A3697D)
 I (..\user\EVENT\touchEvent.h)(0x66A35E3D)
 F (..\user\device\bsp_spi.c)(0x668E8A72)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/bsp_spi.o -MMD)
@@ -1994,7 +1999,7 @@ I (..\user\EVENT\touchEvent.h)(0x66A35E3D)
 I (..\Core\Inc\main.h)(0x665F396B)
 F (..\user\EVENT\event.c)(0x669ED3FB)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/event.o -MMD)
 I (..\user\EVENT\event.h)(0x66A158CE)
-F (..\user\EVENT\touchEvent.c)(0x66A2AAD1)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/touchevent.o -MMD)
+F (..\user\EVENT\touchEvent.c)(0x66A690BD)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/touchevent.o -MMD)
 I (..\user\EVENT\touchEvent.h)(0x66A35E3D)
 I (..\user\EVENT\event.h)(0x66A158CE)
 I (..\Core\Inc\main.h)(0x665F396B)
@@ -2033,7 +2038,7 @@ I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim.h)(0x6654A03C)
 I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim_ex.h)(0x6654A03C)
 I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h)(0x6654A03C)
 I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h)(0x6654A03C)
-F (..\user\TFT\shadeCursor.c)(0x66A3671A)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/shadecursor.o -MMD)
+F (..\user\TFT\shadeCursor.c)(0x66A6910D)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/shadecursor.o -MMD)
 I (..\user\TFT\shadeCursor.h)(0x669CB2A2)
 I (..\user\TFT\interface.h)(0x66A2BA77)
 I (..\user\device\dev_lcd.h)(0x66A262B6)
@@ -2117,11 +2122,11 @@ I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim.h)(0x6654A03C)
 I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim_ex.h)(0x6654A03C)
 I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h)(0x6654A03C)
 I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h)(0x6654A03C)
-I (..\Core\Inc\tim.h)(0x669E7FFD)
+I (..\Core\Inc\tim.h)(0x66A683C3)
 I (..\Core\Inc\adc.h)(0x669866F2)
-F (..\user\Src\osc.c)(0x66A36FC3)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/osc.o -MMD)
-I (..\user\Src\osc.h)(0x66A36356)
-I (..\user\Src\volDef.h)(0x66A2A233)
+F (..\user\Src\osc.c)(0x66A697CB)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/osc.o -MMD)
+I (..\user\Src\osc.h)(0x66A695A1)
+I (..\user\Src\volDef.h)(0x66A67EF2)
 I (..\Core\Inc\adc.h)(0x669866F2)
 I (..\Core\Inc\main.h)(0x665F396B)
 I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h)(0x6654A03C)
@@ -2159,18 +2164,20 @@ I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim.h)(0x6654A03C)
 I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim_ex.h)(0x6654A03C)
 I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h)(0x6654A03C)
 I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h)(0x6654A03C)
-I (..\Core\Inc\tim.h)(0x669E7FFD)
+I (..\Core\Inc\tim.h)(0x66A683C3)
 I (..\user\TFT\interface.h)(0x66A2BA77)
 I (..\user\device\dev_lcd.h)(0x66A262B6)
 I (..\user\device\bsp_system.h)(0x669CD74F)
 I (..\user\device\bsp_delay.h)(0x627FADD1)
 I (..\user\TOUCH\fontInclude.h)(0x6661C123)
 I (..\user\Src\mathDef.h)(0x66A1404F)
-F (..\user\Src\waveG.c)(0x669ED3FB)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/waveg.o -MMD)
-I (..\user\Src\waveG.h)(0x669ED3FB)
+I (..\user\Src\VolBiasDac.h)(0x66A67C12)
+I (..\Core\Inc\i2c.h)(0x669A0D95)
+F (..\user\Src\waveG.c)(0x66A38069)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/waveg.o -MMD)
+I (..\user\Src\waveG.h)(0x66A3C298)
 I (..\user\Src\mathDef.h)(0x66A1404F)
-I (..\user\Src\volDef.h)(0x66A2A233)
-I (..\Core\Inc\tim.h)(0x669E7FFD)
+I (..\user\Src\volDef.h)(0x66A67EF2)
+I (..\Core\Inc\tim.h)(0x66A683C3)
 I (..\Core\Inc\main.h)(0x665F396B)
 I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h)(0x6654A03C)
 I (..\Core\Inc\stm32h7xx_hal_conf.h)(0x669866F3)
@@ -2341,7 +2348,7 @@ I (..\user\Src\mathDef.h)(0x66A1404F)
 I (..\user\TFT\UIobject.h)(0x66A150CC)
 I (..\user\EVENT\event.h)(0x66A158CE)
 I (..\user\TFT\UImessage.h)(0x66A14F21)
-F (..\user\Src\UserInterface.c)(0x66A36921)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/userinterface.o -MMD)
+F (..\user\Src\UserInterface.c)(0x66A697F1)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/userinterface.o -MMD)
 I (..\user\Src\UserInterface.h)(0x66A141B9)
 I (..\user\TFT\interface.h)(0x66A2BA77)
 I (..\user\device\dev_lcd.h)(0x66A262B6)
@@ -2391,15 +2398,17 @@ I (..\Core\Inc\main.h)(0x665F396B)
 I (..\user\TFT\shadeCursor.h)(0x669CB2A2)
 I (..\user\TFT\UIsample.h)(0x66A1526F)
 I (..\user\TFT\UIwave.h)(0x66A27764)
-I (..\user\Src\osc.h)(0x66A36356)
-I (..\user\Src\volDef.h)(0x66A2A233)
+I (..\user\Src\osc.h)(0x66A695A1)
+I (..\user\Src\volDef.h)(0x66A67EF2)
 I (..\Core\Inc\adc.h)(0x669866F2)
-I (..\Core\Inc\tim.h)(0x669E7FFD)
+I (..\Core\Inc\tim.h)(0x66A683C3)
+I (..\user\Src\VolBiasDac.h)(0x66A67C12)
+I (..\Core\Inc\i2c.h)(0x669A0D95)
 I (..\user\TFT\UIfloatingWindow.h)(0x66A3697D)
 I (..\user\TFT\UIbutton.h)(0x66A1554E)
 I (..\user\TFT\UImessage.h)(0x66A14F21)
 I (..\user\TFT\pipline.h)(0x66A1417E)
-F (..\user\EVENT\keyEvent.c)(0x66A2AAD8)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/keyevent.o -MMD)
+F (..\user\EVENT\keyEvent.c)(0x66A69379)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/keyevent.o -MMD)
 I (..\user\EVENT\keyEvent.h)(0x669EBEDD)
 I (..\user\EVENT\event.h)(0x66A158CE)
 I (..\Core\Inc\main.h)(0x665F396B)
@@ -2440,3 +2449,42 @@ I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h)(0x6654A03C)
 I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h)(0x6654A03C)
 F (..\user\Src\mathDef.c)(0x66A1651F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/mathdef.o -MMD)
 I (..\user\Src\mathDef.h)(0x66A1404F)
+F (..\user\Src\VolBiasDac.c)(0x66A67C1A)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../user/device -I ../user/fatfs -I ../user/TOUCH -I ../user/system -I ../user/TFT -I ../user/EVENT -I ../user/Src-I./RTE/_ELECAP-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/ChadPeng/AppData/Local/Arm/Packs/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o elecap/volbiasdac.o -MMD)
+I (..\user\Src\VolBiasDac.h)(0x66A67C12)
+I (..\Core\Inc\i2c.h)(0x669A0D95)
+I (..\Core\Inc\main.h)(0x665F396B)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h)(0x6654A03C)
+I (..\Core\Inc\stm32h7xx_hal_conf.h)(0x669866F3)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h)(0x6654A03C)
+I (..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h)(0x6654A03C)
+I (..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\stm32h750xx.h)(0x6654A03C)
+I (..\Drivers\CMSIS\Include\core_cm7.h)(0x66549F68)
+I (..\Drivers\CMSIS\Device\ST\STM32H7xx\Include\system_stm32h7xx.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc_ex.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio_ex.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dma.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dma_ex.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_mdma.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_exti.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_cortex.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_adc.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_adc.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_adc_ex.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dac.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dac_ex.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_flash.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_flash_ex.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_hsem.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_sram.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_fmc.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_i2c.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_i2c_ex.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pwr.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pwr_ex.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim_ex.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h)(0x6654A03C)
+I (..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h)(0x6654A03C)

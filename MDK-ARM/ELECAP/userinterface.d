@@ -41,5 +41,6 @@ elecap/userinterface.o: ..\user\Src\UserInterface.c \
   ..\user\EVENT\touchEvent.h ..\Core\Inc\main.h \
   ..\user\TFT\shadeCursor.h ..\user\TFT\UIsample.h ..\user\TFT\UIwave.h \
   ..\user\Src\osc.h ..\user\Src\volDef.h ..\Core\Inc\adc.h \
-  ..\Core\Inc\tim.h ..\user\TFT\UIfloatingWindow.h \
-  ..\user\TFT\UIbutton.h ..\user\TFT\UImessage.h ..\user\TFT\pipline.h
+  ..\Core\Inc\tim.h ..\user\Src\VolBiasDac.h ..\Core\Inc\i2c.h \
+  ..\user\TFT\UIfloatingWindow.h ..\user\TFT\UIbutton.h \
+  ..\user\TFT\UImessage.h ..\user\TFT\pipline.h

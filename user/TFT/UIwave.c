@@ -13,7 +13,7 @@ extern OscData *thisOsc;
 
 void UIwaveEventlistener(UIobject *this, Event event)
 {
-    int direction;
+    static int direction;
     static int lastXbias;
     static int lastYbias;
     static int lastXdist;
@@ -22,12 +22,13 @@ void UIwaveEventlistener(UIobject *this, Event event)
     static int lastYscale;
     static int gestureValid = 0;
     State state = stateMask(event);
-    
+
     if (state == OnClick)
     {
         lastXbias = thisOsc->xBias;
         lastYbias = thisOsc->yBias;
         gestureValid = 0;
+        direction = 0;
         if ((touchingParam.multiTouchSta >> 1) & 0x01)
         {
             lastXdist = absM(touchingParam.xList[1] - touchingParam.xList[0]);
@@ -36,27 +37,29 @@ void UIwaveEventlistener(UIobject *this, Event event)
             lastYscale = thisOsc->yScale;
         }
     }
-    else if (state == HoldEnd){
+    else if (state == HoldEnd)
+    {
         gestureValid = 0;
+        direction = 0;
     }
     else if (touchingParam.longHold)
     {
         int deltaX = touchingParam.cursorNowX - touchingParam.clickX;
-        int deltaY = touchingParam.cursorNowY - touchingParam.clickY;
-        direction = absM(deltaX) > absM(deltaY);
-        if (absM(deltaX) > gestureThreshold || absM(deltaY) > gestureThreshold)
+        int deltaY = -(touchingParam.cursorNowY - touchingParam.clickY);
+        if (gestureValid == 0 && (absM(deltaX) > gestureThreshold || absM(deltaY) > gestureThreshold))
         {
             gestureValid = 1;
+            direction = (absM(deltaX) > absM(deltaY)) ? 1 : -1;
         }
         if (gestureValid)
         {
-            if (direction)
+            if (direction == 1)
             {
                 setXbias(thisOsc, lastXbias + deltaX);
                 sprintf(floatMessage, "xBias:%d", thisOsc->xBias);
                 updateMessage(floatMessage);
             }
-            else
+            else if (direction == -1)
             {
                 setYbias(thisOsc, lastYbias + deltaY);
                 sprintf(floatMessage, "yBias:%d", thisOsc->yBias);
@@ -67,15 +70,15 @@ void UIwaveEventlistener(UIobject *this, Event event)
     else if ((touchingParam.multiTouchSta >> 1) & 0x01)
     {
         int deltaX = absM(touchingParam.xList[1] - touchingParam.xList[0]) - lastXdist;
-        int deltaY = absM(touchingParam.yList[1] - touchingParam.yList[0]) - lastYdist;
-        direction = absM(deltaX) > abs(deltaY);
-        if (absM(deltaX) > gestureThreshold || absM(deltaY) > gestureThreshold)
+        int deltaY = -(absM(touchingParam.yList[1] - touchingParam.yList[0]) - lastYdist);
+        if (gestureValid == 0 && (absM(deltaX) > gestureThreshold || absM(deltaY) > gestureThreshold))
         {
             gestureValid = 1;
+            direction = (absM(deltaX) > absM(deltaY)) ? 1 : -1;
         }
         if (gestureValid)
         {
-            if (direction)
+            if (direction == 1)
             {
                 int xscale = lastXscale;
                 if (deltaX > 0)
@@ -97,7 +100,7 @@ void UIwaveEventlistener(UIobject *this, Event event)
                 sprintf(floatMessage, "xscale:%d", xscale);
                 updateMessage(floatMessage);
             }
-            else
+            else if (direction == -1)
             {
                 int yscale = lastYscale;
                 if (deltaY > 0)

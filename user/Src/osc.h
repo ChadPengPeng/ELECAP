@@ -6,6 +6,7 @@
 #include "adc.h"
 #include "tim.h"
 #include "interface.h" //otherwise define WIDTH your TFT screen width
+#include "VolBiasDac.h"
 
 extern volatile int busy;
 
@@ -65,5 +66,6 @@ extern void setTrigger(OscData *data, int trigger);
 extern void bindOscWaveCh1(OscData *data, int *waveUIlist);
 extern void bindOscWaveCh2(OscData *data, int *waveUIlist);
 extern void setInputMode(OscData *data, InputMode mode);
+extern void setTriggerMode(OscData *data, TriggerMode mode);
 
 #endif //  __OSC__

@@ -4,16 +4,16 @@ volatile int busy = 0;
 void getWaveCH1(uint16_t *wave, int length)
 {
     // Initialize the oscillator
-    HAL_TIM_Base_Start(&htim6);
-    HAL_ADC_Start_DMA(&hadc1, (uint32_t *)wave, length);
+    HAL_TIM_Base_Start(&adcTimer);
+    HAL_ADC_Start_DMA(&adc1, (uint32_t *)wave, length);
     busy |= 1;
 }
 
 void getWaveCH2(uint16_t *wave, int length)
 {
     // Initialize the oscillator
-    HAL_TIM_Base_Start(&htim6);
-    HAL_ADC_Start_DMA(&hadc2, (uint32_t *)wave, length);
+    HAL_TIM_Base_Start(&adcTimer);
+    HAL_ADC_Start_DMA(&adc2, (uint32_t *)wave, length);
     busy |= 1 << 1;
 }
 
@@ -21,9 +21,9 @@ int ifBusy()
 {
     if (busy == 0)
     {
-        HAL_TIM_Base_Stop(&htim6);
-        HAL_ADC_Stop_DMA(&hadc1);
-        HAL_ADC_Stop_DMA(&hadc2);
+        HAL_TIM_Base_Stop(&adcTimer);
+        HAL_ADC_Stop_DMA(&adc1);
+        HAL_ADC_Stop_DMA(&adc2);
     }
     return busy;
 }
@@ -99,12 +99,18 @@ void processWave(OscData *data, uint16_t *wave, int length, int *waveUIlist)
 
 int getVoltageNum()
 {
-    HAL_TIM_Base_Start(&htim6);
-    HAL_ADC_Start(&hadc1);
-    HAL_ADC_GetValue(&hadc1);
-    uint16_t voltage;
-    voltage = (HAL_ADC_GetValue(&hadc1) + HAL_ADC_GetValue(&hadc1) + HAL_ADC_GetValue(&hadc1) + HAL_ADC_GetValue(&hadc1)) / 4;
-    HAL_ADC_Stop(&hadc1);
+    HAL_TIM_Base_Start(&adcTimer);
+    uint16_t dmaList[32];
+    HAL_ADC_Start_DMA(&adc1, (uint32_t *)dmaList, 32);
+    busy |= 1;
+    while (ifBusy())
+        ;
+    int voltage = 0;
+    for (int i = 8; i < 24; i++)
+    {
+        voltage += dmaList[i];
+    }
+    voltage /= 16;
     return voltage;
 }
 
@@ -116,8 +122,12 @@ void setXbias(OscData *data, int xbias)
 
 void setYbias(OscData *data, int ybias)
 {
+    ybias = constrain(ybias, -ABSVoltagePixel * VREF / 2, ABSVoltagePixel * VREF / 2);
     data->yBias = ybias;
-    // todo
+    int bias = ybias * BiasDacMax / (int)((float)ABSVoltagePixel * VREF) + BiasDacMax / 2;
+    bias = constrain(bias, 0, BiasDacMax);
+    setVolBiasDacCh1(bias);
+    setVolBiasDacCh2(bias);
 }
 
 void setXscale(OscData *data, int xscale)
@@ -166,11 +176,11 @@ void setYscale(OscData *data, int yscale)
         break;
     }
 
-    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1, index >> 2); // 1/20x PIN
+    HAL_GPIO_WritePin(GPIO_BY20, PIN_BY20, !(index >> 2)); // 1/20x PIN
 
-    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3, index >> 1 & 0x1); // CD4052 A1 PIN
+    HAL_GPIO_WritePin(GPIO_CD4052_A1, PIN_CD4052_A1, index >> 1 & 0x1); // CD4052 A1 PIN
 
-    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, index & 0x1); // CD4052 A0 PIN
+    HAL_GPIO_WritePin(GPIO_CD4052_A0, PIN_CD4052_A0, index & 0x1); // CD4052 A0 PIN
 }
 
 void setTrigger(OscData *data, int trigger)
@@ -194,13 +204,13 @@ void setInputMode(OscData *data, InputMode mode)
     switch (mode)
     {
     case AC:
-        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_SET);
+        HAL_GPIO_WritePin(GPIO_ACDC, PIN_ACDC, GPIO_PIN_SET);
         break;
     case DC:
-        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIO_ACDC, PIN_ACDC, GPIO_PIN_RESET);
         break;
     default:
-        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIO_ACDC, PIN_ACDC, GPIO_PIN_RESET);
         break;
     }
 }

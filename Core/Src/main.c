@@ -65,7 +65,8 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+float volIn;
+float volOut;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -138,6 +139,8 @@ int main(void)
   initWaveG();
   thisOsc = initOscData(0, 0, 100000, Amplify1x, DC, Auto);
 
+  // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, 1);
+
   HAL_Delay(20);
   // 显示屏flash芯片初始
   // W25QXX_Init();
@@ -147,9 +150,6 @@ int main(void)
   tp_dev.init();
   // 图像界面初始
   graphInit();
-
-  //	extern DMA_HandleTypeDef hdma_adc1;
-  //	hdma_adc1.XferM1CpltCallback = AdcCH1Finish;
 
   uint16_t adcNumberCh1_a[wave_length];
   uint16_t adcNumberCh1_b[wave_length];
@@ -165,54 +165,50 @@ int main(void)
 
     keyEvent();
     // debug
-    int touched = 0;
     tp_dev.scan(0);
-    if (tp_dev.sta & 0b11111 && touched == 0)
+    if ((tp_dev.sta & 0b11111))
     {
       addTouchEvent(tp_dev.x[0] / 2, tp_dev.y[0] / 2, 1);
-      touched = 1;
     }
-    while (ifBusy())
-    {
-      // dummy++;
-      tp_dev.scan(0);
-      if (tp_dev.sta & 0b11111 && touched == 0)
-      {
-        addTouchEvent(tp_dev.x[0] / 2, tp_dev.y[0] / 2, 1);
-        touched = 1;
-      }
-    }
-    if (touched == 0)
+    else
       addTouchEvent(tp_dev.x[0] / 2, tp_dev.y[0] / 2, 0);
     for (int i = 0; i < 5; i++)
     {
-      if(tp_dev.sta>>i & 0x1)
+      if (tp_dev.sta >> i & 0x1)
       {
         touchingParam.xList[i] = tp_dev.x[i] / 2;
         touchingParam.yList[i] = tp_dev.y[i] / 2;
       }
     }
     touchingParam.multiTouchSta = tp_dev.sta & 0b11111;
-    if (adcArray == adcNumberCh1_a)
+
+    if (!ifBusy())
     {
-      adcArray = adcNumberCh1_b;
-      outputArray = adcNumberCh1_a;
+      if (adcArray == adcNumberCh1_a)
+      {
+        adcArray = adcNumberCh1_b;
+        outputArray = adcNumberCh1_a;
+      }
+      else
+      {
+        adcArray = adcNumberCh1_a;
+        outputArray = adcNumberCh1_b;
+      }
+      // uint16_t adcNumberCh2[wave_length];
+      getWaveCH1(adcArray, wave_length);
+      // getWaveCH2(adcNumberCh2, wave_length);
+      int waveIntCh1[WIDTH];
+      // int waveIntCh2[WIDTH];
+      bindOscWaveCh1(thisOsc, waveIntCh1);
+      // bindOscWaveCh2(thisOsc, waveIntCh2);
+      processWave(thisOsc, outputArray, wave_length, waveIntCh1);
+      // processWave(thisOsc, adcNumberCh2, wave_length, waveIntCh2);
     }
-    else
-    {
-      adcArray = adcNumberCh1_a;
-      outputArray = adcNumberCh1_b;
-    }
-    // uint16_t adcNumberCh2[wave_length];
-    getWaveCH1(adcArray, wave_length);
-    // getWaveCH2(adcNumberCh2, wave_length);
-    int waveIntCh1[WIDTH];
-    // int waveIntCh2[WIDTH];
-    bindOscWaveCh1(thisOsc, waveIntCh1);
-    // bindOscWaveCh2(thisOsc, waveIntCh2);
-    processWave(thisOsc, outputArray, wave_length, waveIntCh1);
-    // processWave(thisOsc, adcNumberCh2, wave_length, waveIntCh2);
     //  更新视图
+    volIn = (float)tp_dev.x[0] / 2 / (float)WIDTH * VREF;
+    generateVoltage(volIn);
+    // int adcNum = getVoltageNum();
+    volOut = (float)thisOsc->avg * VREF / ADC_MAX;
     nextGraphic();
     /* USER CODE END WHILE */
 

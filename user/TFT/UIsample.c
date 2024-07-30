@@ -76,6 +76,17 @@ void debugShader()
     cacheString(0, 80, 100, 100, 12, message, 0xaf7d);
     sprintf(message, "sta:%#hx", tp_dev.sta);
     cacheString(0, 96, 100, 100, 12, message, 0xaf7d);
+
+    sprintf(message, "GPIOE1:%d", HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_1));
+    cacheString(0, 104, 100, 100, 12, message, 0xaf7d);
+
+    // extern float volIn;
+    // sprintf(message, "volIn:%.3f", volIn);
+    // cacheString(0, 112, 100, 100, 12, message, 0xaf7d);
+
+    // extern float volOut;
+    // sprintf(message, "volOut:%.3f", volOut);
+    // cacheString(0, 128, 100, 100, 12, message, 0xaf7d);
 }
 
 void debugUI()

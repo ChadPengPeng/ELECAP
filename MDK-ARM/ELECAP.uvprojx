@@ -1334,6 +1334,11 @@
               <FileType>1</FileType>
               <FilePath>..\user\Src\mathDef.c</FilePath>
             </File>
+            <File>
+              <FileName>VolBiasDac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\user\Src\VolBiasDac.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

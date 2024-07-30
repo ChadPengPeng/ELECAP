@@ -16,7 +16,8 @@ typedef enum
     SINE,
     SQUARE,
     TRIANGLE,
-    SAWTOOTH
+    SAWTOOTH,
+    WaveTypeMax
 } WaveType;
 
 typedef struct

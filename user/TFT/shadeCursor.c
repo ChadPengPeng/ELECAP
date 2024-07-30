@@ -47,6 +47,8 @@ void shadeCursor()
         {
             x0 = touchingParam.xList[i];
             y0 = touchingParam.yList[i];
+            if (x0 == 0 && y0 == 0)
+                continue;
             int x = 0;
             int y = r;
             int d = 3 - 2 * r;

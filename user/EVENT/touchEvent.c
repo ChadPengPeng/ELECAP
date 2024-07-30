@@ -20,7 +20,7 @@ void addTouchEvent(int x, int y, int sta)
         touchingParam.holding = 0;
         touchingParam.clickingTick = HAL_GetTick();
     }
-    if (lastClick == 0b10000000 && (!sta))
+    if (lastClick == 0b00001000 && (!sta) && (state == Hold))
     {
         state = HoldEnd;
     }
@@ -32,7 +32,7 @@ void addTouchEvent(int x, int y, int sta)
     {
         touchingParam.holding = (touchingParam.holding > 0) ? touchingParam.holding - 1 : 0;
     }
-    lastClick = (lastClick << 1) | (sta != 0); // save last sta 8 times
+    lastClick = ((lastClick << 1) & 0b1111) | (sta != 0); // save last sta 8 times
     if (state)
     {
         addEvent(getCursorEvent(x, y, Touch, state));
