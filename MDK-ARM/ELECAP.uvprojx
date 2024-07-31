@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32H750xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32H7xx/Include;../Drivers/CMSIS/Include;../user/device;../user/fatfs;../user/TOUCH;../user/system;../user/TFT;../user/EVENT;../user/Src</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32H7xx/Include;../Drivers/CMSIS/Include;../user/device;../user/fatfs;../user/TOUCH;../user/system;../user/TFT;../user/EVENT;../user/Src;..\user\Src\ddsModule</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1255,11 +1255,6 @@
               <FilePath>..\user\TFT\UIsample.c</FilePath>
             </File>
             <File>
-              <FileName>UIwave.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\user\TFT\UIwave.c</FilePath>
-            </File>
-            <File>
               <FileName>bsp_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\user\device\bsp_spi.c</FilePath>
@@ -1338,6 +1333,16 @@
               <FileName>VolBiasDac.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\user\Src\VolBiasDac.c</FilePath>
+            </File>
+            <File>
+              <FileName>AD9959.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\user\Src\ddsModule\AD9959.c</FilePath>
+            </File>
+            <File>
+              <FileName>DDS.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\user\Src\DDS.c</FilePath>
             </File>
           </Files>
         </Group>

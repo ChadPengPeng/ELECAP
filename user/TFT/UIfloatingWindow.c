@@ -100,6 +100,10 @@ UIobject *flotingUI(short centerx, short centery, short width, short height, u16
 
 void floatingMessage(char *message)
 {
+    if (thisFloatingWindow == NULL)
+    {
+        return;
+    }
     // make window have the amimation effect of unfolding
     thisFloatingWindow->width = 0;
     thisFloatingWindow->height = 0;
@@ -109,6 +113,10 @@ void floatingMessage(char *message)
 char floatMessage[64];
 void updateMessage(char *message)
 {
+    if (thisFloatingWindow == NULL)
+    {
+        return;
+    }
     thisFloatingWindow->shader = floatingShader;
     thisFloatingWindow->selfStruct = message;
     thisFloatingWindow->update = floatingOnFoldingUpdate;

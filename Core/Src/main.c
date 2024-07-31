@@ -45,6 +45,7 @@
 #include "osc.h"
 #include "waveG.h"
 #include "keyEvent.h"
+#include "AD9959.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -80,7 +81,7 @@ static void MPU_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 #define wave_length 500
-OscData *thisOsc;
+//OscData *thisOsc;
 /* USER CODE END 0 */
 
 /**
@@ -134,10 +135,11 @@ int main(void)
   MX_TIM13_Init();
   MX_TIM15_Init();
   /* USER CODE BEGIN 2 */
+	ad9959_init();
   HAL_TIM_Base_Start(&htim15);
   HAL_TIM_Base_Start_IT(&htim13);
   initWaveG();
-  thisOsc = initOscData(0, 0, 100000, Amplify1x, DC, Auto);
+//  thisOsc = initOscData(0, 0, 100000, Amplify1x, DC, Auto);
 
   // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, 1);
 
@@ -151,11 +153,6 @@ int main(void)
   // 图像界面初始
   graphInit();
 
-  uint16_t adcNumberCh1_a[wave_length];
-  uint16_t adcNumberCh1_b[wave_length];
-  uint16_t *adcArray, *outputArray;
-  adcArray = adcNumberCh1_a;
-  outputArray = adcNumberCh1_b;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -182,33 +179,7 @@ int main(void)
     }
     touchingParam.multiTouchSta = tp_dev.sta & 0b11111;
 
-    if (!ifBusy())
-    {
-      if (adcArray == adcNumberCh1_a)
-      {
-        adcArray = adcNumberCh1_b;
-        outputArray = adcNumberCh1_a;
-      }
-      else
-      {
-        adcArray = adcNumberCh1_a;
-        outputArray = adcNumberCh1_b;
-      }
-      // uint16_t adcNumberCh2[wave_length];
-      getWaveCH1(adcArray, wave_length);
-      // getWaveCH2(adcNumberCh2, wave_length);
-      int waveIntCh1[WIDTH];
-      // int waveIntCh2[WIDTH];
-      bindOscWaveCh1(thisOsc, waveIntCh1);
-      // bindOscWaveCh2(thisOsc, waveIntCh2);
-      processWave(thisOsc, outputArray, wave_length, waveIntCh1);
-      // processWave(thisOsc, adcNumberCh2, wave_length, waveIntCh2);
-    }
     //  更新视图
-    volIn = (float)tp_dev.x[0] / 2 / (float)WIDTH * VREF;
-    generateVoltage(volIn);
-    // int adcNum = getVoltageNum();
-    volOut = (float)thisOsc->avg * VREF / ADC_MAX;
     nextGraphic();
     /* USER CODE END WHILE */
 

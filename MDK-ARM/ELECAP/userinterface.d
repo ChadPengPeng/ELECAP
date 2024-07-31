@@ -39,8 +39,9 @@ elecap/userinterface.o: ..\user\Src\UserInterface.c \
   ..\user\device\bsp_delay.h ..\user\TOUCH\fontInclude.h \
   ..\user\Src\mathDef.h ..\user\TFT\UIobject.h ..\user\EVENT\event.h \
   ..\user\EVENT\touchEvent.h ..\Core\Inc\main.h \
-  ..\user\TFT\shadeCursor.h ..\user\TFT\UIsample.h ..\user\TFT\UIwave.h \
-  ..\user\Src\osc.h ..\user\Src\volDef.h ..\Core\Inc\adc.h \
-  ..\Core\Inc\tim.h ..\user\Src\VolBiasDac.h ..\Core\Inc\i2c.h \
-  ..\user\TFT\UIfloatingWindow.h ..\user\TFT\UIbutton.h \
-  ..\user\TFT\UImessage.h ..\user\TFT\pipline.h
+  ..\user\TFT\shadeCursor.h ..\user\TFT\UIsample.h \
+  ..\user\TFT\UIbutton.h ..\user\TFT\UIfloatingWindow.h \
+  ..\user\TFT\UImessage.h ..\user\Src\osc.h ..\user\Src\volDef.h \
+  ..\Core\Inc\adc.h ..\Core\Inc\tim.h ..\user\Src\VolBiasDac.h \
+  ..\Core\Inc\i2c.h ..\user\TFT\pipline.h ..\user\Src\DDS.h \
+  ..\user\Src\ddsModule\ad9959.h ..\Core\Inc\gpio.h

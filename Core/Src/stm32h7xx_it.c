@@ -43,7 +43,6 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-extern OscData *thisOsc;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -306,7 +305,7 @@ void TIM8_UP_TIM13_IRQHandler(void)
 	if(__HAL_TIM_GET_FLAG(&htim13,TIM_IT_UPDATE) != RESET)
 	{
 		static int lastWaveNum = 0;
-    thisOsc->freq = (TIM15->CNT - lastWaveNum) * TIM13UpdateFreq;
+//    thisOsc->freq = (TIM15->CNT - lastWaveNum) * TIM13UpdateFreq;
 		lastWaveNum = TIM15->CNT;
 		__HAL_TIM_CLEAR_IT(&htim13,TIM_IT_UPDATE);
 	}	

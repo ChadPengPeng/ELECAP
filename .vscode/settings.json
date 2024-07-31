@@ -42,7 +42,12 @@
         "voldef.h": "c",
         "keyevent.h": "c",
         "string.h": "c",
-        "variant": "c"
+        "variant": "c",
+        "volbiasdac.h": "c",
+        "mathdef.h": "c",
+        "stm32h7xx_hal_conf.h": "c",
+        "stm32h750xx.h": "c",
+        "stdbool.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

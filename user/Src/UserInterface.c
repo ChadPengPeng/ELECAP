@@ -1,87 +1,66 @@
 #include "UserInterface.h"
 
-extern OscData *thisOsc;
-char message[64];
-void freqButtonShader(UIobject *this);
-void inputModeButtonShader(UIobject *this);
-void triggerModeButtonShader(UIobject *this);
-void freqButtonClick(UIobject *this, Event event);
-void inputModeButtonClick(UIobject *this, Event event);
-void triggerModeButtonClick(UIobject *this, Event event);
+#define CH0 AD9959_CHANNEL_0
+#define CH1 AD9959_CHANNEL_1
+#define CH2 AD9959_CHANNEL_2
+#define CH3 AD9959_CHANNEL_3
 
-void OscDataMessageShader(UIobject *this);
-void OscDataMessageOnCursor(UIobject *this, Event event);
+
+char message[64];
 // implement your own UI
+uint8_t selectChannel = CH0;
+DDS_Config *selectDDS = NULL;
+
+void channelButtonClick(UIobject *this, Event event);
+void freqButtonClick(UIobject *this, Event event);
+void ampButtonClick(UIobject *this, Event event);
+void phaseButtonClick(UIobject *this, Event event);
+void channelButtonShader(UIobject *this);
+void freqButtonShader(UIobject *this);
+void ampButtonShader(UIobject *this);
+void phaseButtonShader(UIobject *this);
+
 void userInterface()
 {
+    selectDDS = DDS_Init(CH0, 2000000, 512, 0);
+    DDS_Init(CH1, 20000000, 512, 0);
+    DDS_Init(CH2, 2000000, 512, 0);
+    DDS_Init(CH3, 20000000, 512, 0);
+
     flotingUI(WIDTH / 2, HEIGHT / 4, 100, 20, MacaronORANGE, BLACK, 254);
-    // your init object
-    // recUI(120, 160, 100, 100, BLUE, 2);
-    // recUI(130, 160, 100, 100, PURPLE, 2);
-    // recUI(140, 160, 100, 100, GREEN, 2);
-    // recUI(150, 160, 100, 100, YELLOW, 2);
-    // recUI(160, 160, 100, 100, ORANGE, 2);
-    UIobject *drawer = drawerUI(WIDTH - 1, HEIGHT / 2, 30, HEIGHT - 1, MacaronGREEN, BLACK, 4);
 
-    UIobject *slider = sliderUI(50, 0, 50, HEIGHT - 1, 5);
-    childInsert(drawer, slider);
+    //UIobject *drawer = drawerUI(WIDTH - 1, HEIGHT / 2, 30, HEIGHT - 1, MacaronGREEN, BLACK, 4);
+
+    //UIobject *slider = sliderUI(50, 0, 50, HEIGHT - 1, 5);
+    //childInsert(drawer, slider);
     // drawerUI(100, 100, 100, 100, RED, GRAY, 4);
-    UIobject *freqButton = buttonUI(0, -50, 60, 36, MacaronBLUE, BLUE, 6);
-    UIobject *inputModeButton = buttonUI(0, 0, 60, 36, MacaronBLUE, BLUE, 7);
-    UIobject *triggerModeButton = buttonUI(0, 50, 60, 36, MacaronBLUE, BLUE, 8);
-    freqButton->shader = freqButtonShader;
-    inputModeButton->shader = inputModeButtonShader;
-    triggerModeButton->shader = triggerModeButtonShader;
+    UIobject *channelButton = buttonUI(WIDTH/2, 40, 60, 36, MacaronBLUE, BLUE, 6);
+    UIobject *freqButton = buttonUI(WIDTH/2, 80, 60, 36, MacaronBLUE, BLUE, 7);
+    UIobject *ampButton = buttonUI(WIDTH/2, 120, 60, 36, MacaronBLUE, BLUE, 8);
+    UIobject *phaseButton = buttonUI(WIDTH/2, 160, 60, 36, MacaronBLUE, BLUE, 9);
+    channelButton->eventListener = channelButtonClick;
     freqButton->eventListener = freqButtonClick;
-    inputModeButton->eventListener = inputModeButtonClick;
-    triggerModeButton->eventListener = triggerModeButtonClick;
-    childInsert(slider, freqButton);
-    childInsert(slider, inputModeButton);
-    childInsert(slider, triggerModeButton);
-    UIobject *oscDataMessage = messageUI(WIDTH / 2, HEIGHT * 3 / 4, WIDTH * 3 / 4, HEIGHT / 4, MacaronWHITE, BLACK, 254);
-    oscDataMessage->shader = OscDataMessageShader;
-    oscDataMessage->eventListener = OscDataMessageOnCursor;
-    waveUI(MacaronYELLOW, MacaronPINK, 1, thisOsc);
+    ampButton->eventListener = ampButtonClick;
+    phaseButton->eventListener = phaseButtonClick;
+    channelButton->shader = channelButtonShader;
+    freqButton->shader = freqButtonShader;
+    ampButton->shader = ampButtonShader;
+    phaseButton->shader = phaseButtonShader;
+    //childInsert(slider, channelButton);
+    //childInsert(slider, freqButton);
+    //childInsert(slider, ampButton);
+    //childInsert(slider, phaseButton);
 }
 
-void buttonOnCenter(UIobject *this)
-{
-    setSliderY(this->father, -this->relativeY);
-}
+// extern void sliderUpdate(UIobject *this, int deltaT);
 
-void freqButtonShader(UIobject *this)
-{
-    cacheCenterRec(this->x, this->y, this->width, this->height, this->color);
-    // cacheCenterBlock(this->x, this->y, this->param[0] - 1, this->param[1] - 1, this->param[2]);
-    // real freq
-    sprintf(message, "freq:\n %d", adcTIMfreq / (TIM6->ARR + 1));
-    // sprintf(message, "freq:\n %d", thisOsc->xScale);
-    cacheCenterString(this->x, this->y, this->width, this->height, 12, message, this->color);
-}
+// void buttonOnSelect(UIobject *this)
+// {
+//     this->father->aimY = -this->relativeY;
+//     this->father->update = sliderUpdate;
+// }
 
-void inputModeButtonShader(UIobject *this)
-{
-    cacheCenterRec(this->x, this->y, this->width, this->height, this->color);
-    // cacheCenterBlock(this->x, this->y, this->param[0] - 1, this->param[1] - 1, this->param[2]);
-    if (thisOsc->inputMode == AC)
-        sprintf(message, "input mode: AC");
-    else if (thisOsc->inputMode == DC)
-        sprintf(message, "input mode: DC");
-    cacheCenterString(this->x, this->y, this->width, this->height, 12, message, this->color);
-}
-
-void triggerModeButtonShader(UIobject *this)
-{
-    cacheCenterRec(this->x, this->y, this->width, this->height, this->color);
-    // cacheCenterBlock(this->x, this->y, this->param[0] - 1, this->param[1] - 1, this->param[2]);
-    if (thisOsc->triggerMode == Auto)
-        sprintf(message, "trigger mode: Auto");
-    else if (thisOsc->triggerMode == Manual)
-        sprintf(message, "trigger mode: Manual");
-    cacheCenterString(this->x, this->y, this->width, this->height, 12, message, this->color);
-}
-
-int intValueButtonClick(UIobject *this, Event event, int *valuePtr)
+int intValueButtonClick(UIobject *this, Event event)
 {
     int add = 0;
     if (eventCodeMask(event) == Touch)
@@ -114,65 +93,156 @@ int intValueButtonClick(UIobject *this, Event event, int *valuePtr)
             break;
         }
     }
-    int value = *valuePtr;
-    if (add == 1)
-        value = highDigitPlusOne(value);
-    else if (add == -1)
-        value = highDigitMinusOne(value);
-    value = constrain(value, 5000, 1000000);
-    return value;
+    return add;
+}
+
+void channelButtonClick(UIobject *this, Event event)
+{
+    if (stateMask(event) == OnClick)
+    {
+        int add = intValueButtonClick(this, event);
+        if (add == 1)
+        {
+            switch (selectChannel)
+            {
+            case CH0:
+                selectChannel = CH1;
+                break;
+
+            case CH1:
+                selectChannel = CH2;
+                break;
+
+            case CH2:
+                selectChannel = CH3;
+                break;
+
+            case CH3:
+                selectChannel = CH0;
+                break;
+
+            default:
+                break;
+            }
+        }
+
+        if (add == -1)
+        {
+            switch (selectChannel)
+            {
+            case CH0:
+                selectChannel = CH3;
+                break;
+
+            case CH1:
+                selectChannel = CH0;
+                break;
+
+            case CH2:
+                selectChannel = CH1;
+                break;
+
+            case CH3:
+                selectChannel = CH2;
+                break;
+
+            default:
+                break;
+            }
+        }
+        selectDDS = get_DDS(selectChannel);
+    }
 }
 
 void freqButtonClick(UIobject *this, Event event)
 {
-	if (eventCodeMask(event) == Select)
-        buttonOnCenter(this);
-    else if (stateMask(event) != OnClick)
-        return ;
-    int newFreq = intValueButtonClick(this, event, &thisOsc->xScale);
-    setXscale(thisOsc, newFreq);
-}
-
-void inputModeButtonClick(UIobject *this, Event event)
-{
-    if (eventCodeMask(event) == Select)
-        buttonOnCenter(this);
-    else if (stateMask(event) == OnClick)
+    if (stateMask(event) == OnClick)
     {
-        InputMode inputMode = 1 - thisOsc->inputMode;
-        setInputMode(thisOsc, inputMode);
+        int add = intValueButtonClick(this, event);
+        if (add == 1)
+        {
+            set_freq(selectDDS, selectDDS->freq + 2000000);
+        }
+        else if (add == -1)
+        {
+            set_freq(selectDDS, selectDDS->freq - 2000000);
+        }
     }
 }
 
-void triggerModeButtonClick(UIobject *this, Event event)
+void ampButtonClick(UIobject *this, Event event)
 {
-    if (eventCodeMask(event) == Select)
-        buttonOnCenter(this);
-    else if (stateMask(event) == OnClick)
+    if (stateMask(event) == OnClick)
     {
-        TriggerMode triggerMode = 1 - thisOsc->triggerMode;
-        setTriggerMode(thisOsc, triggerMode);
+        int add = intValueButtonClick(this, event);
+        if (add == 1)
+        {
+            set_amp(selectDDS, selectDDS->amp + 51);
+        }
+        else if (add == -1)
+        {
+            set_amp(selectDDS, selectDDS->amp - 51);
+        }
     }
 }
 
-extern void messageShader(UIobject *this);
-void OscDataMessageShader(UIobject *this)
+void phaseButtonClick(UIobject *this, Event event)
 {
-    messageShader(this);
-    sprintf(message, "max: %4.2f", toVoltage(thisOsc->max, thisOsc));
-    cacheOneCenter(this->x - 60, this->y - 12, 12, message, this->param[6]);
-    sprintf(message, "min: %4.2f", toVoltage(thisOsc->min, thisOsc));
-    cacheOneCenter(this->x + 60, this->y - 12, 12, message, this->param[6]);
-    sprintf(message, "avg: %4.2f", toVoltage(thisOsc->avg, thisOsc));
-    cacheOneCenter(this->x, this->y - 12, 12, message, this->param[6]);
-    sprintf(message, "freq: %d", thisOsc->freq);
-    cacheOneCenter(this->x, this->y + 12, 12, message, this->param[6]);
+    if (stateMask(event) == OnClick)
+    {
+        int add = intValueButtonClick(this, event);
+        if (add == 1)
+        {
+            set_phase(selectDDS, selectDDS->phase + 45);
+        }
+        else if (add == -1)
+        {
+            set_phase(selectDDS, selectDDS->phase - 45);
+        }
+    }
 }
 
-extern void messageOnCursor(UIobject *this, Event event);
-void OscDataMessageOnCursor(UIobject *this, Event event)
+extern void buttonShader(UIobject *this);
+void channelButtonShader(UIobject *this)
 {
-    messageOnCursor(this, event);
-    if (this->shader == messageShader)
-        this->shader = OscDataMessageShader;
+    buttonShader(this);
+    switch (selectChannel)
+    {
+    case CH0:
+        sprintf(message, "CH0"); break;
+
+    case CH1:
+        sprintf(message, "CH1"); break;
+
+    case CH2:
+        sprintf(message, "CH2"); break;
+
+    case CH3:
+        sprintf(message, "CH3"); break;
+    default:
+        break;
+    }
+    cacheCenterString(this->x, this->y, this->width, this->height, 12, message, this->color);
+}
+
+void freqButtonShader(UIobject *this)
+{
+    buttonShader(this);
+    sprintf(message, "Freq:%dMHz", selectDDS->freq / 1000000);
+    cacheCenterString(this->x, this->y, this->width, this->height, 12, message, this->color);
+}
+
+void ampButtonShader(UIobject *this)
+{
+    buttonShader(this);
+    sprintf(message, "Amp:%d", selectDDS->amp);
+    cacheCenterString(this->x, this->y, this->width, this->height, 12, message, this->color);
+}
+
+
+void phaseButtonShader(UIobject *this)
+{
+    buttonShader(this);
+    sprintf(message, "Phase:%d", selectDDS->phase);
+    cacheCenterString(this->x, this->y, this->width, this->height, 12, message, this->color);
 }
