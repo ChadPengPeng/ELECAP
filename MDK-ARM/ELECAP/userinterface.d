@@ -18,11 +18,6 @@ elecap/userinterface.o: ..\user\Src\UserInterface.c \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_mdma.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_exti.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_cortex.h \
-  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_adc.h \
-  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_ll_adc.h \
-  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_adc_ex.h \
-  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dac.h \
-  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_dac_ex.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_flash.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_flash_ex.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_hsem.h \
@@ -32,8 +27,6 @@ elecap/userinterface.o: ..\user\Src\UserInterface.c \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_i2c_ex.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pwr.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_pwr_ex.h \
-  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim.h \
-  ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_tim_ex.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h \
   ..\Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h \
   ..\user\device\bsp_delay.h ..\user\TOUCH\fontInclude.h \
@@ -41,7 +34,5 @@ elecap/userinterface.o: ..\user\Src\UserInterface.c \
   ..\user\EVENT\touchEvent.h ..\Core\Inc\main.h \
   ..\user\TFT\shadeCursor.h ..\user\TFT\UIsample.h \
   ..\user\TFT\UIbutton.h ..\user\TFT\UIfloatingWindow.h \
-  ..\user\TFT\UImessage.h ..\user\Src\osc.h ..\user\Src\volDef.h \
-  ..\Core\Inc\adc.h ..\Core\Inc\tim.h ..\user\Src\VolBiasDac.h \
-  ..\Core\Inc\i2c.h ..\user\TFT\pipline.h ..\user\Src\DDS.h \
+  ..\user\TFT\UImessage.h ..\user\TFT\pipline.h ..\user\Src\DDS.h \
   ..\user\Src\ddsModule\ad9959.h ..\Core\Inc\gpio.h
